@@ -128,6 +128,91 @@ namespace PointerFuncs {
 		return readLongValueZtlSecureFuse((ULONG*)(*(ULONG*)CharacterStatBase + OFS_Mesos));
 	}
 
+	//Retrieve Char STR
+	static SHORT getCharSTR() {
+		return readShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_STR);
+	}
+
+	//Set Char STR
+	static bool setCharSTR(SHORT value) {
+		return writeShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_STR, value);
+	}
+
+	//Retrieve Char DEX
+	static SHORT getCharDEX() {
+		return readShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_DEX);
+	}
+
+	//Set Char DEX
+	static bool setCharDEX(SHORT value) {
+		return writeShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_DEX, value);
+	}
+
+	//Retrieve Char INT
+	static SHORT getCharINT() {
+		return readShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_INT);
+	}
+
+	//Set Char INT
+	static bool setCharINT(SHORT value) {
+		return writeShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_INT, value);
+	}
+
+	//Retrieve Char LUK
+	static SHORT getCharLUK() {
+		return readShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_LUK);
+	}
+
+	//Set Char LUK
+	static bool setCharLUK(SHORT value) {
+		return writeShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_LUK, value);
+	}
+
+	//Set Char Level
+	static bool setCharLevel(UINT8 value) {
+		return writeCharValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_Level, value);
+	}
+
+	//Set Char Job ID
+	static bool setCharJobID(SHORT value) {
+		return writeShortValueZtlSecureFuse(*(ULONG*)CharacterStatBase + OFS_JobID, value);
+	}
+
+	//Set Char Mesos
+	static bool setCharMesos(UINT value) {
+		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)CharacterStatBase + OFS_Mesos), value);
+	}
+
+	//Set Char HP
+	static bool setCharHP(UINT value) {
+		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)CharacterStatBase + OFS_HP), value);
+	}
+
+	//Set Char MP
+	static bool setCharMP(UINT value) {
+		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)CharacterStatBase + OFS_MP), value);
+	}
+
+	//Retrieve Char Morph
+	static UINT getCharMorph() {
+		return ReadPointer(UserLocalBase, OFS_Morph);
+	}
+
+	//Set Char Morph
+	static void setCharMorph(UINT value) {
+		WritePointer(UserLocalBase, OFS_Morph, value);
+	}
+
+	//Retrieve Combo Count
+	static UINT getComboCount() {
+		return ReadPointer(UserLocalBase, OFS_ComboCount);
+	}
+
+	//Set Combo Count
+	static void setComboCount(UINT value) {
+		WritePointer(UserLocalBase, OFS_ComboCount, value);
+	}
+
 	//Retrieve Map Name
 	static String^ getMapName() {
 		if (isHooksEnabled)
@@ -135,10 +220,18 @@ namespace PointerFuncs {
 		else
 			WriteMemory(mapNameHookAddr, 6, 0x89, 0x7D, 0xD8, 0x8D, 0x4D, 0xEC);
 
-		if (Assembly::mapNameAddr == 0x0) return "Waiting..";
+		if (Assembly::mapNameAddr == 0x0) return "等待中..";
 
 		char *mapNameBuff = (char*)(Assembly::mapNameAddr + 12);
-		return gcnew String(mapNameBuff);
+		// Reject pointers in low 64K (invalid/null page) to prevent ArgumentException
+		if ((uintptr_t)mapNameBuff < 0x10000) return "等待中..";
+
+		try {
+			return gcnew String(mapNameBuff);
+		}
+		catch (...) {
+			return "等待中..";
+		}
 	}
 
 	//Retrieve Left Wall coord

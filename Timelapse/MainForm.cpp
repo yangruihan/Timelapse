@@ -22,7 +22,7 @@ static void mapRush(int destMapID);
 ref struct GlobalRefs {
 	static Macro ^macroHP, ^macroMP, ^macroAttack, ^macroLoot;
 	static bool isChangingField = false, isMapRushing = false;
-	static bool bClickTeleport = false, bMouseTeleport = false, bTeleport = false, bKami = false, bKamiLoot = false;
+	static bool bTeleport = false, bKami = false, bKamiLoot = false;
 	static bool bWallVac = false, bDupeX = false, bMMC = false, bUEMI = false;
 	static UINT cccsTimerTickCount = 0;
 	static bool isDragging = false, isEmbedding = false;
@@ -87,7 +87,7 @@ void MainForm::MainForm_Shown(Object^  sender, EventArgs^  e) {
 		this->Refresh();
 	}
 
-	lbTitle->Text = "Timelapse Trainer - PID: " + GetMSProcID();
+	lbTitle->Text = "Timelapse 辅助工具 - PID: " + GetMSProcID();
 	Log::WriteLineToConsole("Creating and starting macro Thread ...");
 	Threading::Thread^ macroThread = gcnew Threading::Thread(gcnew Threading::ThreadStart(PriorityQueue::MacroQueueWorker));
 	macroThread->Start();
@@ -96,7 +96,7 @@ void MainForm::MainForm_Shown(Object^  sender, EventArgs^  e) {
 	Log::WriteLineToConsole("Initialized Timelapse trainer!");
 
 	if (File::Exists(Settings::GetSettingsPath())) {
-		if (MessageBox::Show("A save file has been detected, load save?", "Save File", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
+		if (MessageBox::Show("检测到存档文件，是否加载？", "存档文件", MessageBoxButtons::YesNo) == System::Windows::Forms::DialogResult::Yes) {
 			Settings::Deserialize(this, Settings::GetSettingsPath());
 			AutoLogin();
 		}
@@ -106,7 +106,7 @@ void MainForm::MainForm_Shown(Object^  sender, EventArgs^  e) {
 void MainForm::MainForm_FormClosing(Object^  sender, Windows::Forms::FormClosingEventArgs^  e) {
 	//Turn off all loops
 	GlobalRefs::isChangingField = false, GlobalRefs::isMapRushing = false;
-	GlobalRefs::bClickTeleport = false, GlobalRefs::bMouseTeleport = false, GlobalRefs::bTeleport = false;
+	GlobalRefs::bTeleport = false;
 	GlobalRefs::bWallVac = false, GlobalRefs::bDupeX = false, GlobalRefs::bMMC = false, GlobalRefs::bUEMI = false;
 	GlobalRefs::bKami = false, GlobalRefs::bKamiLoot = false;
 	GlobalRefs::isDragging = false;
@@ -214,12 +214,12 @@ void MainForm::embedMSWindowToolStripMenuItem_Click(System::Object^  sender, Sys
 }
 
 void MainForm::hideMSWindowToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (this->hideMSWindowToolStripMenuItem->Text == "Hide MS Window") {
-		this->hideMSWindowToolStripMenuItem->Text = "Show MS Window";
+	if (this->hideMSWindowToolStripMenuItem->Text == "隐藏MS窗口") {
+		this->hideMSWindowToolStripMenuItem->Text = "显示MS窗口";
 		ShowWindow(GlobalVars::mapleWindow, SW_HIDE);
-	} 
+	}
 	else {
-		this->hideMSWindowToolStripMenuItem->Text = "Hide MS Window";
+		this->hideMSWindowToolStripMenuItem->Text = "隐藏MS窗口";
 		ShowWindow(GlobalVars::mapleWindow, SW_SHOW);
 	}
 }
@@ -279,11 +279,11 @@ void MainForm::pauseMSToolStripMenuItem_Click(System::Object^  sender, System::E
 	Diagnostics::ProcessThreadCollection^ threads = Diagnostics::Process::GetCurrentProcess()->Threads;
 
 	if (this->pauseMSToolStripMenuItem->Text == "Pause MS") {
-		this->pauseMSToolStripMenuItem->Text = "Resume MS";
+		this->pauseMSToolStripMenuItem->Text = "恢复MS";
 		DoSuspendThread();
 	} 
 	else {
-		this->pauseMSToolStripMenuItem->Text = "Pause MS";
+		this->pauseMSToolStripMenuItem->Text = "暂停MS";
 		DoResumeThread();
 	}
 }
@@ -344,34 +344,65 @@ void MainForm::GUITimer_Tick(Object^  sender, EventArgs^  e) {
 	}
 
 	if (HelperFuncs::IsInGame()) {
-		lbMapName->Text = PointerFuncs::getMapName();
+		try {
+			lbMapName->Text = PointerFuncs::getMapName();
 
-		lbCharName->Text = PointerFuncs::getCharName();
-		lbLevel->Text = PointerFuncs::getCharLevel();
-		lbJob->Text = PointerFuncs::getCharJob();
-		lbHP->Text = PointerFuncs::getCharHP();
-		lbMP->Text = PointerFuncs::getCharMP();
-		lbEXP->Text = PointerFuncs::getCharEXP();
-		lbMesos->Text = PointerFuncs::getCharMesos().ToString("N0");
+			lbCharName->Text = PointerFuncs::getCharName();
+			lbLevel->Text = PointerFuncs::getCharLevel();
+			lbJob->Text = PointerFuncs::getCharJob();
+			lbHP->Text = PointerFuncs::getCharHP();
+			lbMP->Text = PointerFuncs::getCharMP();
+			lbEXP->Text = PointerFuncs::getCharEXP();
+			lbMesos->Text = PointerFuncs::getCharMesos().ToString("N0");
 
-		lbWorld->Text = PointerFuncs::getWorld();
-		lbChannel->Text = PointerFuncs::getChannel();
-		lbMapID->Text = PointerFuncs::getMapID();
-		lbWalls->Text = PointerFuncs::getMapLeftWall() + " " + PointerFuncs::getMapRightWall() + " " + PointerFuncs::getMapTopWall() + " " + PointerFuncs::getMapBottomWall();
-		
-		lbCharFoothold->Text = PointerFuncs::getCharFoothold();
-		lbCharAnimation->Text = PointerFuncs::getCharAnimation();
-		lbCharPos->Text = PointerFuncs::getCharPos();
-		lbMousePos->Text = PointerFuncs::getMousePos();
+			lbWorld->Text = PointerFuncs::getWorld();
+			lbChannel->Text = PointerFuncs::getChannel();
+			lbMapID->Text = PointerFuncs::getMapID();
+			lbWalls->Text = PointerFuncs::getMapLeftWall() + " " + PointerFuncs::getMapRightWall() + " " + PointerFuncs::getMapTopWall() + " " + PointerFuncs::getMapBottomWall();
 
-		lbAttackCount->Text = PointerFuncs::getAttackCount();
-		lbBuffCount->Text = PointerFuncs::getBuffCount();
-		lbBreathCount->Text = PointerFuncs::getBreathCount();
-		lbPeopleCount->Text = PointerFuncs::getPeopleCount();
-		lbMobCount->Text = PointerFuncs::getMobCount();
-		lbItemCount->Text = PointerFuncs::getItemCount();
-		lbPortalCount->Text = PointerFuncs::getPortalCount();
-		lbNPCCount->Text = PointerFuncs::getNPCCount();
+			lbCharFoothold->Text = PointerFuncs::getCharFoothold();
+			lbCharAnimation->Text = PointerFuncs::getCharAnimation();
+			lbCharPos->Text = PointerFuncs::getCharPos();
+			lbMousePos->Text = PointerFuncs::getMousePos();
+
+			lbAttackCount->Text = PointerFuncs::getAttackCount();
+			lbBuffCount->Text = PointerFuncs::getBuffCount();
+			lbBreathCount->Text = PointerFuncs::getBreathCount();
+			lbPeopleCount->Text = PointerFuncs::getPeopleCount();
+			lbMobCount->Text = PointerFuncs::getMobCount();
+			lbItemCount->Text = PointerFuncs::getItemCount();
+			lbPortalCount->Text = PointerFuncs::getPortalCount();
+			lbNPCCount->Text = PointerFuncs::getNPCCount();
+
+			//Morph freeze: continuously write morph value while checked
+			if (this->cbMorph->Checked) {
+				ULONG morphVal = 0;
+				try { morphVal = Convert::ToUInt32(this->tbMorphValue->Text); }
+				catch (...) { morphVal = 0; }
+				PointerFuncs::setCharMorph(morphVal);
+			}
+
+			//Combo freeze: continuously write combo value while checked
+			if (this->cbComboFreeze->Checked) {
+				ULONG comboVal = 0;
+				try { comboVal = Convert::ToUInt32(this->tbComboValue->Text); }
+				catch (...) { comboVal = 0; }
+				PointerFuncs::setComboCount(comboVal);
+			}
+
+			//Update stats display (only when textbox is not focused, to avoid overwriting user input)
+			if (!this->tbSTR->Focused) this->tbSTR->Text = PointerFuncs::getCharSTR().ToString();
+			if (!this->tbDEX->Focused) this->tbDEX->Text = PointerFuncs::getCharDEX().ToString();
+			if (!this->tbINT->Focused) this->tbINT->Text = PointerFuncs::getCharINT().ToString();
+			if (!this->tbLUK->Focused) this->tbLUK->Text = PointerFuncs::getCharLUK().ToString();
+			if (!this->tbStatHP->Focused) this->tbStatHP->Text = Assembly::curHP.ToString();
+			if (!this->tbStatMP->Focused) this->tbStatMP->Text = Assembly::curMP.ToString();
+			if (!this->tbLevel->Focused) this->tbLevel->Text = PointerFuncs::getCharLevel();
+			if (!this->tbMesos->Focused) this->tbMesos->Text = PointerFuncs::getCharMesos().ToString();
+		}
+		catch (...) {
+			// Pointer reads can fail during map transitions; silently skip this tick
+		}
 	}
 }
 #pragma endregion
@@ -606,7 +637,7 @@ void MainForm::cbAttack_CheckedChanged(Object^  sender, EventArgs^  e) {
 	if(this->cbAttack->Checked) {
 		if(GlobalRefs::macroAttack == nullptr) {
 			if (String::IsNullOrWhiteSpace(tbAttackInterval->Text)) {
-				MessageBox::Show("Error: Attack Interval textbox cannot be empty");
+				MessageBox::Show("错误: 攻击间隔文本框不能为空");
 				this->cbAttack->Checked = false;
 				return;
 			}
@@ -634,7 +665,7 @@ void MainForm::tAutoAttack_Tick(Object^ sender, EventArgs^ e) {
 void MainForm::tbAttackInterval_TextChanged(Object^  sender, EventArgs^  e) {
 	if (GlobalRefs::macroAttack != nullptr) {
 		if (String::IsNullOrWhiteSpace(tbAttackInterval->Text)) {
-			MessageBox::Show("Error: Attack Interval textbox cannot be empty");
+			MessageBox::Show("错误: 攻击间隔文本框不能为空");
 			return;
 		}
 		GlobalRefs::macroAttack->delay = Convert::ToUInt32(tbAttackInterval->Text);
@@ -656,12 +687,12 @@ void MainForm::cbLoot_CheckedChanged(Object^  sender, EventArgs^  e) {
 	if (this->cbLoot->Checked) {
 		if (GlobalRefs::macroLoot == nullptr) {
 			if (String::IsNullOrWhiteSpace(tbLootInterval->Text)) {
-				MessageBox::Show("Error: Loot Interval textbox cannot be empty");
+				MessageBox::Show("错误: 拾取间隔文本框不能为空");
 				this->cbLoot->Checked = false;
 				return;
 			}
 		}
-		this->tAutoLoot->Interval = Convert::ToInt32(tbAttackInterval->Text);
+		this->tAutoLoot->Interval = Convert::ToInt32(tbLootInterval->Text);
 		this->tAutoLoot->Enabled = true; //cbLoot->Checked
 		MacrosEnabled::bMacroLoot = true;
 	}
@@ -684,7 +715,7 @@ void MainForm::tAutoLoot_Tick(System::Object^  sender, System::EventArgs^  e) {
 void MainForm::tbLootInterval_TextChanged(Object^  sender, EventArgs^  e) {
 	if (GlobalRefs::macroLoot != nullptr) {
 		if (String::IsNullOrWhiteSpace(tbLootInterval->Text)) {
-			MessageBox::Show("Error: Loot Interval textbox cannot be empty");
+			MessageBox::Show("错误: 拾取间隔文本框不能为空");
 			return;
 		}
 		GlobalRefs::macroLoot->delay = Convert::ToUInt32(tbLootInterval->Text);
@@ -704,7 +735,7 @@ void MainForm::comboLootKey_SelectedIndexChanged(Object^  sender, EventArgs^  e)
 #pragma region Auto Buffs
 void MainForm::bBuffAdd_Click(Object^  sender, EventArgs^  e) {
 	if(String::IsNullOrWhiteSpace(tbBuffInterval->Text)) {
-		MessageBox::Show("Error: Buff Interval textbox cannot be empty");
+		MessageBox::Show("错误: BUFF间隔文本框不能为空");
 		return;
 	}
 	ListViewItem^ lvi = gcnew ListViewItem(gcnew array<String^>{tbBuffName->Text, comboBuffKey->Text, tbBuffInterval->Text});
@@ -791,7 +822,7 @@ void _stdcall AutoCC(int toChannel) {
 void _stdcall AutoCS() {
 	if (MainForm::TheInstance->rbPacket->Checked) { 
 		if(String::IsNullOrWhiteSpace(MainForm::TheInstance->tbCSDelay->Text)) {
-			MessageBox::Show("Error: CS Delay textbox cannot be empty");
+			MessageBox::Show("错误: 商城延迟文本框不能为空");
 			return;
 		}
 		SendPacket(gcnew String("28 00 ** ** ** 00")); //Send go to CS packet
@@ -948,58 +979,132 @@ void MainForm::cbFullGodmode_CheckedChanged(Object^  sender, EventArgs^  e) {
 		WriteMemory(fullGodmodeAddr, 2, 0x0F, 0x85); //jne 009596F7 [first 2 bytes]
 }
 
-//TODO: Add number of misses
 //Miss Godmode (CUserLocal::SetDamaged())
+//Uses code cave to track miss count: every N hits, one passes through, rest are missed
 void MainForm::cbMissGodmode_CheckedChanged(Object^  sender, EventArgs^  e) {
-	if (this->cbMissGodmode->Checked)
-		WriteMemory(missGodmodeAddr, 8, 0xC7, 0x06, 0x00, 0x00, 0x00, 0x00, 0x90, 0x90); //mov [esi],00000000; nop; nop;
-	else
+	if (this->cbMissGodmode->Checked) {
+		ULONG misses = 0;
+		try { misses = Convert::ToUInt32(this->tbMissGodmodeMisses->Text); }
+		catch (...) { misses = 10; }
+		if (misses == 0) misses = 10; //safety default
+		Assembly::missThreshold = misses;
+		Assembly::missCounter = misses;
+		Jump(missGodmodeHookAddr, Assembly::MissGodmodeHook, 3);
+	}
+	else {
 		WriteMemory(missGodmodeAddr, 8, 0x89, 0x06, 0x83, 0xC6, 0x04, 0xFF, 0x4D, 0xC4); //mov [esi],eax; add esi,04; dec [ebp-3C];
+		Assembly::missCounter = 0;
+		Assembly::missThreshold = 0;
+	}
 }
 
-//TODO: Add number of blinks 
 //Blink Godmode (CUser::Update())
+//Adds configurable blink count instead of fixed 0x1E (30)
 void MainForm::cbBlinkGodmode_CheckedChanged(Object^  sender, EventArgs^  e) {
-	if (this->cbBlinkGodmode->Checked)
-		WriteMemory(blinkGodmodeAddr, 2, 0x83, 0xC7); //add edi,1E
-	else
-		WriteMemory(blinkGodmodeAddr, 2, 0x83, 0xEF); //sub edi,1E
+	if (this->cbBlinkGodmode->Checked) {
+		ULONG blinks = 30;
+		try { blinks = Convert::ToUInt32(this->tbBlinkGodmodeBlinks->Text); }
+		catch (...) { blinks = 30; }
+		if (blinks == 0) blinks = 30; //safety default
+		if (blinks > 255) blinks = 255; //max byte value
+		WriteMemory(blinkGodmodeAddr, 3, 0x83, 0xC7, (UCHAR)blinks); //add edi, blinks
+	}
+	else {
+		WriteMemory(blinkGodmodeAddr, 3, 0x83, 0xC7, 0x1E); //add edi,1E (original)
+	}
 }
 
-void ClickTeleport() {
-	while (GlobalRefs::bClickTeleport) {
-		if (ReadPointer(InputBase, OFS_MouseAnimation) == 12)
-			Teleport(ReadMultiPointerSigned(InputBase, 2, OFS_MouseLocation, OFS_MouseX), ReadMultiPointerSigned(InputBase, 2, OFS_MouseLocation, OFS_MouseY));
-		Sleep(Convert::ToUInt32(MainForm::TheInstance->tbClickTeleport->Text));
+//Morph (freeze character morph state)
+//Actual value writing is done in GUITimer_Tick for continuous freeze effect
+void MainForm::cbMorph_CheckedChanged(Object^  sender, EventArgs^  e) {
+	if (!this->cbMorph->Checked) {
+		PointerFuncs::setCharMorph(0); //reset to normal when unchecked
 	}
-	ExitThread(0);
 }
 
-void MouseTeleport() {
-	while (GlobalRefs::bMouseTeleport) {
-		if (ReadPointer(InputBase, OFS_MouseAnimation) == 00)
-			Teleport(ReadMultiPointerSigned(InputBase, 2, OFS_MouseLocation, OFS_MouseX), ReadMultiPointerSigned(InputBase, 2, OFS_MouseLocation, OFS_MouseY));
-		Sleep(Convert::ToUInt32(MainForm::TheInstance->tbMouseTeleport->Text));
+//Combo Freeze (freeze combo counter at specified value)
+//Actual value writing is done in GUITimer_Tick for continuous freeze effect
+void MainForm::cbComboFreeze_CheckedChanged(Object^  sender, EventArgs^  e) {
+	if (!this->cbComboFreeze->Checked) {
+		PointerFuncs::setComboCount(0); //reset to 0 when unchecked
 	}
-	ExitThread(0);
+}
+
+//Apply Stats (write stat values from textboxes to memory)
+void MainForm::bApplyStats_Click(Object^  sender, EventArgs^  e) {
+	try {
+		SHORT str = Convert::ToInt16(this->tbSTR->Text);
+		PointerFuncs::setCharSTR(str);
+	} catch (...) {}
+	try {
+		SHORT dex = Convert::ToInt16(this->tbDEX->Text);
+		PointerFuncs::setCharDEX(dex);
+	} catch (...) {}
+	try {
+		SHORT int_ = Convert::ToInt16(this->tbINT->Text);
+		PointerFuncs::setCharINT(int_);
+	} catch (...) {}
+	try {
+		SHORT luk = Convert::ToInt16(this->tbLUK->Text);
+		PointerFuncs::setCharLUK(luk);
+	} catch (...) {}
+	try {
+		UINT hp = Convert::ToUInt32(this->tbStatHP->Text);
+		PointerFuncs::setCharHP(hp);
+	} catch (...) {}
+	try {
+		UINT mp = Convert::ToUInt32(this->tbStatMP->Text);
+		PointerFuncs::setCharMP(mp);
+	} catch (...) {}
+	try {
+		UINT8 level = Convert::ToByte(this->tbLevel->Text);
+		PointerFuncs::setCharLevel(level);
+	} catch (...) {}
+	try {
+		UINT mesos = Convert::ToUInt32(this->tbMesos->Text);
+		PointerFuncs::setCharMesos(mesos);
+	} catch (...) {}
+}
+
+//Helper: disable all movement teleport hooks (restore original bytes)
+void DisableAllTeleportHooks() {
+	WriteMemory(mouseFlyXAddr, 5, 0x89, 0x03, 0x8B, 0x7D, 0x10); //mov [ebx],eax; mov edi,[ebp+10]
+	WriteMemory(mouseFlyYAddr, 5, 0x89, 0x07, 0x8B, 0x5D, 0x14); //mov [edi],eax; mov ebx,[ebp+14]
+	MainForm::TheInstance->cbMouseFly->Checked = false;
+	MainForm::TheInstance->cbClickTeleport->Checked = false;
+	MainForm::TheInstance->cbMouseTeleport->Checked = false;
 }
 
 void MainForm::cbClickTeleport_CheckedChanged(Object^  sender, EventArgs^  e) {
 	if (this->cbClickTeleport->Checked) {
-		GlobalRefs::bClickTeleport = true;
-		NewThread(ClickTeleport);
+		//Disable other teleport hooks first
+		if (this->cbMouseFly->Checked) this->cbMouseFly->Checked = false;
+		if (this->cbMouseTeleport->Checked) this->cbMouseTeleport->Checked = false;
+		DisableAllTeleportHooks();
+		this->cbClickTeleport->Checked = true;
+		Jump(mouseFlyXAddr, Assembly::ClickTeleportXHook, 0);
+		Jump(mouseFlyYAddr, Assembly::ClickTeleportYHook, 0);
 	}
-	else
-		GlobalRefs::bClickTeleport = false;
+	else {
+		WriteMemory(mouseFlyXAddr, 5, 0x89, 0x03, 0x8B, 0x7D, 0x10); //mov [ebx],eax; mov edi,[ebp+10]
+		WriteMemory(mouseFlyYAddr, 5, 0x89, 0x07, 0x8B, 0x5D, 0x14); //mov [edi],eax; mov ebx,[ebp+14]
+	}
 }
  
 void MainForm::cbMouseTeleport_CheckedChanged(Object^  sender, EventArgs^  e) {
 	if (this->cbMouseTeleport->Checked) {
-		GlobalRefs::bMouseTeleport = true;
-		NewThread(MouseTeleport);
+		//Disable other teleport hooks first
+		if (this->cbMouseFly->Checked) this->cbMouseFly->Checked = false;
+		if (this->cbClickTeleport->Checked) this->cbClickTeleport->Checked = false;
+		DisableAllTeleportHooks();
+		this->cbMouseTeleport->Checked = true;
+		Jump(mouseFlyXAddr, Assembly::MouseTeleportXHook, 0);
+		Jump(mouseFlyYAddr, Assembly::MouseTeleportYHook, 0);
 	}
-	else
-		GlobalRefs::bMouseTeleport = false;
+	else {
+		WriteMemory(mouseFlyXAddr, 5, 0x89, 0x03, 0x8B, 0x7D, 0x10); //mov [ebx],eax; mov edi,[ebp+10]
+		WriteMemory(mouseFlyYAddr, 5, 0x89, 0x07, 0x8B, 0x5D, 0x14); //mov [edi],eax; mov ebx,[ebp+14]
+	}
 }
 
 void MainForm::tbClickTeleport_KeyPress(Object^  sender, Windows::Forms::KeyPressEventArgs^  e) {
@@ -1013,6 +1118,11 @@ void MainForm::tbMouseTeleport_KeyPress(Object^  sender, Windows::Forms::KeyPres
 //Mouse Fly (CVecCtrl::raw_GetSnapshot())
 void MainForm::cbMouseFly_CheckedChanged(Object^  sender, EventArgs^  e) {
 	if (this->cbMouseFly->Checked) {
+		//Disable other teleport hooks first
+		if (this->cbClickTeleport->Checked) this->cbClickTeleport->Checked = false;
+		if (this->cbMouseTeleport->Checked) this->cbMouseTeleport->Checked = false;
+		DisableAllTeleportHooks();
+		this->cbMouseFly->Checked = true;
 		Jump(mouseFlyXAddr, Assembly::MouseFlyXHook, 0); //MouseFlyXHook CodeCave
 		Jump(mouseFlyYAddr, Assembly::MouseFlyYHook, 0); //MouseFlyYHook CodeCave
 	}
@@ -1109,7 +1219,7 @@ void MainForm::tbAttackDelay_KeyPress(Object^  sender, Windows::Forms::KeyPressE
 void MainForm::tbAttackDelay_TextChanged(Object^ sender, EventArgs^ e) {
 	String^ animDelayStr = tbAttackDelay->Text;
 	if (String::IsNullOrWhiteSpace(animDelayStr)) {
-		MessageBox::Show("Error: Attack delay textbox cannot be empty");
+		MessageBox::Show("错误: 攻击延迟文本框不能为空");
 		return;
 	}
 
@@ -1312,7 +1422,7 @@ void MainForm::bTeleportGetCurrentLocation_Click(Object^  sender, EventArgs^  e)
 
 void MainForm::bTeleportAdd_Click(Object^  sender, EventArgs^  e) {
 	if (String::IsNullOrWhiteSpace(tbTeleportX->Text) || String::IsNullOrWhiteSpace(tbTeleportY->Text)) {
-		MessageBox::Show("Error: The teleport x and y textboxes cannot be empty");
+		MessageBox::Show("错误: 传送X和Y文本框不能为空");
 		return;
 	}
 
@@ -1338,7 +1448,7 @@ void MainForm::lvTeleport_MouseDoubleClick(Object^  sender, Windows::Forms::Mous
 
 void MainForm::bTeleportLoop_Click(Object^  sender, EventArgs^  e) {
 	if (!bTeleportLoop->Text->Equals("Stop Loop")) {
-		bTeleportLoop->Text = "Stop Loop";
+		bTeleportLoop->Text = "停止循环";
 		bTeleportGetCurrentLocation->Enabled = false;
 		bTeleportAdd->Enabled = false;
 		bTeleportDelete->Enabled = false;
@@ -1348,7 +1458,7 @@ void MainForm::bTeleportLoop_Click(Object^  sender, EventArgs^  e) {
 		NewThread(TeleportLoop);
 	}
 	else {
-		bTeleportLoop->Text = "Loop";
+		bTeleportLoop->Text = "循环";
 		bTeleportGetCurrentLocation->Enabled = true;
 		bTeleportAdd->Enabled = true;
 		bTeleportDelete->Enabled = true;
@@ -1380,18 +1490,18 @@ void MainForm::bSpawnControlGetCurrentLocation_Click(Object^  sender, EventArgs^
 
 void MainForm::bSpawnControlAdd_Click(Object^  sender, EventArgs^  e) {
 	if (String::IsNullOrWhiteSpace(tbSpawnControlMapID->Text) || String::IsNullOrWhiteSpace(tbSpawnControlX->Text) || String::IsNullOrWhiteSpace(tbSpawnControlY->Text)) {
-		MessageBox::Show("Error: Spawn Control Map ID, x, and y textboxes cannot be empty");
+		MessageBox::Show("错误: 生成控制地图ID、X和Y文本框不能为空");
 		return;
 	}
 	
 	if(Convert::ToUInt32(tbSpawnControlMapID->Text) == 0) {
-		MessageBox::Show("Error: Map ID cannot be 0"); 
+		MessageBox::Show("错误: 地图ID不能为0"); 
 		return;
 	}
 
 	for each(ListViewItem^ lvi in lvSpawnControl->Items) {
 		if (lvi->SubItems[0]->Text->Equals(tbSpawnControlMapID->Text)) {
-			MessageBox::Show("Error: Two spawn points can not exist for the same map ID."); 
+			MessageBox::Show("错误: 同一地图ID不能存在两个生成点。"); 
 			return;
 		}
 	}
@@ -1426,7 +1536,7 @@ void MainForm::bSpawnControl_Click(Object^  sender, EventArgs^  e) {
 		Jump(spawnPointAddr, Assembly::SpawnPointHook, 0);
 	}
 	else {
-		bSpawnControl->Text = "Enable Spawn Control";
+		bSpawnControl->Text = "启用生成控制";
 		bSpawnControlGetCurrentLocation->Enabled = true;
 		bSpawnControlAdd->Enabled = true;
 		bSpawnControlDelete->Enabled = true;
@@ -1686,7 +1796,7 @@ void MainForm::cbDupeX_CheckedChanged(System::Object^  sender, System::EventArgs
 	if (this->cbDupeX->Checked) {
 		tbDupeXFoothold->Enabled = false;
 		bDupeXGetFoothold->Enabled = false;
-		MessageBox::Show("Warning: Bans");
+		MessageBox::Show("警告: 封号");
 		Jump(dupeXAddr, Assembly::DupeXHook, 1);
 	} 
 	else {
@@ -1858,15 +1968,15 @@ static void findItemsStartingWithStr(String^ str) {
 //Enable Item Filter
 void MainForm::bItemFilter_Click(System::Object^  sender, System::EventArgs^  e) {
 	if(bItemFilter->Text->Equals("Enable Item Filter")) {
-		bItemFilter->Text = "Disable Item Filter";
-		if (Convert::ToUInt32(tbItemFilterMesos->Text) > 50000) MessageBox::Show("Please enter mesos value ranging from 0 to 50,000. Default: 0");
+		bItemFilter->Text = "禁用物品过滤";
+		if (Convert::ToUInt32(tbItemFilterMesos->Text) > 50000) MessageBox::Show("请输入0到50000之间的金币值。默认: 0");
 
 		Assembly::isItemFilterEnabled = 1;
 		if (Assembly::isItemLoggingEnabled == 0)
 			Jump(itemFilterAddr, Assembly::ItemFilterHook, 1);
 	}
 	else {
-		bItemFilter->Text = "Enable Item Filter";
+		bItemFilter->Text = "启用物品过滤";
 		Assembly::isItemFilterEnabled = 0;
 		if(Assembly::isItemLoggingEnabled == 0)
 			WriteMemory(itemFilterAddr, 6, 0x89, 0x47, 0x34, 0x8B, 0x7D, 0xEC); //mov [edi+34],eax; mov edi,[ebp-14];
@@ -1909,7 +2019,7 @@ void MainForm::bItemFilterAdd_Click(System::Object^  sender, System::EventArgs^ 
 				Assembly::itemList->push_back(itemID);
 			}
 		}
-		catch (...) { MessageBox::Show("Item ID not found"); }
+		catch (...) { MessageBox::Show("未找到物品ID"); }
 	}
 }
 
@@ -2004,8 +2114,8 @@ static void findMobsStartingWithStr(String^ str) {
 
 //Enable Mob Filter
 void MainForm::bMobFilter_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (bMobFilter->Text->Equals("Enable Mob Filter")) {
-		bMobFilter->Text = "Disable Mob Filter";
+	if (bMobFilter->Text->Equals("启用怪物过滤")) {
+		bMobFilter->Text = "禁用怪物过滤";
 		Assembly::isMobFilterEnabled = 1;
 		if (Assembly::isMobLoggingEnabled == 0) {
 			Jump(mobFilter1Addr, Assembly::MobFilter1Hook, 0);
@@ -2013,7 +2123,7 @@ void MainForm::bMobFilter_Click(System::Object^  sender, System::EventArgs^  e) 
 		}
 	}
 	else {
-		bMobFilter->Text = "Enable Mob Filter";
+		bMobFilter->Text = "启用怪物过滤";
 		Assembly::isMobFilterEnabled = 0;
 		if (Assembly::isMobLoggingEnabled == 0) {
 			WriteMemory(mobFilter1Addr, 5, 0xE8, 0xF7, 0xE2, 0xD8, 0xFF); //call 00406629
@@ -2062,7 +2172,7 @@ void MainForm::bMobFilterAdd_Click(System::Object^  sender, System::EventArgs^  
 				Assembly::mobList->push_back(mobID);
 			}
 		}
-		catch (...) { MessageBox::Show("Mob ID not found"); }
+		catch (...) { MessageBox::Show("未找到怪物ID"); }
 	}
 }
 
@@ -2124,14 +2234,14 @@ void MainForm::tbSendSpamDelay_KeyPress(Object^  sender, Windows::Forms::KeyPres
 }
 
 void MainForm::bSendLog_Click(System::Object^  sender, System::EventArgs^  e) {
-	if(bSendLog->Text->Equals("Enable Log")) {
-		bSendLog->Text = "Disable Log";
+	if(bSendLog->Text->Equals("启用日志")) {
+		bSendLog->Text = "禁用日志";
 		GlobalRefs::bSendPacketLog = true;
 		this->tPacketLog->Enabled = true;
 		Jump(cOutPacketAddr, Assembly::SendPacketLogHook, 0);
 	}
 	else {
-		bSendLog->Text = "Enable Log";
+		bSendLog->Text = "启用日志";
 		GlobalRefs::bSendPacketLog = false;
 		WriteMemory(cOutPacketAddr, 5, 0xB8, 0x6C, 0x12, 0xA8, 0x00);
 	}
@@ -2216,7 +2326,7 @@ String^ CreateRtrnScrollPacket(int scrollId, int useSlot) {
 	default:
 		Log::WriteLineToConsole("CreateRtrnScrollPacket:: ERROR unknown scrollId!");
 	}
-	rtrnPacket->Replace("XX", slotStr);
+	rtrnPacket = rtrnPacket->Replace("XX", slotStr);
 	Log::WriteLineToConsole("Sending RTRN packet: " + rtrnPacket);
 
 	return rtrnPacket;
@@ -2430,7 +2540,7 @@ static void loadMaps() {
 
 		UnlockResource(hRes);
 	}
-	catch (...) { MessageBox::Show("Error: Couldn't load map data"); }
+	catch (...) { MessageBox::Show("错误: 无法加载地图数据"); }
 
 	//Load all maps into the tree view in Map Rusher tab
 	for each (MapData^ map in GlobalRefs::maps) {
@@ -2574,7 +2684,7 @@ int rushNextIsland(int startMapID, int destMapID) {
 	switch (startIsland) {
 		case 0: //Rush to Victoria
 			if (PointerFuncs::getCharMesos() < 150) {
-				MainForm::TheInstance->lbMapRusherStatus->Text = "Status: You need 150 mesos to rush out of Maple Island";
+				MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 需要150金币才能离开枫叶岛";
 				GlobalRefs::isMapRushing = false;
 				return -1;
 			}
@@ -2589,7 +2699,7 @@ int rushNextIsland(int startMapID, int destMapID) {
 		case 10:
 			if (destIsland == 11) {
 				if (PointerFuncs::getCharMesos() < 1500) {
-					MainForm::TheInstance->lbMapRusherStatus->Text = "Status: You need 1500 mesos to rush to Florina Beach";
+					MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 需要1500金币才能前往弗洛里纳海滩";
 					GlobalRefs::isMapRushing = false;
 					return -1;
 				}
@@ -2672,12 +2782,12 @@ static void mapRush(int destMapID) {
 	GlobalRefs::isMapRushing = true;
 	int startMapID = ReadPointer(UIMiniMapBase, OFS_MapID);
 	if (startMapID == destMapID) {
-		MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Cannot Map Rush to same map";
+		MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 无法Rush到相同地图";
 		GlobalRefs::isMapRushing = false;
 		return;
 	}
 
-	MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Calculating a path to Destination Map ID";
+	MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 正在计算到目标地图ID的路径";
 	if (getIsland(startMapID) != getIsland(destMapID)) {
 		for(int i = 0; i < 5; i++) { //Max islands to travel to has to be at max 5 islands
 			if (!existsInterIslandPath(startMapID, destMapID)) break; //Check if path between islands exists
@@ -2687,7 +2797,7 @@ static void mapRush(int destMapID) {
 
 			//If first map on new island is the destination, finish
 			if (startMapID == destMapID) {
-				MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Map Rushing Complete";
+				MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 地图Rush完成";
 				GlobalRefs::isMapRushing = false;
 				return;
 			} 
@@ -2695,7 +2805,7 @@ static void mapRush(int destMapID) {
 
 		//Couldn't rush to same island as Destination Map
 		if (getIsland(startMapID) != getIsland(destMapID)) {
-			MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Cannot find a path to Destination Map ID";
+			MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 无法找到到目标地图ID的路径";
 			GlobalRefs::isMapRushing = false;
 			return;
 		}
@@ -2703,7 +2813,7 @@ static void mapRush(int destMapID) {
 
 	Collections::Generic::List<MapPath^>^ mapPath = generatePath(startMapID, destMapID);
 	if (mapPath->Count == 0) {
-		MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Cannot find a path to Destination Map ID";
+		MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 无法找到到目标地图ID的路径";
 		GlobalRefs::isMapRushing = false;
 		return;
 	}
@@ -2770,7 +2880,7 @@ static void mapRush(int destMapID) {
 		}*/
 		
 		remainingMapCount--;
-		MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Map Rushing, Remaining Maps: " + Convert::ToString(remainingMapCount);
+		MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 地图Rush中，剩余地图: " + Convert::ToString(remainingMapCount);
 	}
 
 	Assembly::spawnControl = oldSpawnControl; //Restore old spawn control list
@@ -2779,9 +2889,9 @@ static void mapRush(int destMapID) {
 	Sleep(delay);
 
 	if (ReadPointer(UIMiniMapBase, OFS_MapID) != destMapID) 
-		MainForm::TheInstance->lbMapRusherStatus->Text = "Status: An error has occurred, try setting delay higher";
+		MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 发生错误，请尝试设置更高的延迟";
 	else 
-		MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Map Rushing Complete";
+		MainForm::TheInstance->lbMapRusherStatus->Text = "状态: 地图Rush完成";
 
 	GlobalRefs::isMapRushing = false;
 }

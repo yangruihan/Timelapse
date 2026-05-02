@@ -80,6 +80,37 @@ inline unsigned int readLongValueZtlSecureFuse(ULONG *a1) {
 	catch (...) { return 0; }
 }
 
+static bool writeCharValueZtlSecureFuse(int at, UINT8 value) {
+	try {
+		UCHAR v2 = *(PUCHAR)at;
+		*(PUINT8)(at + 1) = value ^ v2;
+		return true;
+	}
+	catch (...) { return false; }
+}
+
+static bool writeShortValueZtlSecureFuse(int a1, INT16 value) {
+	PUINT8 v2 = (PUINT8)(a1 + 2);
+	DWORD v4 = (DWORD)&a1 - a1;
+	try {
+		// 写入低字节
+		v2[v4] = (value & 0xFF) ^ *(v2 - 2);
+		v2++;
+		// 写入高字节
+		v2[v4] = ((value >> 8) & 0xFF) ^ *(v2 - 2);
+		return true;
+	}
+	catch (...) { return false; }
+}
+
+inline bool writeLongValueZtlSecureFuse(ULONG *a1, unsigned int value) {
+	try {
+		a1[1] = _rotr(a1[0] ^ value, 5);
+		return true;
+	}
+	catch (...) { return false; }
+}
+
 #pragma unmanaged
 static LONG_PTR ReadMultiPointerSigned(LONG_PTR ulBase, int level, ...) {
 	LONG_PTR ulResult = 0;

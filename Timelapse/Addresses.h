@@ -134,6 +134,8 @@ ULONG cOutPacketAddr = 0x0049637B;
 ULONG cOutPacketAddrRet = cOutPacketAddr + 5;
 ULONG dupeXAddr = 0x009B495D;
 ULONG dupeXAddrRet = dupeXAddr + 6;
+ULONG missGodmodeHookAddr = missGodmodeAddr; //0x009582E9 Inside CUserLocal::SetDamaged()
+ULONG missGodmodeHookAddrRet = missGodmodeHookAddr + 8; //skip 8 bytes: mov [esi],eax; add esi,04; dec [ebp-3C]
 #pragma endregion
 
 #pragma region MapleStory Function Hook Addresses
@@ -188,6 +190,10 @@ ULONG CharacterStatBase = 0xBF3CD8; //GW_CharacterStat //CWvsContext::GetCharact
 ULONG OFS_Ign = 0x4;
 ULONG OFS_Level = 0x33;
 ULONG OFS_JobID = 0x39;
+ULONG OFS_STR = 0x3B;
+ULONG OFS_DEX = OFS_STR + 2;
+ULONG OFS_INT = OFS_DEX + 2;
+ULONG OFS_LUK = OFS_INT + 2;
 ULONG OFS_Mesos = 0xA5;
 
 ULONG NPCPoolBase = 0xBED780; //CNPCPool

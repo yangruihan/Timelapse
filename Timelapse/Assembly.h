@@ -259,6 +259,124 @@ inline void __stdcall addSendPacket() {
 		jmp dword ptr[mouseFlyYAddrRet]
 	} EndCodeCave
 
+	//Click Teleport - same as MouseFly but only when MouseAnimation == 12 (click)
+	CodeCave(ClickTeleportXHook) {
+		push eax
+		push ecx
+		mov eax, [UserLocalBase]
+		mov eax, [eax]
+		mov ecx, [OFS_pID]
+		mov eax, [eax + ecx]
+		cmp esi, eax
+		pop eax
+		jne ClickReturnX
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseAnimation]
+		cmp dword ptr [eax + ecx], 0x0C
+		jne ClickReturnX
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseLocation]
+		mov eax, [eax + ecx]
+		mov ecx, [OFS_MouseX]
+		mov eax, [eax + ecx]
+
+		ClickReturnX:
+		pop ecx
+		mov [ebx], eax
+		mov edi, [ebp + 0x10]
+		jmp dword ptr[mouseFlyXAddrRet]
+	} EndCodeCave
+
+	CodeCave(ClickTeleportYHook) {
+		push eax
+		push ecx
+		mov eax, [UserLocalBase]
+		mov eax, [eax]
+		mov ecx, [OFS_pID]
+		mov eax, [eax + ecx]
+		cmp esi, eax
+		pop eax
+		jne ClickReturnY
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseAnimation]
+		cmp dword ptr [eax + ecx], 0x0C
+		jne ClickReturnY
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseLocation]
+		mov eax, [eax + ecx]
+		mov ecx, [OFS_MouseY]
+		mov eax, [eax + ecx]
+
+		ClickReturnY:
+		pop ecx
+		mov [edi], eax
+		mov ebx, [ebp + 0x14]
+		jmp dword ptr[mouseFlyYAddrRet]
+	} EndCodeCave
+
+	//Mouse Teleport - same as MouseFly but only when MouseAnimation == 0 (move)
+	CodeCave(MouseTeleportXHook) {
+		push eax
+		push ecx
+		mov eax, [UserLocalBase]
+		mov eax, [eax]
+		mov ecx, [OFS_pID]
+		mov eax, [eax + ecx]
+		cmp esi, eax
+		pop eax
+		jne MouseTeleReturnX
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseAnimation]
+		cmp dword ptr [eax + ecx], 0x00
+		jne MouseTeleReturnX
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseLocation]
+		mov eax, [eax + ecx]
+		mov ecx, [OFS_MouseX]
+		mov eax, [eax + ecx]
+
+		MouseTeleReturnX:
+		pop ecx
+		mov [ebx], eax
+		mov edi, [ebp + 0x10]
+		jmp dword ptr[mouseFlyXAddrRet]
+	} EndCodeCave
+
+	CodeCave(MouseTeleportYHook) {
+		push eax
+		push ecx
+		mov eax, [UserLocalBase]
+		mov eax, [eax]
+		mov ecx, [OFS_pID]
+		mov eax, [eax + ecx]
+		cmp esi, eax
+		pop eax
+		jne MouseTeleReturnY
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseAnimation]
+		cmp dword ptr [eax + ecx], 0x00
+		jne MouseTeleReturnY
+		mov eax, [InputBase]
+		mov eax, [eax]
+		mov ecx, [OFS_MouseLocation]
+		mov eax, [eax + ecx]
+		mov ecx, [OFS_MouseY]
+		mov eax, [eax + ecx]
+
+		MouseTeleReturnY:
+		pop ecx
+		mov [edi], eax
+		mov ebx, [ebp + 0x14]
+		jmp dword ptr[mouseFlyYAddrRet]
+	} EndCodeCave
+
 	CodeCave(MobFreezeHook) {
 		mov [esi + 0x00000248], 0x06
 		mov eax, [esi + 0x00000248]

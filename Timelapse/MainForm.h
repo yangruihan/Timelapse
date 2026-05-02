@@ -115,14 +115,14 @@ namespace Timelapse {
 	private: System::Windows::Forms::CheckBox^  cbUnlimitedAttack;
 	private: System::Windows::Forms::CheckBox^  cbTubi;
 	private: System::Windows::Forms::CheckBox^  cbInstantDropItems;
-	private: System::Windows::Forms::CheckBox^  cbMouseFly;
+	public: System::Windows::Forms::CheckBox^  cbMouseFly;
 	private: System::Windows::Forms::Label^  label49;
 	private: System::Windows::Forms::Label^  label50;
 	public: System::Windows::Forms::TextBox^  tbMouseTeleport;
 	public: System::Windows::Forms::TextBox^  tbClickTeleport;
 	private: System::Windows::Forms::CheckBox^  cbSwimInAir;
-	private: System::Windows::Forms::CheckBox^  cbClickTeleport;
-	private: System::Windows::Forms::CheckBox^  cbMouseTeleport;
+	public: System::Windows::Forms::CheckBox^  cbClickTeleport;
+	public: System::Windows::Forms::CheckBox^  cbMouseTeleport;
 	private: System::Windows::Forms::CheckBox^  cbFullGodmode;
 	private: System::Windows::Forms::Panel^  panel16;
 public: System::Windows::Forms::TextBox^  tbDupeXFoothold;
@@ -399,6 +399,31 @@ private:
 	public: System::Windows::Forms::ListBox^  lbItemFilter;
 	public: System::Windows::Forms::TreeView^  tvMapRusherSearch;
 	private: System::Windows::Forms::Panel^  panel30;
+	private: System::Windows::Forms::Panel^  panel31;
+	private: System::Windows::Forms::CheckBox^  cbMorph;
+	public: System::Windows::Forms::TextBox^  tbMorphValue;
+	private: System::Windows::Forms::Label^  labelMorph;
+	private: System::Windows::Forms::CheckBox^  cbComboFreeze;
+	public: System::Windows::Forms::TextBox^  tbComboValue;
+	private: System::Windows::Forms::Label^  labelCombo;
+	private: System::Windows::Forms::Panel^  panel32;
+	private: System::Windows::Forms::Label^  labelSTR;
+	public: System::Windows::Forms::TextBox^  tbSTR;
+	private: System::Windows::Forms::Label^  labelDEX;
+	public: System::Windows::Forms::TextBox^  tbDEX;
+	private: System::Windows::Forms::Label^  labelINT;
+	public: System::Windows::Forms::TextBox^  tbINT;
+	private: System::Windows::Forms::Label^  labelLUK;
+	public: System::Windows::Forms::TextBox^  tbLUK;
+	private: System::Windows::Forms::Label^  labelHP;
+	public: System::Windows::Forms::TextBox^  tbStatHP;
+	private: System::Windows::Forms::Label^  labelMP;
+	public: System::Windows::Forms::TextBox^  tbStatMP;
+	private: System::Windows::Forms::Label^  labelLevel;
+	public: System::Windows::Forms::TextBox^  tbLevel;
+	private: System::Windows::Forms::Label^  labelMesos;
+	public: System::Windows::Forms::TextBox^  tbMesos;
+	private: System::Windows::Forms::Button^  bApplyStats;
 	public: System::Windows::Forms::ListView^  lvMapRusherSearch;
 	private: System::Windows::Forms::ColumnHeader^  columnHeader7;
 	private: System::Windows::Forms::ColumnHeader^  columnHeader8;
@@ -888,6 +913,31 @@ public:
 			this->label79 = (gcnew System::Windows::Forms::Label());
 			this->bMapRush = (gcnew System::Windows::Forms::Button());
 			this->panel30 = (gcnew System::Windows::Forms::Panel());
+			this->panel31 = (gcnew System::Windows::Forms::Panel());
+			this->cbMorph = (gcnew System::Windows::Forms::CheckBox());
+			this->tbMorphValue = (gcnew System::Windows::Forms::TextBox());
+			this->labelMorph = (gcnew System::Windows::Forms::Label());
+			this->cbComboFreeze = (gcnew System::Windows::Forms::CheckBox());
+			this->tbComboValue = (gcnew System::Windows::Forms::TextBox());
+			this->labelCombo = (gcnew System::Windows::Forms::Label());
+			this->panel32 = (gcnew System::Windows::Forms::Panel());
+			this->labelSTR = (gcnew System::Windows::Forms::Label());
+			this->tbSTR = (gcnew System::Windows::Forms::TextBox());
+			this->labelDEX = (gcnew System::Windows::Forms::Label());
+			this->tbDEX = (gcnew System::Windows::Forms::TextBox());
+			this->labelINT = (gcnew System::Windows::Forms::Label());
+			this->tbINT = (gcnew System::Windows::Forms::TextBox());
+			this->labelLUK = (gcnew System::Windows::Forms::Label());
+			this->tbLUK = (gcnew System::Windows::Forms::TextBox());
+			this->labelHP = (gcnew System::Windows::Forms::Label());
+			this->tbStatHP = (gcnew System::Windows::Forms::TextBox());
+			this->labelMP = (gcnew System::Windows::Forms::Label());
+			this->tbStatMP = (gcnew System::Windows::Forms::TextBox());
+			this->labelLevel = (gcnew System::Windows::Forms::Label());
+			this->tbLevel = (gcnew System::Windows::Forms::TextBox());
+			this->labelMesos = (gcnew System::Windows::Forms::Label());
+			this->tbMesos = (gcnew System::Windows::Forms::TextBox());
+			this->bApplyStats = (gcnew System::Windows::Forms::Button());
 			this->lvMapRusherSearch = (gcnew System::Windows::Forms::ListView());
 			this->columnHeader7 = (gcnew System::Windows::Forms::ColumnHeader());
 			this->columnHeader8 = (gcnew System::Windows::Forms::ColumnHeader());
@@ -954,6 +1004,8 @@ public:
 			this->panel6->SuspendLayout();
 			this->tabPage9->SuspendLayout();
 			this->panel30->SuspendLayout();
+			this->panel31->SuspendLayout();
+			this->panel32->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// MenuStrip
@@ -982,7 +1034,7 @@ public:
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
-			this->fileToolStripMenuItem->Text = L"File";
+			this->fileToolStripMenuItem->Text = L"文件";
 			// 
 			// openSettingsToolStripMenuItem
 			// 
@@ -991,7 +1043,7 @@ public:
 			this->openSettingsToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->openSettingsToolStripMenuItem->Name = L"openSettingsToolStripMenuItem";
 			this->openSettingsToolStripMenuItem->Size = System::Drawing::Size(166, 22);
-			this->openSettingsToolStripMenuItem->Text = L"Open Settings";
+			this->openSettingsToolStripMenuItem->Text = L"打开设置";
 			this->openSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::loadSettingsToolStripMenuItem_Click);
 			// 
 			// saveSettingsToolStripMenuItem
@@ -1001,7 +1053,7 @@ public:
 			this->saveSettingsToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->saveSettingsToolStripMenuItem->Name = L"saveSettingsToolStripMenuItem";
 			this->saveSettingsToolStripMenuItem->Size = System::Drawing::Size(166, 22);
-			this->saveSettingsToolStripMenuItem->Text = L"Save Settings";
+			this->saveSettingsToolStripMenuItem->Text = L"保存设置";
 			this->saveSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::saveSettingsToolStripMenuItem_Click);
 			// 
 			// closeMapleStoryToolStripMenuItem
@@ -1011,7 +1063,7 @@ public:
 			this->closeMapleStoryToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->closeMapleStoryToolStripMenuItem->Name = L"closeMapleStoryToolStripMenuItem";
 			this->closeMapleStoryToolStripMenuItem->Size = System::Drawing::Size(166, 22);
-			this->closeMapleStoryToolStripMenuItem->Text = L"&Close MapleStory";
+			this->closeMapleStoryToolStripMenuItem->Text = L"关闭冒险岛(&C)";
 			this->closeMapleStoryToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::closeMapleStoryToolStripMenuItem_Click);
 			// 
 			// mapleStoryToolStripMenuItem
@@ -1024,7 +1076,7 @@ public:
 			});
 			this->mapleStoryToolStripMenuItem->Name = L"mapleStoryToolStripMenuItem";
 			this->mapleStoryToolStripMenuItem->Size = System::Drawing::Size(79, 20);
-			this->mapleStoryToolStripMenuItem->Text = L"MapleStory";
+			this->mapleStoryToolStripMenuItem->Text = L"冒险岛";
 			// 
 			// embedMSWindowToolStripMenuItem
 			// 
@@ -1033,7 +1085,7 @@ public:
 			this->embedMSWindowToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->embedMSWindowToolStripMenuItem->Name = L"embedMSWindowToolStripMenuItem";
 			this->embedMSWindowToolStripMenuItem->Size = System::Drawing::Size(178, 22);
-			this->embedMSWindowToolStripMenuItem->Text = L"Embed MS Window";
+			this->embedMSWindowToolStripMenuItem->Text = L"嵌入MS窗口";
 			this->embedMSWindowToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::embedMSWindowToolStripMenuItem_Click);
 			// 
 			// hideMSWindowToolStripMenuItem
@@ -1043,7 +1095,7 @@ public:
 			this->hideMSWindowToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->hideMSWindowToolStripMenuItem->Name = L"hideMSWindowToolStripMenuItem";
 			this->hideMSWindowToolStripMenuItem->Size = System::Drawing::Size(178, 22);
-			this->hideMSWindowToolStripMenuItem->Text = L"Hide MS Window";
+			this->hideMSWindowToolStripMenuItem->Text = L"隐藏MS窗口";
 			this->hideMSWindowToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::hideMSWindowToolStripMenuItem_Click);
 			// 
 			// pauseMSToolStripMenuItem
@@ -1053,7 +1105,7 @@ public:
 			this->pauseMSToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->pauseMSToolStripMenuItem->Name = L"pauseMSToolStripMenuItem";
 			this->pauseMSToolStripMenuItem->Size = System::Drawing::Size(178, 22);
-			this->pauseMSToolStripMenuItem->Text = L"Pause MS";
+			this->pauseMSToolStripMenuItem->Text = L"暂停MS";
 			this->pauseMSToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::pauseMSToolStripMenuItem_Click);
 			// 
 			// injectDllToolStripMenuItem
@@ -1063,14 +1115,14 @@ public:
 			this->injectDllToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->injectDllToolStripMenuItem->Name = L"injectDllToolStripMenuItem";
 			this->injectDllToolStripMenuItem->Size = System::Drawing::Size(178, 22);
-			this->injectDllToolStripMenuItem->Text = L"Inject Dll";
+			this->injectDllToolStripMenuItem->Text = L"注入DLL";
 			// 
 			// helpToolStripMenuItem
 			// 
 			this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->aboutToolStripMenuItem });
 			this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
 			this->helpToolStripMenuItem->Size = System::Drawing::Size(44, 20);
-			this->helpToolStripMenuItem->Text = L"Help";
+			this->helpToolStripMenuItem->Text = L"帮助";
 			// 
 			// aboutToolStripMenuItem
 			// 
@@ -1079,7 +1131,7 @@ public:
 			this->aboutToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
 			this->aboutToolStripMenuItem->Size = System::Drawing::Size(107, 22);
-			this->aboutToolStripMenuItem->Text = L"&About";
+			this->aboutToolStripMenuItem->Text = L"关于(&A)";
 			// 
 			// label1
 			// 
@@ -1092,7 +1144,7 @@ public:
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(70, 22);
 			this->label1->TabIndex = 3;
-			this->label1->Text = L"MS Version: 83\r\nPrivate Servers";
+			this->label1->Text = L"MS版本: 83\r\n私服";
 			this->label1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1108,7 +1160,7 @@ public:
 			this->lbTitle->Name = L"lbTitle";
 			this->lbTitle->Size = System::Drawing::Size(121, 16);
 			this->lbTitle->TabIndex = 12;
-			this->lbTitle->Text = L"Timelapse Trainer";
+			this->lbTitle->Text = L"Timelapse 辅助工具";
 			this->lbTitle->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->lbTitle->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->lbTitle->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1159,7 +1211,7 @@ public:
 			this->lbMapName->Name = L"lbMapName";
 			this->lbMapName->Size = System::Drawing::Size(55, 13);
 			this->lbMapName->TabIndex = 42;
-			this->lbMapName->Text = L"Waiting...";
+			this->lbMapName->Text = L"等待中...";
 			this->lbMapName->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->lbMapName->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->lbMapName->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1175,7 +1227,7 @@ public:
 			this->label21->Name = L"label21";
 			this->label21->Size = System::Drawing::Size(61, 13);
 			this->label21->TabIndex = 22;
-			this->label21->Text = L"Map Name:";
+			this->label21->Text = L"地图名:";
 			this->label21->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label21->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label21->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1287,7 +1339,7 @@ public:
 			this->label96->Name = L"label96";
 			this->label96->Size = System::Drawing::Size(79, 13);
 			this->label96->TabIndex = 58;
-			this->label96->Text = L"Char Foothold:";
+			this->label96->Text = L"角色落脚点:";
 			// 
 			// lbCharAnimation
 			// 
@@ -1308,7 +1360,7 @@ public:
 			this->label94->Name = L"label94";
 			this->label94->Size = System::Drawing::Size(84, 13);
 			this->label94->TabIndex = 56;
-			this->label94->Text = L"Char Animation:";
+			this->label94->Text = L"角色动作:";
 			// 
 			// lbWalls
 			// 
@@ -1329,7 +1381,7 @@ public:
 			this->label92->Name = L"label92";
 			this->label92->Size = System::Drawing::Size(36, 13);
 			this->label92->TabIndex = 54;
-			this->label92->Text = L"Walls:";
+			this->label92->Text = L"墙壁:";
 			// 
 			// bTestButton
 			// 
@@ -1339,7 +1391,7 @@ public:
 			this->bTestButton->Name = L"bTestButton";
 			this->bTestButton->Size = System::Drawing::Size(56, 24);
 			this->bTestButton->TabIndex = 51;
-			this->bTestButton->Text = L"Test";
+			this->bTestButton->Text = L"测试";
 			this->bTestButton->UseVisualStyleBackColor = true;
 			this->bTestButton->Click += gcnew System::EventHandler(this, &MainForm::bTestButton_Click);
 			// 
@@ -1353,7 +1405,7 @@ public:
 			this->lbInactive->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->lbInactive->Size = System::Drawing::Size(46, 13);
 			this->lbInactive->TabIndex = 50;
-			this->lbInactive->Text = L"Inactive";
+			this->lbInactive->Text = L"未激活";
 			this->lbInactive->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->lbInactive->Visible = false;
 			this->lbInactive->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
@@ -1370,7 +1422,7 @@ public:
 			this->lbActive->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->lbActive->Size = System::Drawing::Size(37, 13);
 			this->lbActive->TabIndex = 49;
-			this->lbActive->Text = L"Active";
+			this->lbActive->Text = L"已激活";
 			this->lbActive->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			this->lbActive->Visible = false;
 			this->lbActive->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
@@ -1568,7 +1620,7 @@ public:
 			this->lbWorld->Name = L"lbWorld";
 			this->lbWorld->Size = System::Drawing::Size(24, 13);
 			this->lbWorld->TabIndex = 34;
-			this->lbWorld->Text = L"Null";
+			this->lbWorld->Text = L"空";
 			this->lbWorld->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->lbWorld->MouseHover += gcnew System::EventHandler(this, &MainForm::lbWorld_MouseHover);
 			this->lbWorld->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
@@ -1642,7 +1694,7 @@ public:
 			this->lbJob->Name = L"lbJob";
 			this->lbJob->Size = System::Drawing::Size(24, 13);
 			this->lbJob->TabIndex = 29;
-			this->lbJob->Text = L"Null";
+			this->lbJob->Text = L"空";
 			this->lbJob->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->lbJob->MouseHover += gcnew System::EventHandler(this, &MainForm::lbJob_MouseHover);
 			this->lbJob->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
@@ -1671,7 +1723,7 @@ public:
 			this->lbCharName->Name = L"lbCharName";
 			this->lbCharName->Size = System::Drawing::Size(57, 13);
 			this->lbCharName->TabIndex = 27;
-			this->lbCharName->Text = L"CharName";
+			this->lbCharName->Text = L"角色名";
 			this->lbCharName->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->lbCharName->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->lbCharName->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1684,7 +1736,7 @@ public:
 			this->label25->Name = L"label25";
 			this->label25->Size = System::Drawing::Size(63, 13);
 			this->label25->TabIndex = 26;
-			this->label25->Text = L"Buff Count:";
+			this->label25->Text = L"BUFF计数:";
 			this->label25->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label25->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label25->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1697,7 +1749,7 @@ public:
 			this->label24->Name = L"label24";
 			this->label24->Size = System::Drawing::Size(59, 13);
 			this->label24->TabIndex = 25;
-			this->label24->Text = L"NPC Count";
+			this->label24->Text = L"NPC计数";
 			this->label24->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label24->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label24->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1710,7 +1762,7 @@ public:
 			this->label23->Name = L"label23";
 			this->label23->Size = System::Drawing::Size(62, 13);
 			this->label23->TabIndex = 24;
-			this->label23->Text = L"Mouse Pos:";
+			this->label23->Text = L"鼠标位置:";
 			this->label23->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label23->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label23->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1723,7 +1775,7 @@ public:
 			this->label22->Name = L"label22";
 			this->label22->Size = System::Drawing::Size(62, 13);
 			this->label22->TabIndex = 23;
-			this->label22->Text = L"Thread ID: ";
+			this->label22->Text = L"线程ID: ";
 			this->label22->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label22->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label22->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1736,7 +1788,7 @@ public:
 			this->label20->Name = L"label20";
 			this->label20->Size = System::Drawing::Size(75, 13);
 			this->label20->TabIndex = 21;
-			this->label20->Text = L"Breath Count:";
+			this->label20->Text = L"呼吸计数:";
 			this->label20->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label20->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label20->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1749,7 +1801,7 @@ public:
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(41, 13);
 			this->label19->TabIndex = 20;
-			this->label19->Text = L"Mesos:";
+			this->label19->Text = L"金币:";
 			this->label19->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label19->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label19->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1762,7 +1814,7 @@ public:
 			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(28, 13);
 			this->label18->TabIndex = 19;
-			this->label18->Text = L"Job:";
+			this->label18->Text = L"职业:";
 			this->label18->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label18->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label18->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1775,7 +1827,7 @@ public:
 			this->label17->Name = L"label17";
 			this->label17->Size = System::Drawing::Size(67, 13);
 			this->label17->TabIndex = 18;
-			this->label17->Text = L"Portal Count";
+			this->label17->Text = L"传送门计数";
 			this->label17->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label17->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label17->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1788,7 +1840,7 @@ public:
 			this->label16->Name = L"label16";
 			this->label16->Size = System::Drawing::Size(65, 13);
 			this->label16->TabIndex = 17;
-			this->label16->Text = L"Item Count:";
+			this->label16->Text = L"物品计数:";
 			this->label16->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label16->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label16->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1801,7 +1853,7 @@ public:
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(66, 13);
 			this->label15->TabIndex = 16;
-			this->label15->Text = L"Mob Count: ";
+			this->label15->Text = L"怪物计数: ";
 			this->label15->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label15->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label15->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1814,7 +1866,7 @@ public:
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(75, 13);
 			this->label14->TabIndex = 15;
-			this->label14->Text = L"People Count:";
+			this->label14->Text = L"玩家计数:";
 			this->label14->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label14->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label14->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1827,7 +1879,7 @@ public:
 			this->label13->Name = L"label13";
 			this->label13->Size = System::Drawing::Size(74, 13);
 			this->label13->TabIndex = 14;
-			this->label13->Text = L"Attack Count:";
+			this->label13->Text = L"攻击计数:";
 			this->label13->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label13->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label13->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1840,7 +1892,7 @@ public:
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(54, 13);
 			this->label12->TabIndex = 13;
-			this->label12->Text = L"Char Pos:";
+			this->label12->Text = L"角色位置:";
 			this->label12->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label12->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label12->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1853,7 +1905,7 @@ public:
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(48, 13);
 			this->label11->TabIndex = 12;
-			this->label11->Text = L"Map ID: ";
+			this->label11->Text = L"地图ID: ";
 			this->label11->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label11->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label11->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1866,7 +1918,7 @@ public:
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(50, 13);
 			this->label10->TabIndex = 11;
-			this->label10->Text = L"Channel:";
+			this->label10->Text = L"频道:";
 			this->label10->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label10->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label10->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1879,7 +1931,7 @@ public:
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(39, 13);
 			this->label9->TabIndex = 10;
-			this->label9->Text = L"World:";
+			this->label9->Text = L"世界:";
 			this->label9->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label9->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label9->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1931,7 +1983,7 @@ public:
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(39, 13);
 			this->label5->TabIndex = 6;
-			this->label5->Text = L"Level: ";
+			this->label5->Text = L"等级: ";
 			this->label5->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label5->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label5->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1958,7 +2010,7 @@ public:
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(53, 25);
 			this->label3->TabIndex = 4;
-			this->label3->Text = L"Info:";
+			this->label3->Text = L"信息:";
 			this->label3->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			this->label3->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			this->label3->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1992,7 +2044,7 @@ public:
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage1->Size = System::Drawing::Size(390, 385);
 			this->tabPage1->TabIndex = 0;
-			this->tabPage1->Text = L"Main";
+			this->tabPage1->Text = L"主页";
 			// 
 			// pictureBox1
 			// 
@@ -2029,7 +2081,7 @@ public:
 			this->tabPage3->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->tabPage3->Size = System::Drawing::Size(353, 239);
 			this->tabPage3->TabIndex = 0;
-			this->tabPage3->Text = L"Log";
+			this->tabPage3->Text = L"日志";
 			// 
 			// lbConsoleLog
 			// 
@@ -2056,7 +2108,7 @@ public:
 			this->tabPage17->Name = L"tabPage17";
 			this->tabPage17->Size = System::Drawing::Size(353, 239);
 			this->tabPage17->TabIndex = 2;
-			this->tabPage17->Text = L"Auto Login";
+			this->tabPage17->Text = L"自动登录";
 			// 
 			// panel22
 			// 
@@ -2096,7 +2148,7 @@ public:
 			this->comboAutoLoginWorld->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->comboAutoLoginWorld->Size = System::Drawing::Size(133, 21);
 			this->comboAutoLoginWorld->TabIndex = 31;
-			this->comboAutoLoginWorld->Text = L" Scania";
+			this->comboAutoLoginWorld->Text = L" 扫雷区";
 			// 
 			// label95
 			// 
@@ -2105,7 +2157,7 @@ public:
 			this->label95->Name = L"label95";
 			this->label95->Size = System::Drawing::Size(39, 13);
 			this->label95->TabIndex = 30;
-			this->label95->Text = L"World:";
+			this->label95->Text = L"世界:";
 			// 
 			// cbAutoLoginPic
 			// 
@@ -2117,7 +2169,7 @@ public:
 			this->cbAutoLoginPic->Name = L"cbAutoLoginPic";
 			this->cbAutoLoginPic->Size = System::Drawing::Size(40, 17);
 			this->cbAutoLoginPic->TabIndex = 29;
-			this->cbAutoLoginPic->Text = L"PIC";
+			this->cbAutoLoginPic->Text = L"PIC码";
 			this->cbAutoLoginPic->UseVisualStyleBackColor = false;
 			// 
 			// label82
@@ -2127,7 +2179,7 @@ public:
 			this->label82->Name = L"label82";
 			this->label82->Size = System::Drawing::Size(28, 13);
 			this->label82->TabIndex = 19;
-			this->label82->Text = L"PIC:";
+			this->label82->Text = L"PIC码:";
 			// 
 			// comboAutoLoginCharacter
 			// 
@@ -2154,7 +2206,7 @@ public:
 			this->label85->Name = L"label85";
 			this->label85->Size = System::Drawing::Size(59, 13);
 			this->label85->TabIndex = 18;
-			this->label85->Text = L"Username:";
+			this->label85->Text = L"用户名:";
 			// 
 			// label80
 			// 
@@ -2163,7 +2215,7 @@ public:
 			this->label80->Name = L"label80";
 			this->label80->Size = System::Drawing::Size(59, 13);
 			this->label80->TabIndex = 20;
-			this->label80->Text = L"Character:";
+			this->label80->Text = L"角色:";
 			// 
 			// comboAutoLoginChannel
 			// 
@@ -2190,7 +2242,7 @@ public:
 			this->label84->Name = L"label84";
 			this->label84->Size = System::Drawing::Size(57, 13);
 			this->label84->TabIndex = 17;
-			this->label84->Text = L"Password:";
+			this->label84->Text = L"密码:";
 			// 
 			// tbAutoLoginPIC
 			// 
@@ -2211,7 +2263,7 @@ public:
 			this->label83->Name = L"label83";
 			this->label83->Size = System::Drawing::Size(50, 13);
 			this->label83->TabIndex = 16;
-			this->label83->Text = L"Channel:";
+			this->label83->Text = L"频道:";
 			// 
 			// tbAutoLoginPassword
 			// 
@@ -2248,7 +2300,7 @@ public:
 			this->cbAutoLoginSkipLogo->Name = L"cbAutoLoginSkipLogo";
 			this->cbAutoLoginSkipLogo->Size = System::Drawing::Size(68, 17);
 			this->cbAutoLoginSkipLogo->TabIndex = 28;
-			this->cbAutoLoginSkipLogo->Text = L"Skip Logo";
+			this->cbAutoLoginSkipLogo->Text = L"跳过动画";
 			this->cbAutoLoginSkipLogo->UseVisualStyleBackColor = false;
 			this->cbAutoLoginSkipLogo->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAutoLoginSkipLogo_CheckedChanged);
 			// 
@@ -2264,7 +2316,7 @@ public:
 			this->cbAutoLogin->Name = L"cbAutoLogin";
 			this->cbAutoLogin->Size = System::Drawing::Size(74, 17);
 			this->cbAutoLogin->TabIndex = 27;
-			this->cbAutoLogin->Text = L"Auto Login";
+			this->cbAutoLogin->Text = L"自动登录";
 			this->cbAutoLogin->UseVisualStyleBackColor = false;
 			this->cbAutoLogin->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAutoLogin_CheckedChanged);
 			// 
@@ -2279,7 +2331,7 @@ public:
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage4->Size = System::Drawing::Size(353, 239);
 			this->tabPage4->TabIndex = 1;
-			this->tabPage4->Text = L"Options";
+			this->tabPage4->Text = L"选项";
 			// 
 			// transparencyTrackBar
 			// 
@@ -2300,7 +2352,7 @@ public:
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(77, 13);
 			this->label2->TabIndex = 0;
-			this->label2->Text = L"Transparency:";
+			this->label2->Text = L"透明度:";
 			// 
 			// tabPage2
 			// 
@@ -2314,7 +2366,7 @@ public:
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage2->Size = System::Drawing::Size(390, 385);
 			this->tabPage2->TabIndex = 1;
-			this->tabPage2->Text = L"Bots";
+			this->tabPage2->Text = L"机器人";
 			// 
 			// tabControl3
 			// 
@@ -2342,7 +2394,7 @@ public:
 			this->tabPage11->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage11->Size = System::Drawing::Size(394, 212);
 			this->tabPage11->TabIndex = 1;
-			this->tabPage11->Text = L"Auto Buff";
+			this->tabPage11->Text = L"自动加BUFF";
 			// 
 			// bBuffEnableAll
 			// 
@@ -2352,7 +2404,7 @@ public:
 			this->bBuffEnableAll->Name = L"bBuffEnableAll";
 			this->bBuffEnableAll->Size = System::Drawing::Size(124, 24);
 			this->bBuffEnableAll->TabIndex = 15;
-			this->bBuffEnableAll->Text = L"Enable All";
+			this->bBuffEnableAll->Text = L"全部启用";
 			this->bBuffEnableAll->UseVisualStyleBackColor = true;
 			this->bBuffEnableAll->Click += gcnew System::EventHandler(this, &MainForm::bBuffEnableAll_Click);
 			// 
@@ -2364,7 +2416,7 @@ public:
 			this->bBuffDisableAll->Name = L"bBuffDisableAll";
 			this->bBuffDisableAll->Size = System::Drawing::Size(124, 24);
 			this->bBuffDisableAll->TabIndex = 14;
-			this->bBuffDisableAll->Text = L"Disable All";
+			this->bBuffDisableAll->Text = L"全部禁用";
 			this->bBuffDisableAll->UseVisualStyleBackColor = true;
 			this->bBuffDisableAll->Click += gcnew System::EventHandler(this, &MainForm::bBuffDisableAll_Click);
 			// 
@@ -2376,7 +2428,7 @@ public:
 			this->bBuffRemove->Name = L"bBuffRemove";
 			this->bBuffRemove->Size = System::Drawing::Size(125, 25);
 			this->bBuffRemove->TabIndex = 13;
-			this->bBuffRemove->Text = L"Remove Selected";
+			this->bBuffRemove->Text = L"移除选中";
 			this->bBuffRemove->UseVisualStyleBackColor = true;
 			this->bBuffRemove->Click += gcnew System::EventHandler(this, &MainForm::bBuffRemove_Click);
 			// 
@@ -2388,7 +2440,7 @@ public:
 			this->bBuffClear->Name = L"bBuffClear";
 			this->bBuffClear->Size = System::Drawing::Size(131, 25);
 			this->bBuffClear->TabIndex = 12;
-			this->bBuffClear->Text = L"Clear All";
+			this->bBuffClear->Text = L"全部清空";
 			this->bBuffClear->UseVisualStyleBackColor = true;
 			this->bBuffClear->Click += gcnew System::EventHandler(this, &MainForm::bBuffClear_Click);
 			// 
@@ -2416,7 +2468,7 @@ public:
 			this->tbBuffName->Name = L"tbBuffName";
 			this->tbBuffName->Size = System::Drawing::Size(78, 21);
 			this->tbBuffName->TabIndex = 12;
-			this->tbBuffName->Text = L"Buff";
+			this->tbBuffName->Text = L"BUFF";
 			this->tbBuffName->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// bBuffAdd
@@ -2427,7 +2479,7 @@ public:
 			this->bBuffAdd->Name = L"bBuffAdd";
 			this->bBuffAdd->Size = System::Drawing::Size(113, 21);
 			this->bBuffAdd->TabIndex = 11;
-			this->bBuffAdd->Text = L"Add";
+			this->bBuffAdd->Text = L"添加";
 			this->bBuffAdd->UseVisualStyleBackColor = true;
 			this->bBuffAdd->Click += gcnew System::EventHandler(this, &MainForm::bBuffAdd_Click);
 			// 
@@ -2452,7 +2504,7 @@ public:
 			this->label40->Name = L"label40";
 			this->label40->Size = System::Drawing::Size(38, 13);
 			this->label40->TabIndex = 10;
-			this->label40->Text = L"Name:";
+			this->label40->Text = L"名称:";
 			// 
 			// label41
 			// 
@@ -2462,7 +2514,7 @@ public:
 			this->label41->Name = L"label41";
 			this->label41->Size = System::Drawing::Size(65, 13);
 			this->label41->TabIndex = 7;
-			this->label41->Text = L"Interval [s]:";
+			this->label41->Text = L"间隔 [秒]:";
 			// 
 			// comboBuffKey
 			// 
@@ -2507,18 +2559,18 @@ public:
 			// 
 			// lvBuffHeaderName
 			// 
-			this->lvBuffHeaderName->Text = L"Name";
+			this->lvBuffHeaderName->Text = L"名称";
 			this->lvBuffHeaderName->Width = 100;
 			// 
 			// lvBuffHeaderKey
 			// 
 			this->lvBuffHeaderKey->DisplayIndex = 2;
-			this->lvBuffHeaderKey->Text = L"Key";
+			this->lvBuffHeaderKey->Text = L"按键";
 			// 
 			// lvBuffHeaderInterval
 			// 
 			this->lvBuffHeaderInterval->DisplayIndex = 1;
-			this->lvBuffHeaderInterval->Text = L"Interval [ms]";
+			this->lvBuffHeaderInterval->Text = L"间隔 [ms]";
 			this->lvBuffHeaderInterval->Width = 80;
 			// 
 			// tabPage12
@@ -2534,7 +2586,7 @@ public:
 			this->tabPage12->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage12->Size = System::Drawing::Size(394, 212);
 			this->tabPage12->TabIndex = 2;
-			this->tabPage12->Text = L"Auto CC/CS";
+			this->tabPage12->Text = L"自动换线/商城";
 			// 
 			// panel8
 			// 
@@ -2571,7 +2623,7 @@ public:
 			this->label48->Name = L"label48";
 			this->label48->Size = System::Drawing::Size(82, 26);
 			this->label48->TabIndex = 18;
-			this->label48->Text = L"Exit Cash Shop \r\nDelay (ms):";
+			this->label48->Text = L"退出商城\r\n延迟(ms):";
 			// 
 			// bCS
 			// 
@@ -2581,7 +2633,7 @@ public:
 			this->bCS->Name = L"bCS";
 			this->bCS->Size = System::Drawing::Size(146, 23);
 			this->bCS->TabIndex = 17;
-			this->bCS->Text = L"Auto Cash Shop";
+			this->bCS->Text = L"自动进商城";
 			this->bCS->UseVisualStyleBackColor = true;
 			this->bCS->Click += gcnew System::EventHandler(this, &MainForm::bCS_Click);
 			// 
@@ -2593,7 +2645,7 @@ public:
 			this->bRandomCC->Name = L"bRandomCC";
 			this->bRandomCC->Size = System::Drawing::Size(146, 23);
 			this->bRandomCC->TabIndex = 16;
-			this->bRandomCC->Text = L"Random Channel";
+			this->bRandomCC->Text = L"随机频道";
 			this->bRandomCC->UseVisualStyleBackColor = true;
 			this->bRandomCC->Click += gcnew System::EventHandler(this, &MainForm::bRandomCC_Click);
 			// 
@@ -2616,7 +2668,7 @@ public:
 			this->bCC->Name = L"bCC";
 			this->bCC->Size = System::Drawing::Size(146, 23);
 			this->bCC->TabIndex = 14;
-			this->bCC->Text = L"Specific Channel";
+			this->bCC->Text = L"指定频道";
 			this->bCC->UseVisualStyleBackColor = true;
 			this->bCC->Click += gcnew System::EventHandler(this, &MainForm::bCC_Click);
 			// 
@@ -2645,7 +2697,7 @@ public:
 			this->label47->Name = L"label47";
 			this->label47->Size = System::Drawing::Size(50, 13);
 			this->label47->TabIndex = 7;
-			this->label47->Text = L"Channel:";
+			this->label47->Text = L"频道:";
 			// 
 			// panel7
 			// 
@@ -2771,7 +2823,7 @@ public:
 			this->cbCCCSMob->Name = L"cbCCCSMob";
 			this->cbCCCSMob->Size = System::Drawing::Size(48, 17);
 			this->cbCCCSMob->TabIndex = 5;
-			this->cbCCCSMob->Text = L"Mobs";
+			this->cbCCCSMob->Text = L"怪物数";
 			this->cbCCCSMob->UseVisualStyleBackColor = false;
 			// 
 			// rbCS
@@ -2782,7 +2834,7 @@ public:
 			this->rbCS->Name = L"rbCS";
 			this->rbCS->Size = System::Drawing::Size(75, 17);
 			this->rbCS->TabIndex = 5;
-			this->rbCS->Text = L"Cash Shop";
+			this->rbCS->Text = L"商城";
 			this->rbCS->UseVisualStyleBackColor = true;
 			// 
 			// cbCCCSAttack
@@ -2795,7 +2847,7 @@ public:
 			this->cbCCCSAttack->Name = L"cbCCCSAttack";
 			this->cbCCCSAttack->Size = System::Drawing::Size(59, 17);
 			this->cbCCCSAttack->TabIndex = 4;
-			this->cbCCCSAttack->Text = L"Attacks";
+			this->cbCCCSAttack->Text = L"攻击数";
 			this->cbCCCSAttack->UseVisualStyleBackColor = false;
 			// 
 			// cbCCCSPeople
@@ -2808,7 +2860,7 @@ public:
 			this->cbCCCSPeople->Name = L"cbCCCSPeople";
 			this->cbCCCSPeople->Size = System::Drawing::Size(55, 17);
 			this->cbCCCSPeople->TabIndex = 3;
-			this->cbCCCSPeople->Text = L"People";
+			this->cbCCCSPeople->Text = L"人数";
 			this->cbCCCSPeople->UseVisualStyleBackColor = false;
 			// 
 			// rbCC
@@ -2821,7 +2873,7 @@ public:
 			this->rbCC->Size = System::Drawing::Size(103, 17);
 			this->rbCC->TabIndex = 4;
 			this->rbCC->TabStop = true;
-			this->rbCC->Text = L"Change Channel";
+			this->rbCC->Text = L"换频道";
 			this->rbCC->UseVisualStyleBackColor = true;
 			this->rbCC->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbCC_CheckedChanged);
 			// 
@@ -2835,7 +2887,7 @@ public:
 			this->cbCCCSTime->Name = L"cbCCCSTime";
 			this->cbCCCSTime->Size = System::Drawing::Size(77, 17);
 			this->cbCCCSTime->TabIndex = 2;
-			this->cbCCCSTime->Text = L"Time (secs)";
+			this->cbCCCSTime->Text = L"时间(秒)";
 			this->cbCCCSTime->UseVisualStyleBackColor = false;
 			// 
 			// rbFunction
@@ -2846,7 +2898,7 @@ public:
 			this->rbFunction->Name = L"rbFunction";
 			this->rbFunction->Size = System::Drawing::Size(65, 17);
 			this->rbFunction->TabIndex = 1;
-			this->rbFunction->Text = L"Function";
+			this->rbFunction->Text = L"功能";
 			this->rbFunction->UseVisualStyleBackColor = true;
 			this->rbFunction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbFunction_CheckedChanged);
 			// 
@@ -2860,7 +2912,7 @@ public:
 			this->rbPacket->Size = System::Drawing::Size(56, 17);
 			this->rbPacket->TabIndex = 0;
 			this->rbPacket->TabStop = true;
-			this->rbPacket->Text = L"Packet";
+			this->rbPacket->Text = L"封包";
 			this->rbPacket->UseVisualStyleBackColor = false;
 			// 
 			// tabPage10
@@ -2873,7 +2925,7 @@ public:
 			this->tabPage10->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage10->Size = System::Drawing::Size(394, 212);
 			this->tabPage10->TabIndex = 3;
-			this->tabPage10->Text = L"Auto Sell";
+			this->tabPage10->Text = L"自动出售";
 			// 
 			// panel10
 			// 
@@ -2892,7 +2944,7 @@ public:
 			this->cbSellAll->Name = L"cbSellAll";
 			this->cbSellAll->Size = System::Drawing::Size(178, 17);
 			this->cbSellAll->TabIndex = 2;
-			this->cbSellAll->Text = L"Sell All When Inv Full (heuristics)";
+			this->cbSellAll->Text = L"背包满时全部出售(启发式)";
 			this->cbSellAll->UseVisualStyleBackColor = false;
 			this->cbSellAll->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbSellAll_CheckedChanged);
 			// 
@@ -2963,7 +3015,7 @@ public:
 			this->label93->Name = L"label93";
 			this->label93->Size = System::Drawing::Size(59, 13);
 			this->label93->TabIndex = 12;
-			this->label93->Text = L"Delay[ms]:";
+			this->label93->Text = L"延迟[ms]:";
 			// 
 			// label91
 			// 
@@ -2973,7 +3025,7 @@ public:
 			this->label91->Name = L"label91";
 			this->label91->Size = System::Drawing::Size(59, 13);
 			this->label91->TabIndex = 11;
-			this->label91->Text = L"Delay[ms]:";
+			this->label91->Text = L"延迟[ms]:";
 			// 
 			// tbLootItem
 			// 
@@ -3039,7 +3091,7 @@ public:
 			this->label31->Name = L"label31";
 			this->label31->Size = System::Drawing::Size(59, 13);
 			this->label31->TabIndex = 7;
-			this->label31->Text = L"Delay[ms]:";
+			this->label31->Text = L"延迟[ms]:";
 			// 
 			// label29
 			// 
@@ -3048,7 +3100,7 @@ public:
 			this->label29->Name = L"label29";
 			this->label29->Size = System::Drawing::Size(45, 13);
 			this->label29->TabIndex = 10;
-			this->label29->Text = L"Items >";
+			this->label29->Text = L"物品 >";
 			// 
 			// label28
 			// 
@@ -3058,7 +3110,7 @@ public:
 			this->label28->Name = L"label28";
 			this->label28->Size = System::Drawing::Size(59, 13);
 			this->label28->TabIndex = 7;
-			this->label28->Text = L"Delay[ms]:";
+			this->label28->Text = L"延迟[ms]:";
 			// 
 			// label27
 			// 
@@ -3079,7 +3131,7 @@ public:
 			this->cbLoot->Name = L"cbLoot";
 			this->cbLoot->Size = System::Drawing::Size(70, 17);
 			this->cbLoot->TabIndex = 1;
-			this->cbLoot->Text = L"Auto Loot";
+			this->cbLoot->Text = L"自动拾取";
 			this->cbLoot->UseVisualStyleBackColor = false;
 			this->cbLoot->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbLoot_CheckedChanged);
 			// 
@@ -3090,7 +3142,7 @@ public:
 			this->label30->Name = L"label30";
 			this->label30->Size = System::Drawing::Size(43, 13);
 			this->label30->TabIndex = 10;
-			this->label30->Text = L"Mobs >";
+			this->label30->Text = L"怪物 >";
 			// 
 			// comboLootKey
 			// 
@@ -3173,7 +3225,7 @@ public:
 			this->cbAttack->Name = L"cbAttack";
 			this->cbAttack->Size = System::Drawing::Size(80, 17);
 			this->cbAttack->TabIndex = 1;
-			this->cbAttack->Text = L"Auto Attack";
+			this->cbAttack->Text = L"自动攻击";
 			this->cbAttack->UseVisualStyleBackColor = false;
 			this->cbAttack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAttack_CheckedChanged);
 			// 
@@ -3236,7 +3288,7 @@ public:
 			this->cbHP->Name = L"cbHP";
 			this->cbHP->Size = System::Drawing::Size(62, 17);
 			this->cbHP->TabIndex = 1;
-			this->cbHP->Text = L"Auto HP";
+			this->cbHP->Text = L"自动HP";
 			this->cbHP->UseVisualStyleBackColor = false;
 			this->cbHP->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbHP_CheckedChanged);
 			// 
@@ -3250,7 +3302,7 @@ public:
 			this->cbMP->Name = L"cbMP";
 			this->cbMP->Size = System::Drawing::Size(63, 17);
 			this->cbMP->TabIndex = 2;
-			this->cbMP->Text = L"Auto MP";
+			this->cbMP->Text = L"自动MP";
 			this->cbMP->UseVisualStyleBackColor = false;
 			this->cbMP->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMP_CheckedChanged);
 			// 
@@ -3269,7 +3321,7 @@ public:
 			this->tabPage5->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage5->Size = System::Drawing::Size(390, 385);
 			this->tabPage5->TabIndex = 2;
-			this->tabPage5->Text = L"Hacks I";
+			this->tabPage5->Text = L"作弊 I";
 			// 
 			// groupBox6
 			// 
@@ -3280,7 +3332,7 @@ public:
 			this->groupBox6->Size = System::Drawing::Size(135, 133);
 			this->groupBox6->TabIndex = 28;
 			this->groupBox6->TabStop = false;
-			this->groupBox6->Text = L"Physics Hacks";
+			this->groupBox6->Text = L"物理作弊";
 			// 
 			// cbNoWalkingFriction
 			// 
@@ -3292,7 +3344,7 @@ public:
 			this->cbNoWalkingFriction->Name = L"cbNoWalkingFriction";
 			this->cbNoWalkingFriction->Size = System::Drawing::Size(114, 17);
 			this->cbNoWalkingFriction->TabIndex = 11;
-			this->cbNoWalkingFriction->Text = L"No Walking Friction";
+			this->cbNoWalkingFriction->Text = L"无行走摩擦";
 			this->cbNoWalkingFriction->UseVisualStyleBackColor = false;
 			this->cbNoWalkingFriction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoWalkingFriction_CheckedChanged);
 			// 
@@ -3311,7 +3363,7 @@ public:
 			this->groupBox5->Size = System::Drawing::Size(137, 169);
 			this->groupBox5->TabIndex = 27;
 			this->groupBox5->TabStop = false;
-			this->groupBox5->Text = L"Map Hacks";
+			this->groupBox5->Text = L"地图作弊";
 			// 
 			// cbNoBlueBoxes
 			// 
@@ -3323,7 +3375,7 @@ public:
 			this->cbNoBlueBoxes->Name = L"cbNoBlueBoxes";
 			this->cbNoBlueBoxes->Size = System::Drawing::Size(91, 17);
 			this->cbNoBlueBoxes->TabIndex = 10;
-			this->cbNoBlueBoxes->Text = L"No Blue Boxes";
+			this->cbNoBlueBoxes->Text = L"无蓝色提示框";
 			this->cbNoBlueBoxes->UseVisualStyleBackColor = false;
 			this->cbNoBlueBoxes->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoBlueBoxes_CheckedChanged);
 			// 
@@ -3337,7 +3389,7 @@ public:
 			this->cbNoMapBackground->Name = L"cbNoMapBackground";
 			this->cbNoMapBackground->Size = System::Drawing::Size(118, 17);
 			this->cbNoMapBackground->TabIndex = 4;
-			this->cbNoMapBackground->Text = L"No Map Background";
+			this->cbNoMapBackground->Text = L"无地图背景";
 			this->cbNoMapBackground->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbNoMapBackground->UseVisualStyleBackColor = false;
 			this->cbNoMapBackground->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapBackground_CheckedChanged);
@@ -3352,7 +3404,7 @@ public:
 			this->cbNoMapTiles->Name = L"cbNoMapTiles";
 			this->cbNoMapTiles->Size = System::Drawing::Size(83, 17);
 			this->cbNoMapTiles->TabIndex = 9;
-			this->cbNoMapTiles->Text = L"No Map Tiles";
+			this->cbNoMapTiles->Text = L"无地图瓦片";
 			this->cbNoMapTiles->UseVisualStyleBackColor = false;
 			this->cbNoMapTiles->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapTiles_CheckedChanged);
 			// 
@@ -3366,7 +3418,7 @@ public:
 			this->cbInfiniteChat->Name = L"cbInfiniteChat";
 			this->cbInfiniteChat->Size = System::Drawing::Size(83, 17);
 			this->cbInfiniteChat->TabIndex = 8;
-			this->cbInfiniteChat->Text = L"Infinite Chat";
+			this->cbInfiniteChat->Text = L"无限聊天";
 			this->cbInfiniteChat->UseVisualStyleBackColor = false;
 			this->cbInfiniteChat->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbInfiniteChat_CheckedChanged);
 			// 
@@ -3380,7 +3432,7 @@ public:
 			this->cbMapSpeedUp->Name = L"cbMapSpeedUp";
 			this->cbMapSpeedUp->Size = System::Drawing::Size(92, 17);
 			this->cbMapSpeedUp->TabIndex = 8;
-			this->cbMapSpeedUp->Text = L"Map Speed Up";
+			this->cbMapSpeedUp->Text = L"地图加速";
 			this->cbMapSpeedUp->UseVisualStyleBackColor = false;
 			this->cbMapSpeedUp->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMapSpeedUp_CheckedChanged);
 			// 
@@ -3394,7 +3446,7 @@ public:
 			this->cbNoMapFadeEffect->Name = L"cbNoMapFadeEffect";
 			this->cbNoMapFadeEffect->Size = System::Drawing::Size(118, 17);
 			this->cbNoMapFadeEffect->TabIndex = 5;
-			this->cbNoMapFadeEffect->Text = L"No Map Fade Effect";
+			this->cbNoMapFadeEffect->Text = L"无地图淡入淡出";
 			this->cbNoMapFadeEffect->UseVisualStyleBackColor = false;
 			this->cbNoMapFadeEffect->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapFadeEffect_CheckedChanged);
 			// 
@@ -3408,7 +3460,7 @@ public:
 			this->cbNoMapObjects->Name = L"cbNoMapObjects";
 			this->cbNoMapObjects->Size = System::Drawing::Size(99, 17);
 			this->cbNoMapObjects->TabIndex = 7;
-			this->cbNoMapObjects->Text = L"No Map Objects";
+			this->cbNoMapObjects->Text = L"无地图物件";
 			this->cbNoMapObjects->UseVisualStyleBackColor = false;
 			this->cbNoMapObjects->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapObjects_CheckedChanged);
 			// 
@@ -3428,7 +3480,7 @@ public:
 			this->groupBox4->Size = System::Drawing::Size(378, 66);
 			this->groupBox4->TabIndex = 26;
 			this->groupBox4->TabStop = false;
-			this->groupBox4->Text = L"Movement Hacks";
+			this->groupBox4->Text = L"移动作弊";
 			// 
 			// cbMouseFly
 			// 
@@ -3440,7 +3492,7 @@ public:
 			this->cbMouseFly->Name = L"cbMouseFly";
 			this->cbMouseFly->Size = System::Drawing::Size(95, 17);
 			this->cbMouseFly->TabIndex = 9;
-			this->cbMouseFly->Text = L"Mouse Fly [CS]";
+			this->cbMouseFly->Text = L"鼠标飞行[客户端]";
 			this->cbMouseFly->UseVisualStyleBackColor = false;
 			this->cbMouseFly->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMouseFly_CheckedChanged);
 			// 
@@ -3454,7 +3506,7 @@ public:
 			this->cbClickTeleport->Name = L"cbClickTeleport";
 			this->cbClickTeleport->Size = System::Drawing::Size(87, 17);
 			this->cbClickTeleport->TabIndex = 1;
-			this->cbClickTeleport->Text = L"Click Teleport";
+			this->cbClickTeleport->Text = L"点击传送";
 			this->cbClickTeleport->UseVisualStyleBackColor = false;
 			this->cbClickTeleport->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbClickTeleport_CheckedChanged);
 			// 
@@ -3465,7 +3517,7 @@ public:
 			this->label49->Name = L"label49";
 			this->label49->Size = System::Drawing::Size(73, 13);
 			this->label49->TabIndex = 8;
-			this->label49->Text = L"Interval [ms]:";
+			this->label49->Text = L"间隔 [ms]:";
 			// 
 			// cbMouseTeleport
 			// 
@@ -3477,7 +3529,7 @@ public:
 			this->cbMouseTeleport->Name = L"cbMouseTeleport";
 			this->cbMouseTeleport->Size = System::Drawing::Size(97, 17);
 			this->cbMouseTeleport->TabIndex = 2;
-			this->cbMouseTeleport->Text = L"Mouse Teleport";
+			this->cbMouseTeleport->Text = L"鼠标传送";
 			this->cbMouseTeleport->UseVisualStyleBackColor = false;
 			this->cbMouseTeleport->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMouseTeleport_CheckedChanged);
 			// 
@@ -3488,7 +3540,7 @@ public:
 			this->label50->Name = L"label50";
 			this->label50->Size = System::Drawing::Size(73, 13);
 			this->label50->TabIndex = 7;
-			this->label50->Text = L"Interval [ms]:";
+			this->label50->Text = L"间隔 [ms]:";
 			// 
 			// cbSwimInAir
 			// 
@@ -3500,7 +3552,7 @@ public:
 			this->cbSwimInAir->Name = L"cbSwimInAir";
 			this->cbSwimInAir->Size = System::Drawing::Size(76, 17);
 			this->cbSwimInAir->TabIndex = 7;
-			this->cbSwimInAir->Text = L"Swim In Air";
+			this->cbSwimInAir->Text = L"空中游泳";
 			this->cbSwimInAir->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbSwimInAir->UseVisualStyleBackColor = false;
 			this->cbSwimInAir->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbSwimInAir_CheckedChanged);
@@ -3547,7 +3599,7 @@ public:
 			this->groupBox3->Size = System::Drawing::Size(236, 75);
 			this->groupBox3->TabIndex = 25;
 			this->groupBox3->TabStop = false;
-			this->groupBox3->Text = L"Mob Hacks";
+			this->groupBox3->Text = L"怪物作弊";
 			// 
 			// cbMobAutoAggro
 			// 
@@ -3559,7 +3611,7 @@ public:
 			this->cbMobAutoAggro->Name = L"cbMobAutoAggro";
 			this->cbMobAutoAggro->Size = System::Drawing::Size(101, 17);
 			this->cbMobAutoAggro->TabIndex = 23;
-			this->cbMobAutoAggro->Text = L"Mob Auto Aggro";
+			this->cbMobAutoAggro->Text = L"怪物自动仇恨";
 			this->cbMobAutoAggro->UseVisualStyleBackColor = false;
 			this->cbMobAutoAggro->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobAutoAggro_CheckedChanged);
 			// 
@@ -3573,7 +3625,7 @@ public:
 			this->cbNoMobReaction->Name = L"cbNoMobReaction";
 			this->cbNoMobReaction->Size = System::Drawing::Size(104, 17);
 			this->cbNoMobReaction->TabIndex = 6;
-			this->cbNoMobReaction->Text = L"No Mob Reaction";
+			this->cbNoMobReaction->Text = L"怪物无反应";
 			this->cbNoMobReaction->UseVisualStyleBackColor = false;
 			this->cbNoMobReaction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMobReaction_CheckedChanged);
 			// 
@@ -3587,7 +3639,7 @@ public:
 			this->cbMobDisarm->Name = L"cbMobDisarm";
 			this->cbMobDisarm->Size = System::Drawing::Size(78, 17);
 			this->cbMobDisarm->TabIndex = 7;
-			this->cbMobDisarm->Text = L"Mob Disarm";
+			this->cbMobDisarm->Text = L"怪物缴械";
 			this->cbMobDisarm->UseVisualStyleBackColor = false;
 			this->cbMobDisarm->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobDisarm_CheckedChanged);
 			// 
@@ -3601,7 +3653,7 @@ public:
 			this->cbMobFreeze->Name = L"cbMobFreeze";
 			this->cbMobFreeze->Size = System::Drawing::Size(79, 17);
 			this->cbMobFreeze->TabIndex = 9;
-			this->cbMobFreeze->Text = L"Mob Freeze";
+			this->cbMobFreeze->Text = L"怪物冻结";
 			this->cbMobFreeze->UseVisualStyleBackColor = false;
 			this->cbMobFreeze->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobFreeze_CheckedChanged);
 			// 
@@ -3615,7 +3667,7 @@ public:
 			this->cbNoMobDeathEffect->Name = L"cbNoMobDeathEffect";
 			this->cbNoMobDeathEffect->Size = System::Drawing::Size(123, 17);
 			this->cbNoMobDeathEffect->TabIndex = 8;
-			this->cbNoMobDeathEffect->Text = L"No Mob Death Effect";
+			this->cbNoMobDeathEffect->Text = L"无怪物死亡特效";
 			this->cbNoMobDeathEffect->UseVisualStyleBackColor = false;
 			this->cbNoMobDeathEffect->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMobDeathEffect_CheckedChanged);
 			// 
@@ -3629,7 +3681,7 @@ public:
 			this->cbNoMobKnockback->Name = L"cbNoMobKnockback";
 			this->cbNoMobKnockback->Size = System::Drawing::Size(112, 17);
 			this->cbNoMobKnockback->TabIndex = 4;
-			this->cbNoMobKnockback->Text = L"No Mob Knockback";
+			this->cbNoMobKnockback->Text = L"怪物无击退";
 			this->cbNoMobKnockback->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbNoMobKnockback->UseVisualStyleBackColor = false;
 			this->cbNoMobKnockback->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMobKnockback_CheckedChanged);
@@ -3646,7 +3698,7 @@ public:
 			this->groupBox2->Size = System::Drawing::Size(236, 55);
 			this->groupBox2->TabIndex = 24;
 			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"Item Hacks";
+			this->groupBox2->Text = L"物品作弊";
 			// 
 			// cbTubi
 			// 
@@ -3658,7 +3710,7 @@ public:
 			this->cbTubi->Name = L"cbTubi";
 			this->cbTubi->Size = System::Drawing::Size(43, 17);
 			this->cbTubi->TabIndex = 5;
-			this->cbTubi->Text = L"Tubi";
+			this->cbTubi->Text = L"快速拾取";
 			this->cbTubi->UseVisualStyleBackColor = false;
 			this->cbTubi->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbTubi_CheckedChanged);
 			// 
@@ -3672,7 +3724,7 @@ public:
 			this->cbInstantDropItems->Name = L"cbInstantDropItems";
 			this->cbInstantDropItems->Size = System::Drawing::Size(114, 17);
 			this->cbInstantDropItems->TabIndex = 4;
-			this->cbInstantDropItems->Text = L"Instant Drop Items";
+			this->cbInstantDropItems->Text = L"物品瞬间掉落";
 			this->cbInstantDropItems->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbInstantDropItems->UseVisualStyleBackColor = false;
 			this->cbInstantDropItems->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbInstantDropItems_CheckedChanged);
@@ -3687,7 +3739,7 @@ public:
 			this->cbItemVac->Name = L"cbItemVac";
 			this->cbItemVac->Size = System::Drawing::Size(65, 17);
 			this->cbItemVac->TabIndex = 13;
-			this->cbItemVac->Text = L"Item Vac";
+			this->cbItemVac->Text = L"物品吸怪";
 			this->cbItemVac->UseVisualStyleBackColor = false;
 			this->cbItemVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbItemVac_CheckedChanged);
 			// 
@@ -3701,7 +3753,7 @@ public:
 			this->cbInstantLootItems->Name = L"cbInstantLootItems";
 			this->cbInstantLootItems->Size = System::Drawing::Size(112, 17);
 			this->cbInstantLootItems->TabIndex = 6;
-			this->cbInstantLootItems->Text = L"Instant Loot Items";
+			this->cbInstantLootItems->Text = L"瞬间拾取";
 			this->cbInstantLootItems->UseVisualStyleBackColor = false;
 			this->cbInstantLootItems->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbInstantLootItems_CheckedChanged);
 			// 
@@ -3732,7 +3784,7 @@ public:
 			this->groupBox1->Size = System::Drawing::Size(236, 169);
 			this->groupBox1->TabIndex = 23;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Character Hacks";
+			this->groupBox1->Text = L"角色作弊";
 			// 
 			// label90
 			// 
@@ -3741,7 +3793,7 @@ public:
 			this->label90->Name = L"label90";
 			this->label90->Size = System::Drawing::Size(38, 13);
 			this->label90->TabIndex = 48;
-			this->label90->Text = L"Delay:";
+			this->label90->Text = L"延迟:";
 			// 
 			// tbAttackDelay
 			// 
@@ -3766,7 +3818,7 @@ public:
 			this->label89->Name = L"label89";
 			this->label89->Size = System::Drawing::Size(37, 13);
 			this->label89->TabIndex = 46;
-			this->label89->Text = L"Blinks:";
+			this->label89->Text = L"闪烁次数:";
 			// 
 			// label88
 			// 
@@ -3776,14 +3828,14 @@ public:
 			this->label88->Name = L"label88";
 			this->label88->Size = System::Drawing::Size(42, 13);
 			this->label88->TabIndex = 45;
-			this->label88->Text = L"Misses:";
+			this->label88->Text = L"MISS次数:";
 			// 
 			// tbBlinkGodmodeBlinks
 			// 
 			this->tbBlinkGodmodeBlinks->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)),
 				static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			this->tbBlinkGodmodeBlinks->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->tbBlinkGodmodeBlinks->Enabled = false;
+		this->tbBlinkGodmodeBlinks->Enabled = true;
 			this->tbBlinkGodmodeBlinks->Font = (gcnew System::Drawing::Font(L"Tahoma", 6, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->tbBlinkGodmodeBlinks->ForeColor = System::Drawing::Color::White;
@@ -3791,7 +3843,7 @@ public:
 			this->tbBlinkGodmodeBlinks->Name = L"tbBlinkGodmodeBlinks";
 			this->tbBlinkGodmodeBlinks->Size = System::Drawing::Size(64, 17);
 			this->tbBlinkGodmodeBlinks->TabIndex = 44;
-			this->tbBlinkGodmodeBlinks->Text = L"-";
+		this->tbBlinkGodmodeBlinks->Text = L"30";
 			this->tbBlinkGodmodeBlinks->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// tbMissGodmodeMisses
@@ -3800,7 +3852,7 @@ public:
 				static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			this->tbMissGodmodeMisses->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->tbMissGodmodeMisses->Cursor = System::Windows::Forms::Cursors::IBeam;
-			this->tbMissGodmodeMisses->Enabled = false;
+		this->tbMissGodmodeMisses->Enabled = true;
 			this->tbMissGodmodeMisses->Font = (gcnew System::Drawing::Font(L"Tahoma", 6, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->tbMissGodmodeMisses->ForeColor = System::Drawing::Color::White;
@@ -3808,7 +3860,7 @@ public:
 			this->tbMissGodmodeMisses->Name = L"tbMissGodmodeMisses";
 			this->tbMissGodmodeMisses->Size = System::Drawing::Size(64, 17);
 			this->tbMissGodmodeMisses->TabIndex = 43;
-			this->tbMissGodmodeMisses->Text = L"-";
+		this->tbMissGodmodeMisses->Text = L"10";
 			this->tbMissGodmodeMisses->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// cbMissGodmode
@@ -3821,7 +3873,7 @@ public:
 			this->cbMissGodmode->Name = L"cbMissGodmode";
 			this->cbMissGodmode->Size = System::Drawing::Size(91, 17);
 			this->cbMissGodmode->TabIndex = 41;
-			this->cbMissGodmode->Text = L"Miss Godmode";
+			this->cbMissGodmode->Text = L"MISS无敌";
 			this->cbMissGodmode->UseVisualStyleBackColor = false;
 			// 
 			// cbAttackDelay
@@ -3834,7 +3886,7 @@ public:
 			this->cbAttackDelay->Name = L"cbAttackDelay";
 			this->cbAttackDelay->Size = System::Drawing::Size(84, 17);
 			this->cbAttackDelay->TabIndex = 42;
-			this->cbAttackDelay->Text = L"Attack Delay";
+			this->cbAttackDelay->Text = L"攻击延迟";
 			this->cbAttackDelay->UseVisualStyleBackColor = false;
 			this->cbAttackDelay->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAttackDelay_CheckedChanged);
 			// 
@@ -3848,7 +3900,7 @@ public:
 			this->cbBlinkGodmode->Name = L"cbBlinkGodmode";
 			this->cbBlinkGodmode->Size = System::Drawing::Size(92, 17);
 			this->cbBlinkGodmode->TabIndex = 40;
-			this->cbBlinkGodmode->Text = L"Blink Godmode";
+			this->cbBlinkGodmode->Text = L"闪烁无敌";
 			this->cbBlinkGodmode->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbBlinkGodmode->UseVisualStyleBackColor = false;
 			// 
@@ -3862,7 +3914,7 @@ public:
 			this->cbNoAttackDelay->Name = L"cbNoAttackDelay";
 			this->cbNoAttackDelay->Size = System::Drawing::Size(100, 17);
 			this->cbNoAttackDelay->TabIndex = 23;
-			this->cbNoAttackDelay->Text = L"No Attack Delay";
+			this->cbNoAttackDelay->Text = L"无攻击延迟";
 			this->cbNoAttackDelay->UseVisualStyleBackColor = false;
 			this->cbNoAttackDelay->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoAttackDelay_CheckedChanged);
 			// 
@@ -3876,7 +3928,7 @@ public:
 			this->cbNoPlayerNameTag->Name = L"cbNoPlayerNameTag";
 			this->cbNoPlayerNameTag->Size = System::Drawing::Size(120, 17);
 			this->cbNoPlayerNameTag->TabIndex = 24;
-			this->cbNoPlayerNameTag->Text = L"No Player Name Tag";
+			this->cbNoPlayerNameTag->Text = L"无角色名标签";
 			this->cbNoPlayerNameTag->UseVisualStyleBackColor = false;
 			this->cbNoPlayerNameTag->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoPlayerNameTag_CheckedChanged);
 			// 
@@ -3890,7 +3942,7 @@ public:
 			this->cbFullGodmode->Name = L"cbFullGodmode";
 			this->cbFullGodmode->Size = System::Drawing::Size(87, 17);
 			this->cbFullGodmode->TabIndex = 6;
-			this->cbFullGodmode->Text = L"Full Godmode";
+			this->cbFullGodmode->Text = L"完全无敌";
 			this->cbFullGodmode->UseVisualStyleBackColor = false;
 			this->cbFullGodmode->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbFullGodmode_CheckedChanged);
 			// 
@@ -3904,7 +3956,7 @@ public:
 			this->cbJumpDownAnyTile->Name = L"cbJumpDownAnyTile";
 			this->cbJumpDownAnyTile->Size = System::Drawing::Size(119, 17);
 			this->cbJumpDownAnyTile->TabIndex = 4;
-			this->cbJumpDownAnyTile->Text = L"Jump Down Any Tile";
+			this->cbJumpDownAnyTile->Text = L"任意跳下";
 			this->cbJumpDownAnyTile->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbJumpDownAnyTile->UseVisualStyleBackColor = false;
 			this->cbJumpDownAnyTile->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbJumpDownAnyTile_CheckedChanged);
@@ -3919,7 +3971,7 @@ public:
 			this->cbNoSkillEffects->Name = L"cbNoSkillEffects";
 			this->cbNoSkillEffects->Size = System::Drawing::Size(93, 17);
 			this->cbNoSkillEffects->TabIndex = 8;
-			this->cbNoSkillEffects->Text = L"No Skill Effects";
+			this->cbNoSkillEffects->Text = L"无技能特效";
 			this->cbNoSkillEffects->UseVisualStyleBackColor = false;
 			this->cbNoSkillEffects->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoSkillEffects_CheckedChanged);
 			// 
@@ -3933,7 +3985,7 @@ public:
 			this->cbNoBreath->Name = L"cbNoBreath";
 			this->cbNoBreath->Size = System::Drawing::Size(71, 17);
 			this->cbNoBreath->TabIndex = 12;
-			this->cbNoBreath->Text = L"No Breath";
+			this->cbNoBreath->Text = L"无呼吸";
 			this->cbNoBreath->UseVisualStyleBackColor = false;
 			this->cbNoBreath->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoBreath_CheckedChanged);
 			// 
@@ -3947,7 +3999,7 @@ public:
 			this->cbNoPlayerKnockback->Name = L"cbNoPlayerKnockback";
 			this->cbNoPlayerKnockback->Size = System::Drawing::Size(122, 17);
 			this->cbNoPlayerKnockback->TabIndex = 5;
-			this->cbNoPlayerKnockback->Text = L"No Player Knockback";
+			this->cbNoPlayerKnockback->Text = L"角色无击退";
 			this->cbNoPlayerKnockback->UseVisualStyleBackColor = false;
 			this->cbNoPlayerKnockback->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoPlayerKnockback_CheckedChanged);
 			// 
@@ -3961,7 +4013,7 @@ public:
 			this->cbFullAccuracy->Name = L"cbFullAccuracy";
 			this->cbFullAccuracy->Size = System::Drawing::Size(86, 17);
 			this->cbFullAccuracy->TabIndex = 10;
-			this->cbFullAccuracy->Text = L"Full Accuracy";
+			this->cbFullAccuracy->Text = L"全命中";
 			this->cbFullAccuracy->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			this->cbFullAccuracy->UseVisualStyleBackColor = false;
 			this->cbFullAccuracy->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbFullAccuracy_CheckedChanged);
@@ -3976,7 +4028,7 @@ public:
 			this->cbNoPlayerDeath->Name = L"cbNoPlayerDeath";
 			this->cbNoPlayerDeath->Size = System::Drawing::Size(101, 17);
 			this->cbNoPlayerDeath->TabIndex = 9;
-			this->cbNoPlayerDeath->Text = L"No Player Death";
+			this->cbNoPlayerDeath->Text = L"角色不死";
 			this->cbNoPlayerDeath->UseVisualStyleBackColor = false;
 			this->cbNoPlayerDeath->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoPlayerDeath_CheckedChanged);
 			// 
@@ -3990,7 +4042,7 @@ public:
 			this->cbUnlimitedAttack->Name = L"cbUnlimitedAttack";
 			this->cbUnlimitedAttack->Size = System::Drawing::Size(100, 17);
 			this->cbUnlimitedAttack->TabIndex = 6;
-			this->cbUnlimitedAttack->Text = L"Unlimited Attack";
+			this->cbUnlimitedAttack->Text = L"无限攻击";
 			this->cbUnlimitedAttack->UseVisualStyleBackColor = false;
 			this->cbUnlimitedAttack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbUnlimitedAttack_CheckedChanged);
 			// 
@@ -3998,6 +4050,8 @@ public:
 			// 
 			this->tabPage20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(25)), static_cast<System::Int32>(static_cast<System::Byte>(25)),
 				static_cast<System::Int32>(static_cast<System::Byte>(25)));
+			this->tabPage20->Controls->Add(this->panel31);
+			this->tabPage20->Controls->Add(this->panel32);
 			this->tabPage20->Controls->Add(this->panel27);
 			this->tabPage20->Controls->Add(this->panel26);
 			this->tabPage20->Location = System::Drawing::Point(4, 22);
@@ -4005,30 +4059,321 @@ public:
 			this->tabPage20->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage20->Size = System::Drawing::Size(390, 385);
 			this->tabPage20->TabIndex = 7;
-			this->tabPage20->Text = L"Hacks II";
+			this->tabPage20->Text = L"作弊 II";
+			// 
+			// panel31
+			// 
+			this->panel31->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel31->Controls->Add(this->labelCombo);
+			this->panel31->Controls->Add(this->tbComboValue);
+			this->panel31->Controls->Add(this->cbComboFreeze);
+			this->panel31->Controls->Add(this->labelMorph);
+			this->panel31->Controls->Add(this->tbMorphValue);
+			this->panel31->Controls->Add(this->cbMorph);
+			this->panel31->Location = System::Drawing::Point(4, 145);
+			this->panel31->Name = L"panel31";
+			this->panel31->Size = System::Drawing::Size(383, 35);
+			this->panel31->TabIndex = 8;
+			// 
+			// cbMorph
+			// 
+			this->cbMorph->AutoSize = true;
+			this->cbMorph->Location = System::Drawing::Point(4, 8);
+			this->cbMorph->Name = L"cbMorph";
+			this->cbMorph->Size = System::Drawing::Size(56, 17);
+			this->cbMorph->TabIndex = 0;
+			this->cbMorph->Text = L"Morph";
+			this->cbMorph->UseVisualStyleBackColor = true;
+			this->cbMorph->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMorph_CheckedChanged);
+			// 
+			// tbMorphValue
+			// 
+			this->tbMorphValue->Location = System::Drawing::Point(66, 6);
+			this->tbMorphValue->Name = L"tbMorphValue";
+			this->tbMorphValue->Size = System::Drawing::Size(50, 21);
+			this->tbMorphValue->TabIndex = 1;
+			this->tbMorphValue->Text = L"0";
+			// 
+			// labelMorph
+			// 
+			this->labelMorph->AutoSize = true;
+			this->labelMorph->Location = System::Drawing::Point(120, 10);
+			this->labelMorph->Name = L"labelMorph";
+			this->labelMorph->Size = System::Drawing::Size(17, 13);
+			this->labelMorph->TabIndex = 2;
+			this->labelMorph->Text = L"值";
+			// 
+			// cbComboFreeze
+			// 
+			this->cbComboFreeze->AutoSize = true;
+			this->cbComboFreeze->Location = System::Drawing::Point(192, 8);
+			this->cbComboFreeze->Name = L"cbComboFreeze";
+			this->cbComboFreeze->Size = System::Drawing::Size(80, 17);
+			this->cbComboFreeze->TabIndex = 3;
+			this->cbComboFreeze->Text = L"Combo冻结";
+			this->cbComboFreeze->UseVisualStyleBackColor = true;
+			this->cbComboFreeze->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbComboFreeze_CheckedChanged);
+			// 
+			// tbComboValue
+			// 
+			this->tbComboValue->Location = System::Drawing::Point(278, 6);
+			this->tbComboValue->Name = L"tbComboValue";
+			this->tbComboValue->Size = System::Drawing::Size(50, 21);
+			this->tbComboValue->TabIndex = 4;
+			this->tbComboValue->Text = L"0";
+			// 
+			// labelCombo
+			// 
+			this->labelCombo->AutoSize = true;
+			this->labelCombo->Location = System::Drawing::Point(332, 10);
+			this->labelCombo->Name = L"labelCombo";
+			this->labelCombo->Size = System::Drawing::Size(17, 13);
+			this->labelCombo->TabIndex = 5;
+			this->labelCombo->Text = L"值";
+			// 
+			// panel32
+			// 
+			this->panel32->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->panel32->Controls->Add(this->bApplyStats);
+			this->panel32->Controls->Add(this->tbMesos);
+			this->panel32->Controls->Add(this->labelMesos);
+			this->panel32->Controls->Add(this->tbLevel);
+			this->panel32->Controls->Add(this->labelLevel);
+			this->panel32->Controls->Add(this->tbStatMP);
+			this->panel32->Controls->Add(this->labelMP);
+			this->panel32->Controls->Add(this->tbStatHP);
+			this->panel32->Controls->Add(this->labelHP);
+			this->panel32->Controls->Add(this->tbLUK);
+			this->panel32->Controls->Add(this->labelLUK);
+			this->panel32->Controls->Add(this->tbINT);
+			this->panel32->Controls->Add(this->labelINT);
+			this->panel32->Controls->Add(this->tbDEX);
+			this->panel32->Controls->Add(this->labelDEX);
+			this->panel32->Controls->Add(this->tbSTR);
+			this->panel32->Controls->Add(this->labelSTR);
+			this->panel32->Location = System::Drawing::Point(4, 184);
+			this->panel32->Name = L"panel32";
+			this->panel32->Size = System::Drawing::Size(383, 108);
+			this->panel32->TabIndex = 24;
+			// 
+			// labelSTR
+			// 
+			this->labelSTR->AutoSize = true;
+			this->labelSTR->BackColor = System::Drawing::Color::Transparent;
+			this->labelSTR->Location = System::Drawing::Point(4, 6);
+			this->labelSTR->Name = L"labelSTR";
+			this->labelSTR->Size = System::Drawing::Size(30, 13);
+			this->labelSTR->TabIndex = 0;
+			this->labelSTR->Text = L"STR:";
+			// 
+			// tbSTR
+			// 
+			this->tbSTR->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbSTR->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbSTR->ForeColor = System::Drawing::Color::White;
+			this->tbSTR->Location = System::Drawing::Point(36, 4);
+			this->tbSTR->Name = L"tbSTR";
+			this->tbSTR->Size = System::Drawing::Size(42, 21);
+			this->tbSTR->TabIndex = 1;
+			this->tbSTR->Text = L"0";
+			this->tbSTR->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelDEX
+			// 
+			this->labelDEX->AutoSize = true;
+			this->labelDEX->BackColor = System::Drawing::Color::Transparent;
+			this->labelDEX->Location = System::Drawing::Point(84, 6);
+			this->labelDEX->Name = L"labelDEX";
+			this->labelDEX->Size = System::Drawing::Size(30, 13);
+			this->labelDEX->TabIndex = 2;
+			this->labelDEX->Text = L"DEX:";
+			// 
+			// tbDEX
+			// 
+			this->tbDEX->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbDEX->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbDEX->ForeColor = System::Drawing::Color::White;
+			this->tbDEX->Location = System::Drawing::Point(116, 4);
+			this->tbDEX->Name = L"tbDEX";
+			this->tbDEX->Size = System::Drawing::Size(42, 21);
+			this->tbDEX->TabIndex = 3;
+			this->tbDEX->Text = L"0";
+			this->tbDEX->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelINT
+			// 
+			this->labelINT->AutoSize = true;
+			this->labelINT->BackColor = System::Drawing::Color::Transparent;
+			this->labelINT->Location = System::Drawing::Point(164, 6);
+			this->labelINT->Name = L"labelINT";
+			this->labelINT->Size = System::Drawing::Size(30, 13);
+			this->labelINT->TabIndex = 4;
+			this->labelINT->Text = L"INT:";
+			// 
+			// tbINT
+			// 
+			this->tbINT->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbINT->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbINT->ForeColor = System::Drawing::Color::White;
+			this->tbINT->Location = System::Drawing::Point(196, 4);
+			this->tbINT->Name = L"tbINT";
+			this->tbINT->Size = System::Drawing::Size(42, 21);
+			this->tbINT->TabIndex = 5;
+			this->tbINT->Text = L"0";
+			this->tbINT->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelLUK
+			// 
+			this->labelLUK->AutoSize = true;
+			this->labelLUK->BackColor = System::Drawing::Color::Transparent;
+			this->labelLUK->Location = System::Drawing::Point(244, 6);
+			this->labelLUK->Name = L"labelLUK";
+			this->labelLUK->Size = System::Drawing::Size(30, 13);
+			this->labelLUK->TabIndex = 6;
+			this->labelLUK->Text = L"LUK:";
+			// 
+			// tbLUK
+			// 
+			this->tbLUK->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbLUK->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbLUK->ForeColor = System::Drawing::Color::White;
+			this->tbLUK->Location = System::Drawing::Point(276, 4);
+			this->tbLUK->Name = L"tbLUK";
+			this->tbLUK->Size = System::Drawing::Size(42, 21);
+			this->tbLUK->TabIndex = 7;
+			this->tbLUK->Text = L"0";
+			this->tbLUK->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelHP
+			// 
+			this->labelHP->AutoSize = true;
+			this->labelHP->BackColor = System::Drawing::Color::Transparent;
+			this->labelHP->Location = System::Drawing::Point(4, 30);
+			this->labelHP->Name = L"labelHP";
+			this->labelHP->Size = System::Drawing::Size(26, 13);
+			this->labelHP->TabIndex = 8;
+			this->labelHP->Text = L"HP:";
+			// 
+			// tbStatHP
+			// 
+			this->tbStatHP->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbStatHP->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbStatHP->ForeColor = System::Drawing::Color::White;
+			this->tbStatHP->Location = System::Drawing::Point(36, 28);
+			this->tbStatHP->Name = L"tbStatHP";
+			this->tbStatHP->Size = System::Drawing::Size(42, 21);
+			this->tbStatHP->TabIndex = 9;
+			this->tbStatHP->Text = L"0";
+			this->tbStatHP->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelMP
+			// 
+			this->labelMP->AutoSize = true;
+			this->labelMP->BackColor = System::Drawing::Color::Transparent;
+			this->labelMP->Location = System::Drawing::Point(84, 30);
+			this->labelMP->Name = L"labelMP";
+			this->labelMP->Size = System::Drawing::Size(26, 13);
+			this->labelMP->TabIndex = 10;
+			this->labelMP->Text = L"MP:";
+			// 
+			// tbStatMP
+			// 
+			this->tbStatMP->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbStatMP->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbStatMP->ForeColor = System::Drawing::Color::White;
+			this->tbStatMP->Location = System::Drawing::Point(116, 28);
+			this->tbStatMP->Name = L"tbStatMP";
+			this->tbStatMP->Size = System::Drawing::Size(42, 21);
+			this->tbStatMP->TabIndex = 11;
+			this->tbStatMP->Text = L"0";
+			this->tbStatMP->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelLevel
+			// 
+			this->labelLevel->AutoSize = true;
+			this->labelLevel->BackColor = System::Drawing::Color::Transparent;
+			this->labelLevel->Location = System::Drawing::Point(164, 30);
+			this->labelLevel->Name = L"labelLevel";
+			this->labelLevel->Size = System::Drawing::Size(22, 13);
+			this->labelLevel->TabIndex = 12;
+			this->labelLevel->Text = L"等级:";
+			// 
+			// tbLevel
+			// 
+			this->tbLevel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbLevel->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbLevel->ForeColor = System::Drawing::Color::White;
+			this->tbLevel->Location = System::Drawing::Point(196, 28);
+			this->tbLevel->Name = L"tbLevel";
+			this->tbLevel->Size = System::Drawing::Size(42, 21);
+			this->tbLevel->TabIndex = 13;
+			this->tbLevel->Text = L"0";
+			this->tbLevel->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// labelMesos
+			// 
+			this->labelMesos->AutoSize = true;
+			this->labelMesos->BackColor = System::Drawing::Color::Transparent;
+			this->labelMesos->Location = System::Drawing::Point(244, 30);
+			this->labelMesos->Name = L"labelMesos";
+			this->labelMesos->Size = System::Drawing::Size(22, 13);
+			this->labelMesos->TabIndex = 14;
+			this->labelMesos->Text = L"金币:";
+			// 
+			// tbMesos
+			// 
+			this->tbMesos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			this->tbMesos->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->tbMesos->ForeColor = System::Drawing::Color::White;
+			this->tbMesos->Location = System::Drawing::Point(276, 28);
+			this->tbMesos->Name = L"tbMesos";
+			this->tbMesos->Size = System::Drawing::Size(42, 21);
+			this->tbMesos->TabIndex = 15;
+			this->tbMesos->Text = L"0";
+			this->tbMesos->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// bApplyStats
+			// 
+			this->bApplyStats->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
+			this->bApplyStats->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->bApplyStats->Location = System::Drawing::Point(150, 55);
+			this->bApplyStats->Name = L"bApplyStats";
+			this->bApplyStats->Size = System::Drawing::Size(80, 25);
+			this->bApplyStats->TabIndex = 16;
+			this->bApplyStats->Text = L"应用";
+			this->bApplyStats->UseVisualStyleBackColor = true;
+			this->bApplyStats->Click += gcnew System::EventHandler(this, &MainForm::bApplyStats_Click);
 			// 
 			// panel27
-			// 
+			//
 			this->panel27->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->panel27->Controls->Add(this->bSpawnControl);
 			this->panel27->Controls->Add(this->panel1);
 			this->panel27->Controls->Add(this->label65);
 			this->panel27->Controls->Add(this->lvSpawnControl);
 			this->panel27->Controls->Add(this->bSpawnControlDelete);
-			this->panel27->Location = System::Drawing::Point(4, 195);
+			this->panel27->Location = System::Drawing::Point(4, 296);
 			this->panel27->Name = L"panel27";
-			this->panel27->Size = System::Drawing::Size(383, 185);
+			this->panel27->Size = System::Drawing::Size(383, 85);
 			this->panel27->TabIndex = 23;
 			// 
 			// bSpawnControl
 			// 
 			this->bSpawnControl->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
 			this->bSpawnControl->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->bSpawnControl->Location = System::Drawing::Point(204, 154);
+			this->bSpawnControl->Location = System::Drawing::Point(204, 116);
 			this->bSpawnControl->Name = L"bSpawnControl";
 			this->bSpawnControl->Size = System::Drawing::Size(173, 25);
 			this->bSpawnControl->TabIndex = 41;
-			this->bSpawnControl->Text = L"Enable Spawn Control";
+			this->bSpawnControl->Text = L"启用生成控制";
 			this->bSpawnControl->UseVisualStyleBackColor = true;
 			this->bSpawnControl->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControl_Click);
 			// 
@@ -4070,7 +4415,7 @@ public:
 			this->label71->Name = L"label71";
 			this->label71->Size = System::Drawing::Size(48, 13);
 			this->label71->TabIndex = 38;
-			this->label71->Text = L"Map ID: ";
+			this->label71->Text = L"地图ID: ";
 			// 
 			// tbSpawnControlY
 			// 
@@ -4094,7 +4439,7 @@ public:
 			this->bSpawnControlAdd->Name = L"bSpawnControlAdd";
 			this->bSpawnControlAdd->Size = System::Drawing::Size(153, 25);
 			this->bSpawnControlAdd->TabIndex = 26;
-			this->bSpawnControlAdd->Text = L"Add";
+			this->bSpawnControlAdd->Text = L"添加";
 			this->bSpawnControlAdd->UseVisualStyleBackColor = true;
 			this->bSpawnControlAdd->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControlAdd_Click);
 			// 
@@ -4130,7 +4475,7 @@ public:
 			this->bSpawnControlGetCurrentLocation->Name = L"bSpawnControlGetCurrentLocation";
 			this->bSpawnControlGetCurrentLocation->Size = System::Drawing::Size(153, 25);
 			this->bSpawnControlGetCurrentLocation->TabIndex = 31;
-			this->bSpawnControlGetCurrentLocation->Text = L"Get Current Location";
+			this->bSpawnControlGetCurrentLocation->Text = L"获取当前位置";
 			this->bSpawnControlGetCurrentLocation->UseVisualStyleBackColor = true;
 			this->bSpawnControlGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControlGetCurrentLocation_Click);
 			// 
@@ -4152,7 +4497,7 @@ public:
 			this->label65->Name = L"label65";
 			this->label65->Size = System::Drawing::Size(81, 13);
 			this->label65->TabIndex = 25;
-			this->label65->Text = L"Spawn Control:";
+			this->label65->Text = L"生成控制:";
 			// 
 			// lvSpawnControl
 			// 
@@ -4176,7 +4521,7 @@ public:
 			// 
 			// columnHeader3
 			// 
-			this->columnHeader3->Text = L"Map ID:";
+			this->columnHeader3->Text = L"地图ID:";
 			this->columnHeader3->Width = 70;
 			// 
 			// columnHeader4
@@ -4197,7 +4542,7 @@ public:
 			this->bSpawnControlDelete->Name = L"bSpawnControlDelete";
 			this->bSpawnControlDelete->Size = System::Drawing::Size(197, 25);
 			this->bSpawnControlDelete->TabIndex = 27;
-			this->bSpawnControlDelete->Text = L"Delete";
+			this->bSpawnControlDelete->Text = L"删除";
 			this->bSpawnControlDelete->UseVisualStyleBackColor = true;
 			this->bSpawnControlDelete->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControlDelete_Click);
 			// 
@@ -4214,7 +4559,7 @@ public:
 			this->panel26->Controls->Add(this->panel18);
 			this->panel26->Location = System::Drawing::Point(4, 6);
 			this->panel26->Name = L"panel26";
-			this->panel26->Size = System::Drawing::Size(383, 185);
+			this->panel26->Size = System::Drawing::Size(383, 140);
 			this->panel26->TabIndex = 22;
 			// 
 			// label42
@@ -4225,7 +4570,7 @@ public:
 			this->label42->Name = L"label42";
 			this->label42->Size = System::Drawing::Size(87, 13);
 			this->label42->TabIndex = 24;
-			this->label42->Text = L"Teleport to (x,y)";
+			this->label42->Text = L"传送到(x,y)";
 			// 
 			// tbTeleportLoopDelay
 			// 
@@ -4233,7 +4578,7 @@ public:
 				static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			this->tbTeleportLoopDelay->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->tbTeleportLoopDelay->ForeColor = System::Drawing::Color::White;
-			this->tbTeleportLoopDelay->Location = System::Drawing::Point(318, 157);
+			this->tbTeleportLoopDelay->Location = System::Drawing::Point(318, 112);
 			this->tbTeleportLoopDelay->Name = L"tbTeleportLoopDelay";
 			this->tbTeleportLoopDelay->Size = System::Drawing::Size(57, 21);
 			this->tbTeleportLoopDelay->TabIndex = 33;
@@ -4245,21 +4590,21 @@ public:
 			// 
 			this->label86->AutoSize = true;
 			this->label86->BackColor = System::Drawing::Color::Transparent;
-			this->label86->Location = System::Drawing::Point(278, 159);
+			this->label86->Location = System::Drawing::Point(278, 114);
 			this->label86->Name = L"label86";
 			this->label86->Size = System::Drawing::Size(38, 13);
 			this->label86->TabIndex = 34;
-			this->label86->Text = L"Delay:";
+			this->label86->Text = L"延迟:";
 			// 
 			// bTeleportLoop
 			// 
 			this->bTeleportLoop->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
 			this->bTeleportLoop->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->bTeleportLoop->Location = System::Drawing::Point(204, 154);
+			this->bTeleportLoop->Location = System::Drawing::Point(204, 109);
 			this->bTeleportLoop->Name = L"bTeleportLoop";
 			this->bTeleportLoop->Size = System::Drawing::Size(68, 25);
 			this->bTeleportLoop->TabIndex = 32;
-			this->bTeleportLoop->Text = L"Loop";
+			this->bTeleportLoop->Text = L"循环";
 			this->bTeleportLoop->UseVisualStyleBackColor = true;
 			this->bTeleportLoop->Click += gcnew System::EventHandler(this, &MainForm::bTeleportLoop_Click);
 			// 
@@ -4267,11 +4612,11 @@ public:
 			// 
 			this->bTeleportDelete->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
 			this->bTeleportDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->bTeleportDelete->Location = System::Drawing::Point(4, 154);
+			this->bTeleportDelete->Location = System::Drawing::Point(4, 109);
 			this->bTeleportDelete->Name = L"bTeleportDelete";
 			this->bTeleportDelete->Size = System::Drawing::Size(97, 25);
 			this->bTeleportDelete->TabIndex = 31;
-			this->bTeleportDelete->Text = L"Delete";
+			this->bTeleportDelete->Text = L"删除";
 			this->bTeleportDelete->UseVisualStyleBackColor = true;
 			this->bTeleportDelete->Click += gcnew System::EventHandler(this, &MainForm::bTeleportDelete_Click);
 			// 
@@ -4279,11 +4624,11 @@ public:
 			// 
 			this->bTeleport->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
 			this->bTeleport->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->bTeleport->Location = System::Drawing::Point(104, 154);
+			this->bTeleport->Location = System::Drawing::Point(104, 109);
 			this->bTeleport->Name = L"bTeleport";
 			this->bTeleport->Size = System::Drawing::Size(97, 25);
 			this->bTeleport->TabIndex = 30;
-			this->bTeleport->Text = L"Teleport";
+			this->bTeleport->Text = L"传送";
 			this->bTeleport->UseVisualStyleBackColor = true;
 			this->bTeleport->Click += gcnew System::EventHandler(this, &MainForm::bTeleport_Click);
 			// 
@@ -4299,7 +4644,7 @@ public:
 			this->lvTeleport->HideSelection = false;
 			this->lvTeleport->Location = System::Drawing::Point(4, 19);
 			this->lvTeleport->Name = L"lvTeleport";
-			this->lvTeleport->Size = System::Drawing::Size(197, 131);
+			this->lvTeleport->Size = System::Drawing::Size(197, 106);
 			this->lvTeleport->TabIndex = 29;
 			this->lvTeleport->UseCompatibleStateImageBehavior = false;
 			this->lvTeleport->View = System::Windows::Forms::View::Details;
@@ -4326,7 +4671,7 @@ public:
 			this->panel18->Controls->Add(this->tbTeleportY);
 			this->panel18->Location = System::Drawing::Point(204, 19);
 			this->panel18->Name = L"panel18";
-			this->panel18->Size = System::Drawing::Size(173, 131);
+			this->panel18->Size = System::Drawing::Size(173, 106);
 			this->panel18->TabIndex = 35;
 			// 
 			// bTeleportGetCurrentLocation
@@ -4337,7 +4682,7 @@ public:
 			this->bTeleportGetCurrentLocation->Name = L"bTeleportGetCurrentLocation";
 			this->bTeleportGetCurrentLocation->Size = System::Drawing::Size(156, 25);
 			this->bTeleportGetCurrentLocation->TabIndex = 22;
-			this->bTeleportGetCurrentLocation->Text = L"Get Current Location";
+			this->bTeleportGetCurrentLocation->Text = L"获取当前位置";
 			this->bTeleportGetCurrentLocation->UseVisualStyleBackColor = true;
 			this->bTeleportGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bTeleportGetCurrentLocation_Click);
 			// 
@@ -4373,7 +4718,7 @@ public:
 			this->bTeleportAdd->Name = L"bTeleportAdd";
 			this->bTeleportAdd->Size = System::Drawing::Size(156, 25);
 			this->bTeleportAdd->TabIndex = 24;
-			this->bTeleportAdd->Text = L"Add to List";
+			this->bTeleportAdd->Text = L"添加到列表";
 			this->bTeleportAdd->UseVisualStyleBackColor = true;
 			this->bTeleportAdd->Click += gcnew System::EventHandler(this, &MainForm::bTeleportAdd_Click);
 			// 
@@ -4415,7 +4760,7 @@ public:
 			this->tabPage6->Name = L"tabPage6";
 			this->tabPage6->Size = System::Drawing::Size(390, 385);
 			this->tabPage6->TabIndex = 3;
-			this->tabPage6->Text = L"Vacs";
+			this->tabPage6->Text = L"吸怪";
 			// 
 			// panel28
 			// 
@@ -4446,7 +4791,7 @@ public:
 			this->checkBox10->Name = L"checkBox10";
 			this->checkBox10->Size = System::Drawing::Size(75, 17);
 			this->checkBox10->TabIndex = 32;
-			this->checkBox10->Text = L"CSEAX Vac";
+			this->checkBox10->Text = L"CSEAX吸怪";
 			this->checkBox10->UseVisualStyleBackColor = false;
 			// 
 			// checkBox9
@@ -4460,7 +4805,7 @@ public:
 			this->checkBox9->Name = L"checkBox9";
 			this->checkBox9->Size = System::Drawing::Size(46, 17);
 			this->checkBox9->TabIndex = 31;
-			this->checkBox9->Text = L"pVac";
+			this->checkBox9->Text = L"pVac吸怪";
 			this->checkBox9->UseVisualStyleBackColor = false;
 			// 
 			// checkBox8
@@ -4474,7 +4819,7 @@ public:
 			this->checkBox8->Name = L"checkBox8";
 			this->checkBox8->Size = System::Drawing::Size(77, 17);
 			this->checkBox8->TabIndex = 30;
-			this->checkBox8->Text = L"Fangor Vac";
+			this->checkBox8->Text = L"Fangor吸怪";
 			this->checkBox8->UseVisualStyleBackColor = false;
 			// 
 			// cbVacJumpLeft
@@ -4487,7 +4832,7 @@ public:
 			this->cbVacJumpLeft->Name = L"cbVacJumpLeft";
 			this->cbVacJumpLeft->Size = System::Drawing::Size(90, 17);
 			this->cbVacJumpLeft->TabIndex = 29;
-			this->cbVacJumpLeft->Text = L"Vac Jump Left";
+			this->cbVacJumpLeft->Text = L"吸怪左跳";
 			this->cbVacJumpLeft->UseVisualStyleBackColor = false;
 			this->cbVacJumpLeft->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacJumpLeft_CheckedChanged);
 			// 
@@ -4501,7 +4846,7 @@ public:
 			this->cbVacJumpRight->Name = L"cbVacJumpRight";
 			this->cbVacJumpRight->Size = System::Drawing::Size(96, 17);
 			this->cbVacJumpRight->TabIndex = 28;
-			this->cbVacJumpRight->Text = L"Vac Jump Right";
+			this->cbVacJumpRight->Text = L"吸怪右跳";
 			this->cbVacJumpRight->UseVisualStyleBackColor = false;
 			this->cbVacJumpRight->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacJumpRight_CheckedChanged);
 			// 
@@ -4515,7 +4860,7 @@ public:
 			this->cbVacLeft->Name = L"cbVacLeft";
 			this->cbVacLeft->Size = System::Drawing::Size(62, 17);
 			this->cbVacLeft->TabIndex = 27;
-			this->cbVacLeft->Text = L"Vac Left";
+			this->cbVacLeft->Text = L"左吸";
 			this->cbVacLeft->UseVisualStyleBackColor = false;
 			this->cbVacLeft->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacLeft_CheckedChanged);
 			// 
@@ -4529,7 +4874,7 @@ public:
 			this->cbZzVac->Name = L"cbZzVac";
 			this->cbZzVac->Size = System::Drawing::Size(55, 17);
 			this->cbZzVac->TabIndex = 24;
-			this->cbZzVac->Text = L"ZZ Vac";
+			this->cbZzVac->Text = L"ZZ吸怪";
 			this->cbZzVac->UseVisualStyleBackColor = false;
 			this->cbZzVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbZzVac_CheckedChanged);
 			// 
@@ -4543,7 +4888,7 @@ public:
 			this->cbFullMapAttack->Name = L"cbFullMapAttack";
 			this->cbFullMapAttack->Size = System::Drawing::Size(96, 17);
 			this->cbFullMapAttack->TabIndex = 23;
-			this->cbFullMapAttack->Text = L"Full Map Attack";
+			this->cbFullMapAttack->Text = L"全图攻击";
 			this->cbFullMapAttack->UseVisualStyleBackColor = false;
 			this->cbFullMapAttack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbFullMapAttack_CheckedChanged);
 			// 
@@ -4557,7 +4902,7 @@ public:
 			this->cbVacRight->Name = L"cbVacRight";
 			this->cbVacRight->Size = System::Drawing::Size(68, 17);
 			this->cbVacRight->TabIndex = 26;
-			this->cbVacRight->Text = L"Vac Right";
+			this->cbVacRight->Text = L"右吸";
 			this->cbVacRight->UseVisualStyleBackColor = false;
 			this->cbVacRight->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacRight_CheckedChanged);
 			// 
@@ -4571,7 +4916,7 @@ public:
 			this->cbVacForceRight->Name = L"cbVacForceRight";
 			this->cbVacForceRight->Size = System::Drawing::Size(98, 17);
 			this->cbVacForceRight->TabIndex = 25;
-			this->cbVacForceRight->Text = L"Vac Force Right";
+			this->cbVacForceRight->Text = L"强制右吸";
 			this->cbVacForceRight->UseVisualStyleBackColor = false;
 			this->cbVacForceRight->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacForceRight_CheckedChanged);
 			// 
@@ -4597,7 +4942,7 @@ public:
 			this->bUEMIGetCurrentLocation->Name = L"bUEMIGetCurrentLocation";
 			this->bUEMIGetCurrentLocation->Size = System::Drawing::Size(124, 25);
 			this->bUEMIGetCurrentLocation->TabIndex = 30;
-			this->bUEMIGetCurrentLocation->Text = L"Get Current Location";
+			this->bUEMIGetCurrentLocation->Text = L"获取当前位置";
 			this->bUEMIGetCurrentLocation->UseVisualStyleBackColor = true;
 			this->bUEMIGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bUEMIGetCurrentLocation_Click);
 			// 
@@ -4696,7 +5041,7 @@ public:
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(131, 21);
 			this->button1->TabIndex = 31;
-			this->button1->Text = L"Get Current Location";
+			this->button1->Text = L"获取当前位置";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// tbMMCX
@@ -4737,7 +5082,7 @@ public:
 			this->cbMMC->Name = L"cbMMC";
 			this->cbMMC->Size = System::Drawing::Size(46, 17);
 			this->cbMMC->TabIndex = 15;
-			this->cbMMC->Text = L"MMC";
+			this->cbMMC->Text = L"MMC吸怪";
 			this->cbMMC->UseVisualStyleBackColor = false;
 			// 
 			// label62
@@ -4784,7 +5129,7 @@ public:
 			this->label60->Name = L"label60";
 			this->label60->Size = System::Drawing::Size(69, 13);
 			this->label60->TabIndex = 17;
-			this->label60->Text = L"Foothold No:";
+			this->label60->Text = L"落脚点编号:";
 			// 
 			// bDupeXGetFoothold
 			// 
@@ -4795,7 +5140,7 @@ public:
 			this->bDupeXGetFoothold->Name = L"bDupeXGetFoothold";
 			this->bDupeXGetFoothold->Size = System::Drawing::Size(94, 21);
 			this->bDupeXGetFoothold->TabIndex = 15;
-			this->bDupeXGetFoothold->Text = L"Get Foothold";
+			this->bDupeXGetFoothold->Text = L"获取落脚点";
 			this->bDupeXGetFoothold->UseVisualStyleBackColor = true;
 			this->bDupeXGetFoothold->Click += gcnew System::EventHandler(this, &MainForm::bDupeXGetFoothold_Click);
 			// 
@@ -4809,7 +5154,7 @@ public:
 			this->cbDupeX->Name = L"cbDupeX";
 			this->cbDupeX->Size = System::Drawing::Size(54, 17);
 			this->cbDupeX->TabIndex = 1;
-			this->cbDupeX->Text = L"DupeX";
+			this->cbDupeX->Text = L"DupeX吸怪";
 			this->cbDupeX->UseVisualStyleBackColor = false;
 			this->cbDupeX->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbDupeX_CheckedChanged);
 			// 
@@ -4853,7 +5198,7 @@ public:
 			this->label61->Name = L"label61";
 			this->label61->Size = System::Drawing::Size(51, 13);
 			this->label61->TabIndex = 18;
-			this->label61->Text = L"Range Y:";
+			this->label61->Text = L"范围Y:";
 			// 
 			// bWallVacGetCurrentLocation
 			// 
@@ -4863,7 +5208,7 @@ public:
 			this->bWallVacGetCurrentLocation->Name = L"bWallVacGetCurrentLocation";
 			this->bWallVacGetCurrentLocation->Size = System::Drawing::Size(232, 25);
 			this->bWallVacGetCurrentLocation->TabIndex = 14;
-			this->bWallVacGetCurrentLocation->Text = L"Get Current Location";
+			this->bWallVacGetCurrentLocation->Text = L"获取当前位置";
 			this->bWallVacGetCurrentLocation->UseVisualStyleBackColor = true;
 			this->bWallVacGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bWallVacGetCurrentLocation_Click);
 			// 
@@ -4889,7 +5234,7 @@ public:
 			this->label59->Name = L"label59";
 			this->label59->Size = System::Drawing::Size(51, 13);
 			this->label59->TabIndex = 16;
-			this->label59->Text = L"Range X:";
+			this->label59->Text = L"范围X:";
 			// 
 			// tbWallVacY
 			// 
@@ -4949,7 +5294,7 @@ public:
 			this->cbWallVac->Name = L"cbWallVac";
 			this->cbWallVac->Size = System::Drawing::Size(63, 17);
 			this->cbWallVac->TabIndex = 1;
-			this->cbWallVac->Text = L"Wall Vac";
+			this->cbWallVac->Text = L"墙壁吸怪";
 			this->cbWallVac->UseVisualStyleBackColor = false;
 			this->cbWallVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbWallVac_CheckedChanged);
 			// 
@@ -5001,7 +5346,7 @@ public:
 			this->label57->Name = L"label57";
 			this->label57->Size = System::Drawing::Size(76, 13);
 			this->label57->TabIndex = 10;
-			this->label57->Text = L"When Items >";
+			this->label57->Text = L"当物品数 >";
 			// 
 			// label58
 			// 
@@ -5011,7 +5356,7 @@ public:
 			this->label58->Name = L"label58";
 			this->label58->Size = System::Drawing::Size(73, 13);
 			this->label58->TabIndex = 7;
-			this->label58->Text = L"Interval [ms]:";
+			this->label58->Text = L"间隔 [ms]:";
 			// 
 			// cbKamiLoot
 			// 
@@ -5023,7 +5368,7 @@ public:
 			this->cbKamiLoot->Name = L"cbKamiLoot";
 			this->cbKamiLoot->Size = System::Drawing::Size(69, 17);
 			this->cbKamiLoot->TabIndex = 1;
-			this->cbKamiLoot->Text = L"Kami Loot";
+			this->cbKamiLoot->Text = L"Kami拾取";
 			this->cbKamiLoot->UseVisualStyleBackColor = false;
 			this->cbKamiLoot->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbKamiLoot_CheckedChanged);
 			// 
@@ -5127,7 +5472,7 @@ public:
 			this->label53->Name = L"label53";
 			this->label53->Size = System::Drawing::Size(74, 13);
 			this->label53->TabIndex = 10;
-			this->label53->Text = L"When Mobs >";
+			this->label53->Text = L"当怪物数 >";
 			// 
 			// label54
 			// 
@@ -5137,7 +5482,7 @@ public:
 			this->label54->Name = L"label54";
 			this->label54->Size = System::Drawing::Size(73, 13);
 			this->label54->TabIndex = 7;
-			this->label54->Text = L"Interval [ms]:";
+			this->label54->Text = L"间隔 [ms]:";
 			// 
 			// cbKami
 			// 
@@ -5149,7 +5494,7 @@ public:
 			this->cbKami->Name = L"cbKami";
 			this->cbKami->Size = System::Drawing::Size(45, 17);
 			this->cbKami->TabIndex = 1;
-			this->cbKami->Text = L"Kami";
+			this->cbKami->Text = L"Kami吸怪";
 			this->cbKami->UseVisualStyleBackColor = false;
 			this->cbKami->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbKami_CheckedChanged);
 			// 
@@ -5163,7 +5508,7 @@ public:
 			this->tabPage7->Name = L"tabPage7";
 			this->tabPage7->Size = System::Drawing::Size(390, 385);
 			this->tabPage7->TabIndex = 4;
-			this->tabPage7->Text = L"Filters";
+			this->tabPage7->Text = L"过滤";
 			// 
 			// panel21
 			// 
@@ -5222,7 +5567,7 @@ public:
 			this->cbMobFilterLog->Name = L"cbMobFilterLog";
 			this->cbMobFilterLog->Size = System::Drawing::Size(68, 17);
 			this->cbMobFilterLog->TabIndex = 33;
-			this->cbMobFilterLog->Text = L"Log Mobs";
+			this->cbMobFilterLog->Text = L"记录怪物";
 			this->cbMobFilterLog->UseVisualStyleBackColor = false;
 			this->cbMobFilterLog->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobFilterLog_CheckedChanged);
 			// 
@@ -5236,7 +5581,7 @@ public:
 			this->bMobSearchLogClear->Name = L"bMobSearchLogClear";
 			this->bMobSearchLogClear->Size = System::Drawing::Size(47, 23);
 			this->bMobSearchLogClear->TabIndex = 29;
-			this->bMobSearchLogClear->Text = L"Clear";
+			this->bMobSearchLogClear->Text = L"清空";
 			this->bMobSearchLogClear->UseVisualStyleBackColor = true;
 			this->bMobSearchLogClear->Click += gcnew System::EventHandler(this, &MainForm::bMobSearchLogClear_Click);
 			// 
@@ -5250,7 +5595,7 @@ public:
 			this->rbMobFilterWhiteList->Size = System::Drawing::Size(68, 17);
 			this->rbMobFilterWhiteList->TabIndex = 32;
 			this->rbMobFilterWhiteList->TabStop = true;
-			this->rbMobFilterWhiteList->Text = L"WhiteList";
+			this->rbMobFilterWhiteList->Text = L"白名单";
 			this->rbMobFilterWhiteList->UseVisualStyleBackColor = true;
 			this->rbMobFilterWhiteList->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbMobFilterWhiteList_CheckedChanged);
 			// 
@@ -5275,7 +5620,7 @@ public:
 			this->rbMobFilterBlackList->Name = L"rbMobFilterBlackList";
 			this->rbMobFilterBlackList->Size = System::Drawing::Size(64, 17);
 			this->rbMobFilterBlackList->TabIndex = 31;
-			this->rbMobFilterBlackList->Text = L"BlackList";
+			this->rbMobFilterBlackList->Text = L"黑名单";
 			this->rbMobFilterBlackList->UseVisualStyleBackColor = false;
 			// 
 			// label75
@@ -5285,7 +5630,7 @@ public:
 			this->label75->Name = L"label75";
 			this->label75->Size = System::Drawing::Size(44, 13);
 			this->label75->TabIndex = 28;
-			this->label75->Text = L"Search:";
+			this->label75->Text = L"搜索:";
 			// 
 			// bMobFilterAdd
 			// 
@@ -5297,7 +5642,7 @@ public:
 			this->bMobFilterAdd->Name = L"bMobFilterAdd";
 			this->bMobFilterAdd->Size = System::Drawing::Size(36, 23);
 			this->bMobFilterAdd->TabIndex = 26;
-			this->bMobFilterAdd->Text = L"Add";
+			this->bMobFilterAdd->Text = L"添加";
 			this->bMobFilterAdd->UseVisualStyleBackColor = true;
 			this->bMobFilterAdd->Click += gcnew System::EventHandler(this, &MainForm::bMobFilterAdd_Click);
 			// 
@@ -5322,7 +5667,7 @@ public:
 			this->label76->Name = L"label76";
 			this->label76->Size = System::Drawing::Size(59, 13);
 			this->label76->TabIndex = 25;
-			this->label76->Text = L"Add by ID:";
+			this->label76->Text = L"按ID添加:";
 			// 
 			// label77
 			// 
@@ -5334,7 +5679,7 @@ public:
 			this->label77->Name = L"label77";
 			this->label77->Size = System::Drawing::Size(114, 13);
 			this->label77->TabIndex = 23;
-			this->label77->Text = L"Filters Mobs on Spawn";
+			this->label77->Text = L"过滤生成的怪物";
 			this->label77->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// bMobFilter
@@ -5347,7 +5692,7 @@ public:
 			this->bMobFilter->Name = L"bMobFilter";
 			this->bMobFilter->Size = System::Drawing::Size(180, 23);
 			this->bMobFilter->TabIndex = 19;
-			this->bMobFilter->Text = L"Enable Mob Filter";
+			this->bMobFilter->Text = L"启用怪物过滤";
 			this->bMobFilter->UseVisualStyleBackColor = true;
 			this->bMobFilter->Click += gcnew System::EventHandler(this, &MainForm::bMobFilter_Click);
 			// 
@@ -5409,7 +5754,7 @@ public:
 			this->cbItemFilterLog->Name = L"cbItemFilterLog";
 			this->cbItemFilterLog->Size = System::Drawing::Size(70, 17);
 			this->cbItemFilterLog->TabIndex = 30;
-			this->cbItemFilterLog->Text = L"Log Items";
+			this->cbItemFilterLog->Text = L"记录物品";
 			this->cbItemFilterLog->UseVisualStyleBackColor = false;
 			this->cbItemFilterLog->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbItemFilterLog_CheckedChanged);
 			// 
@@ -5423,7 +5768,7 @@ public:
 			this->bItemSearchLogClear->Name = L"bItemSearchLogClear";
 			this->bItemSearchLogClear->Size = System::Drawing::Size(47, 23);
 			this->bItemSearchLogClear->TabIndex = 29;
-			this->bItemSearchLogClear->Text = L"Clear";
+			this->bItemSearchLogClear->Text = L"清空";
 			this->bItemSearchLogClear->UseVisualStyleBackColor = true;
 			this->bItemSearchLogClear->Click += gcnew System::EventHandler(this, &MainForm::bItemSearchLogClear_Click);
 			// 
@@ -5447,7 +5792,7 @@ public:
 			this->label74->Name = L"label74";
 			this->label74->Size = System::Drawing::Size(44, 13);
 			this->label74->TabIndex = 28;
-			this->label74->Text = L"Search:";
+			this->label74->Text = L"搜索:";
 			// 
 			// bItemFilterAdd
 			// 
@@ -5459,7 +5804,7 @@ public:
 			this->bItemFilterAdd->Name = L"bItemFilterAdd";
 			this->bItemFilterAdd->Size = System::Drawing::Size(37, 23);
 			this->bItemFilterAdd->TabIndex = 26;
-			this->bItemFilterAdd->Text = L"Add";
+			this->bItemFilterAdd->Text = L"添加";
 			this->bItemFilterAdd->UseVisualStyleBackColor = true;
 			this->bItemFilterAdd->Click += gcnew System::EventHandler(this, &MainForm::bItemFilterAdd_Click);
 			// 
@@ -5484,7 +5829,7 @@ public:
 			this->label73->Name = L"label73";
 			this->label73->Size = System::Drawing::Size(59, 13);
 			this->label73->TabIndex = 25;
-			this->label73->Text = L"Add by ID:";
+			this->label73->Text = L"按ID添加:";
 			// 
 			// tbItemFilterMesos
 			// 
@@ -5509,7 +5854,7 @@ public:
 			this->label70->Name = L"label70";
 			this->label70->Size = System::Drawing::Size(56, 13);
 			this->label70->TabIndex = 23;
-			this->label70->Text = L"Mesos <=";
+			this->label70->Text = L"金币 <=";
 			// 
 			// rbItemFilterWhiteList
 			// 
@@ -5521,7 +5866,7 @@ public:
 			this->rbItemFilterWhiteList->Size = System::Drawing::Size(68, 17);
 			this->rbItemFilterWhiteList->TabIndex = 21;
 			this->rbItemFilterWhiteList->TabStop = true;
-			this->rbItemFilterWhiteList->Text = L"WhiteList";
+			this->rbItemFilterWhiteList->Text = L"白名单";
 			this->rbItemFilterWhiteList->UseVisualStyleBackColor = true;
 			this->rbItemFilterWhiteList->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbItemFilterWhiteList_CheckedChanged);
 			// 
@@ -5533,7 +5878,7 @@ public:
 			this->rbItemFilterBlackList->Name = L"rbItemFilterBlackList";
 			this->rbItemFilterBlackList->Size = System::Drawing::Size(64, 17);
 			this->rbItemFilterBlackList->TabIndex = 20;
-			this->rbItemFilterBlackList->Text = L"BlackList";
+			this->rbItemFilterBlackList->Text = L"黑名单";
 			this->rbItemFilterBlackList->UseVisualStyleBackColor = false;
 			// 
 			// bItemFilter
@@ -5546,7 +5891,7 @@ public:
 			this->bItemFilter->Name = L"bItemFilter";
 			this->bItemFilter->Size = System::Drawing::Size(180, 23);
 			this->bItemFilter->TabIndex = 19;
-			this->bItemFilter->Text = L"Enable Item Filter";
+			this->bItemFilter->Text = L"启用物品过滤";
 			this->bItemFilter->UseVisualStyleBackColor = true;
 			this->bItemFilter->Click += gcnew System::EventHandler(this, &MainForm::bItemFilter_Click);
 			// 
@@ -5559,7 +5904,7 @@ public:
 			this->tabPage8->Name = L"tabPage8";
 			this->tabPage8->Size = System::Drawing::Size(390, 385);
 			this->tabPage8->TabIndex = 5;
-			this->tabPage8->Text = L"Packets";
+			this->tabPage8->Text = L"封包";
 			// 
 			// tabControl5
 			// 
@@ -5593,7 +5938,7 @@ public:
 			this->tabPage16->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage16->Size = System::Drawing::Size(394, 363);
 			this->tabPage16->TabIndex = 1;
-			this->tabPage16->Text = L"Send";
+			this->tabPage16->Text = L"发送";
 			// 
 			// tvSendPackets
 			// 
@@ -5613,7 +5958,7 @@ public:
 			this->label81->Name = L"label81";
 			this->label81->Size = System::Drawing::Size(63, 26);
 			this->label81->TabIndex = 21;
-			this->label81->Text = L"Spam Delay\r\n [ms]:";
+			this->label81->Text = L"刷包延迟\r\n [ms]:";
 			this->label81->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// tbSendSpamDelay
@@ -5640,7 +5985,7 @@ public:
 			this->cbSendSpam->Name = L"cbSendSpam";
 			this->cbSendSpam->Size = System::Drawing::Size(49, 17);
 			this->cbSendSpam->TabIndex = 19;
-			this->cbSendSpam->Text = L"Spam";
+			this->cbSendSpam->Text = L"刷包";
 			this->cbSendSpam->UseVisualStyleBackColor = false;
 			// 
 			// bSendRemove
@@ -5651,7 +5996,7 @@ public:
 			this->bSendRemove->Name = L"bSendRemove";
 			this->bSendRemove->Size = System::Drawing::Size(66, 25);
 			this->bSendRemove->TabIndex = 18;
-			this->bSendRemove->Text = L"Remove";
+			this->bSendRemove->Text = L"移除";
 			this->bSendRemove->UseVisualStyleBackColor = true;
 			// 
 			// lvSendBlock
@@ -5689,7 +6034,7 @@ public:
 			this->bSendBlock->Name = L"bSendBlock";
 			this->bSendBlock->Size = System::Drawing::Size(46, 25);
 			this->bSendBlock->TabIndex = 15;
-			this->bSendBlock->Text = L"Block Header";
+			this->bSendBlock->Text = L"封锁包头";
 			this->bSendBlock->UseVisualStyleBackColor = true;
 			// 
 			// bSendLog
@@ -5700,7 +6045,7 @@ public:
 			this->bSendLog->Name = L"bSendLog";
 			this->bSendLog->Size = System::Drawing::Size(72, 25);
 			this->bSendLog->TabIndex = 14;
-			this->bSendLog->Text = L"Enable Log";
+			this->bSendLog->Text = L"启用日志";
 			this->bSendLog->UseVisualStyleBackColor = true;
 			this->bSendLog->Click += gcnew System::EventHandler(this, &MainForm::bSendLog_Click);
 			// 
@@ -5712,7 +6057,7 @@ public:
 			this->bSendClear->Name = L"bSendClear";
 			this->bSendClear->Size = System::Drawing::Size(50, 25);
 			this->bSendClear->TabIndex = 13;
-			this->bSendClear->Text = L"Clear";
+			this->bSendClear->Text = L"清空";
 			this->bSendClear->UseVisualStyleBackColor = true;
 			// 
 			// bSendPacket
@@ -5723,7 +6068,7 @@ public:
 			this->bSendPacket->Name = L"bSendPacket";
 			this->bSendPacket->Size = System::Drawing::Size(97, 25);
 			this->bSendPacket->TabIndex = 12;
-			this->bSendPacket->Text = L"Send Packet";
+			this->bSendPacket->Text = L"发送封包";
 			this->bSendPacket->UseVisualStyleBackColor = true;
 			this->bSendPacket->Click += gcnew System::EventHandler(this, &MainForm::bSendPacket_Click);
 			// 
@@ -5744,7 +6089,7 @@ public:
 			this->tabPage15->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage15->Size = System::Drawing::Size(394, 363);
 			this->tabPage15->TabIndex = 0;
-			this->tabPage15->Text = L"Recv";
+			this->tabPage15->Text = L"接收";
 			// 
 			// tvRecvPackets
 			// 
@@ -5765,7 +6110,7 @@ public:
 			this->bRecvRemove->Name = L"bRecvRemove";
 			this->bRecvRemove->Size = System::Drawing::Size(66, 25);
 			this->bRecvRemove->TabIndex = 26;
-			this->bRecvRemove->Text = L"Remove";
+			this->bRecvRemove->Text = L"移除";
 			this->bRecvRemove->UseVisualStyleBackColor = true;
 			// 
 			// lvRecvBlock
@@ -5803,7 +6148,7 @@ public:
 			this->bRecvBlock->Name = L"bRecvBlock";
 			this->bRecvBlock->Size = System::Drawing::Size(66, 25);
 			this->bRecvBlock->TabIndex = 23;
-			this->bRecvBlock->Text = L"Block Header";
+			this->bRecvBlock->Text = L"封锁包头";
 			this->bRecvBlock->UseVisualStyleBackColor = true;
 			// 
 			// bRecvLog
@@ -5814,7 +6159,7 @@ public:
 			this->bRecvLog->Name = L"bRecvLog";
 			this->bRecvLog->Size = System::Drawing::Size(86, 25);
 			this->bRecvLog->TabIndex = 22;
-			this->bRecvLog->Text = L"Enable Log";
+			this->bRecvLog->Text = L"启用日志";
 			this->bRecvLog->UseVisualStyleBackColor = true;
 			// 
 			// bRecvClear
@@ -5825,7 +6170,7 @@ public:
 			this->bRecvClear->Name = L"bRecvClear";
 			this->bRecvClear->Size = System::Drawing::Size(73, 25);
 			this->bRecvClear->TabIndex = 21;
-			this->bRecvClear->Text = L"Clear";
+			this->bRecvClear->Text = L"清空";
 			this->bRecvClear->UseVisualStyleBackColor = true;
 			// 
 			// bRecvPacket
@@ -5836,7 +6181,7 @@ public:
 			this->bRecvPacket->Name = L"bRecvPacket";
 			this->bRecvPacket->Size = System::Drawing::Size(97, 25);
 			this->bRecvPacket->TabIndex = 20;
-			this->bRecvPacket->Text = L"Receive Packet";
+			this->bRecvPacket->Text = L"接收封包";
 			this->bRecvPacket->UseVisualStyleBackColor = true;
 			this->bRecvPacket->Click += gcnew System::EventHandler(this, &MainForm::bRecvPacket_Click);
 			// 
@@ -5849,7 +6194,7 @@ public:
 			this->tabPage18->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage18->Size = System::Drawing::Size(394, 363);
 			this->tabPage18->TabIndex = 2;
-			this->tabPage18->Text = L"Multi Packet";
+			this->tabPage18->Text = L"多封包";
 			// 
 			// tabPage19
 			// 
@@ -5874,7 +6219,7 @@ public:
 			this->tabPage19->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage19->Size = System::Drawing::Size(394, 363);
 			this->tabPage19->TabIndex = 3;
-			this->tabPage19->Text = L"Defined Packets";
+			this->tabPage19->Text = L"预定义封包";
 			// 
 			// comboInUseSlot
 			// 
@@ -5897,7 +6242,7 @@ public:
 			this->lbInUseSlot->Name = L"lbInUseSlot";
 			this->lbInUseSlot->Size = System::Drawing::Size(63, 13);
 			this->lbInUseSlot->TabIndex = 26;
-			this->lbInUseSlot->Text = L"In USE slot:";
+			this->lbInUseSlot->Text = L"在USE栏位:";
 			// 
 			// comboToTown
 			// 
@@ -5907,14 +6252,14 @@ public:
 			this->comboToTown->ForeColor = System::Drawing::Color::White;
 			this->comboToTown->FormattingEnabled = true;
 			this->comboToTown->Items->AddRange(gcnew cli::array< System::Object^  >(8) {
-				L"Nearest", L"LithHarbor", L"Ellinia", L"Perion",
+				L"最近", L"LithHarbor", L"Ellinia", L"Perion",
 					L"Henesys", L"KerningCity", L"Sleepywood", L"DeadMine"
 			});
 			this->comboToTown->Location = System::Drawing::Point(73, 225);
 			this->comboToTown->Name = L"comboToTown";
 			this->comboToTown->Size = System::Drawing::Size(62, 21);
 			this->comboToTown->TabIndex = 25;
-			this->comboToTown->Text = L"Nearest";
+			this->comboToTown->Text = L"最近";
 			this->comboToTown->SelectedIndexChanged += gcnew System::EventHandler(this, &MainForm::comboToTown_SelectedIndexChanged);
 			// 
 			// lbToTown
@@ -5924,7 +6269,7 @@ public:
 			this->lbToTown->Name = L"lbToTown";
 			this->lbToTown->Size = System::Drawing::Size(52, 13);
 			this->lbToTown->TabIndex = 24;
-			this->lbToTown->Text = L"To Town:";
+			this->lbToTown->Text = L"前往城镇:";
 			// 
 			// bUseRtrnScroll
 			// 
@@ -5933,7 +6278,7 @@ public:
 			this->bUseRtrnScroll->Name = L"bUseRtrnScroll";
 			this->bUseRtrnScroll->Size = System::Drawing::Size(117, 25);
 			this->bUseRtrnScroll->TabIndex = 23;
-			this->bUseRtrnScroll->Text = L"Use Return Scroll";
+			this->bUseRtrnScroll->Text = L"使用回城卷轴";
 			this->bUseRtrnScroll->UseVisualStyleBackColor = true;
 			this->bUseRtrnScroll->Click += gcnew System::EventHandler(this, &MainForm::bUseRtrnScroll_Click);
 			// 
@@ -5945,7 +6290,7 @@ public:
 			this->bSendRevive->Name = L"bSendRevive";
 			this->bSendRevive->Size = System::Drawing::Size(117, 25);
 			this->bSendRevive->TabIndex = 22;
-			this->bSendRevive->Text = L"Revive";
+			this->bSendRevive->Text = L"复活";
 			this->bSendRevive->UseVisualStyleBackColor = true;
 			this->bSendRevive->Click += gcnew System::EventHandler(this, &MainForm::bSendRevive_Click);
 			// 
@@ -5957,7 +6302,7 @@ public:
 			this->bSendRestore127Health->Name = L"bSendRestore127Health";
 			this->bSendRestore127Health->Size = System::Drawing::Size(117, 25);
 			this->bSendRestore127Health->TabIndex = 21;
-			this->bSendRestore127Health->Text = L"Restore 127 Health";
+			this->bSendRestore127Health->Text = L"恢复127血量";
 			this->bSendRestore127Health->UseVisualStyleBackColor = true;
 			this->bSendRestore127Health->Click += gcnew System::EventHandler(this, &MainForm::bSendRestore127Health_Click);
 			// 
@@ -5996,7 +6341,7 @@ public:
 			this->label39->Name = L"label39";
 			this->label39->Size = System::Drawing::Size(107, 26);
 			this->label39->TabIndex = 22;
-			this->label39->Text = L"Auto Distributes Per \r\nEach Level till AP < 5\r\n";
+			this->label39->Text = L"每级自动分配\r\n直到AP < 5\r\n";
 			// 
 			// tbAPDEX
 			// 
@@ -6048,7 +6393,7 @@ public:
 			this->label38->Name = L"label38";
 			this->label38->Size = System::Drawing::Size(25, 13);
 			this->label38->TabIndex = 21;
-			this->label38->Text = L"LUK";
+			this->label38->Text = L"幸运";
 			// 
 			// label37
 			// 
@@ -6058,7 +6403,7 @@ public:
 			this->label37->Name = L"label37";
 			this->label37->Size = System::Drawing::Size(24, 13);
 			this->label37->TabIndex = 20;
-			this->label37->Text = L"INT";
+			this->label37->Text = L"智力";
 			// 
 			// label36
 			// 
@@ -6068,7 +6413,7 @@ public:
 			this->label36->Name = L"label36";
 			this->label36->Size = System::Drawing::Size(26, 13);
 			this->label36->TabIndex = 19;
-			this->label36->Text = L"DEX";
+			this->label36->Text = L"敏捷";
 			// 
 			// tbAPSTR
 			// 
@@ -6092,7 +6437,7 @@ public:
 			this->label35->Name = L"label35";
 			this->label35->Size = System::Drawing::Size(26, 13);
 			this->label35->TabIndex = 18;
-			this->label35->Text = L"STR";
+			this->label35->Text = L"力量";
 			// 
 			// tbAPMP
 			// 
@@ -6150,7 +6495,7 @@ public:
 			this->label32->Name = L"label32";
 			this->label32->Size = System::Drawing::Size(51, 13);
 			this->label32->TabIndex = 8;
-			this->label32->Text = L"Till Level:";
+			this->label32->Text = L"直到等级:";
 			// 
 			// tbAPLevel
 			// 
@@ -6177,7 +6522,7 @@ public:
 			this->cbAP->Name = L"cbAP";
 			this->cbAP->Size = System::Drawing::Size(62, 17);
 			this->cbAP->TabIndex = 1;
-			this->cbAP->Text = L"Auto AP";
+			this->cbAP->Text = L"自动AP";
 			this->cbAP->UseVisualStyleBackColor = false;
 			this->cbAP->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAP_CheckedChanged);
 			// 
@@ -6189,7 +6534,7 @@ public:
 			this->bSendSuicide->Name = L"bSendSuicide";
 			this->bSendSuicide->Size = System::Drawing::Size(117, 25);
 			this->bSendSuicide->TabIndex = 15;
-			this->bSendSuicide->Text = L"Suicide";
+			this->bSendSuicide->Text = L"自杀";
 			this->bSendSuicide->UseVisualStyleBackColor = true;
 			this->bSendSuicide->Click += gcnew System::EventHandler(this, &MainForm::bSendSuicide_Click);
 			// 
@@ -6201,7 +6546,7 @@ public:
 			this->bSendDrop50000->Name = L"bSendDrop50000";
 			this->bSendDrop50000->Size = System::Drawing::Size(117, 25);
 			this->bSendDrop50000->TabIndex = 20;
-			this->bSendDrop50000->Text = L"Drop 50,000 Mesos";
+			this->bSendDrop50000->Text = L"丢50,000金币";
 			this->bSendDrop50000->UseVisualStyleBackColor = true;
 			this->bSendDrop50000->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop50000_Click);
 			// 
@@ -6213,7 +6558,7 @@ public:
 			this->bSendDrop1000->Name = L"bSendDrop1000";
 			this->bSendDrop1000->Size = System::Drawing::Size(117, 25);
 			this->bSendDrop1000->TabIndex = 18;
-			this->bSendDrop1000->Text = L"Drop 1000 Mesos";
+			this->bSendDrop1000->Text = L"丢1000金币";
 			this->bSendDrop1000->UseVisualStyleBackColor = true;
 			this->bSendDrop1000->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop1000_Click);
 			// 
@@ -6225,7 +6570,7 @@ public:
 			this->bSendMount->Name = L"bSendMount";
 			this->bSendMount->Size = System::Drawing::Size(117, 25);
 			this->bSendMount->TabIndex = 16;
-			this->bSendMount->Text = L"Get On Mount";
+			this->bSendMount->Text = L"上坐骑";
 			this->bSendMount->UseVisualStyleBackColor = true;
 			this->bSendMount->Click += gcnew System::EventHandler(this, &MainForm::bSendMount_Click);
 			// 
@@ -6237,7 +6582,7 @@ public:
 			this->bSendDrop10->Name = L"bSendDrop10";
 			this->bSendDrop10->Size = System::Drawing::Size(117, 25);
 			this->bSendDrop10->TabIndex = 17;
-			this->bSendDrop10->Text = L"Drop 10 Mesos";
+			this->bSendDrop10->Text = L"丢10金币";
 			this->bSendDrop10->UseVisualStyleBackColor = true;
 			this->bSendDrop10->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop10_Click);
 			// 
@@ -6249,7 +6594,7 @@ public:
 			this->bSendDrop10000->Name = L"bSendDrop10000";
 			this->bSendDrop10000->Size = System::Drawing::Size(117, 25);
 			this->bSendDrop10000->TabIndex = 19;
-			this->bSendDrop10000->Text = L"Drop 10,000 Mesos";
+			this->bSendDrop10000->Text = L"丢10,000金币";
 			this->bSendDrop10000->UseVisualStyleBackColor = true;
 			this->bSendDrop10000->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop10000_Click);
 			// 
@@ -6269,7 +6614,7 @@ public:
 			this->tabPage9->Name = L"tabPage9";
 			this->tabPage9->Size = System::Drawing::Size(390, 385);
 			this->tabPage9->TabIndex = 6;
-			this->tabPage9->Text = L"Map Rusher";
+			this->tabPage9->Text = L"地图 Rush";
 			// 
 			// label66
 			// 
@@ -6279,7 +6624,7 @@ public:
 			this->label66->Name = L"label66";
 			this->label66->Size = System::Drawing::Size(62, 13);
 			this->label66->TabIndex = 45;
-			this->label66->Text = L"Delay [ms]:";
+			this->label66->Text = L"延迟 [ms]:";
 			// 
 			// tbMapRusherDelay
 			// 
@@ -6314,7 +6659,7 @@ public:
 			this->lbMapRusherStatus->Name = L"lbMapRusherStatus";
 			this->lbMapRusherStatus->Size = System::Drawing::Size(381, 13);
 			this->lbMapRusherStatus->TabIndex = 37;
-			this->lbMapRusherStatus->Text = L"Status: Waiting...                                                               "
+			this->lbMapRusherStatus->Text = L"状态: 等待中...                                                               "
 				L"                                 \r\n";
 			this->lbMapRusherStatus->TextChanged += gcnew System::EventHandler(this, &MainForm::lbMapRusherStatus_TextChanged);
 			// 
@@ -6339,7 +6684,7 @@ public:
 			this->label79->Name = L"label79";
 			this->label79->Size = System::Drawing::Size(102, 13);
 			this->label79->TabIndex = 36;
-			this->label79->Text = L"Destination Map ID:";
+			this->label79->Text = L"目标地图ID:";
 			// 
 			// bMapRush
 			// 
@@ -6351,7 +6696,7 @@ public:
 			this->bMapRush->Name = L"bMapRush";
 			this->bMapRush->Size = System::Drawing::Size(85, 24);
 			this->bMapRush->TabIndex = 34;
-			this->bMapRush->Text = L"Map Rush";
+			this->bMapRush->Text = L"地图Rush";
 			this->bMapRush->UseVisualStyleBackColor = true;
 			this->bMapRush->Click += gcnew System::EventHandler(this, &MainForm::bMapRush_Click);
 			// 
@@ -6390,12 +6735,12 @@ public:
 			// 
 			// columnHeader7
 			// 
-			this->columnHeader7->Text = L"Map Name:";
+			this->columnHeader7->Text = L"地图名:";
 			this->columnHeader7->Width = 105;
 			// 
 			// columnHeader8
 			// 
-			this->columnHeader8->Text = L"Map ID:";
+			this->columnHeader8->Text = L"地图ID:";
 			this->columnHeader8->Width = 67;
 			// 
 			// tbMapRusherSearch
@@ -6418,7 +6763,7 @@ public:
 			this->label78->Name = L"label78";
 			this->label78->Size = System::Drawing::Size(44, 13);
 			this->label78->TabIndex = 33;
-			this->label78->Text = L"Search:";
+			this->label78->Text = L"搜索:";
 			// 
 			// btnClose
 			// 
@@ -6482,7 +6827,7 @@ public:
 			this->Name = L"MainForm";
 			this->Opacity = 0;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"Timelapse Trainer";
+			this->Text = L"Timelapse 辅助工具";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainForm::MainForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
 			this->Shown += gcnew System::EventHandler(this, &MainForm::MainForm_Shown);
@@ -6539,6 +6884,10 @@ public:
 			this->tabPage20->ResumeLayout(false);
 			this->panel27->ResumeLayout(false);
 			this->panel27->PerformLayout();
+			this->panel31->ResumeLayout(false);
+			this->panel31->PerformLayout();
+			this->panel32->ResumeLayout(false);
+			this->panel32->PerformLayout();
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			this->panel26->ResumeLayout(false);
@@ -6670,6 +7019,9 @@ public:
 	private: System::Void bRecvPacket_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbBlinkGodmode_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbMissGodmode_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbMorph_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbComboFreeze_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void bApplyStats_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbInstantDropItems_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbInstantLootItems_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbTubi_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
