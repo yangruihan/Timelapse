@@ -1254,26 +1254,40 @@ void MainForm::cbInstantDropItems_CheckedChanged(Object^  sender, EventArgs^  e)
 
 //Instant Loot Items (CAnimationDisplayer::ABSORBITEM::Update())
 void MainForm::cbInstantLootItems_CheckedChanged(Object^  sender, EventArgs^  e) {
-	if (this->cbInstantLootItems->Checked)
+	if (this->cbInstantLootItems->Checked) {
+		cbLoot->Checked = true; //Enable Auto Loot to trigger the pickup process
 		WriteMemory(instantLootItemsAddr, 6, 0x81, 0xFB, 0x00, 0x00, 0x00, 0x00); //cmp ebx,00000000
-	else
+	}
+	else {
+		cbLoot->Checked = false; //Disable Auto Loot
 		WriteMemory(instantLootItemsAddr, 6, 0x81, 0xFB, 0xBC, 0x02, 0x00, 0x00); //cmp ebx,000002BC
+	}
 }
 
 //Tubi (CWvsContext::CanSendExclRequest())
 void MainForm::cbTubi_CheckedChanged(Object^  sender, EventArgs^  e) {
-	if (this->cbTubi->Checked)
+	if (this->cbTubi->Checked) {
+		cbLoot->Checked = true; //Enable Auto Loot
 		WriteMemory(tubiAddr, 2, 0x90, 0x90); //nop; nop;
-	else
+	}
+	else {
+		cbLoot->Checked = false; //Disable Auto Loot
 		WriteMemory(tubiAddr, 2, 0x75, 0x36); //jne 00485C39
+	}
 }
 
 //Item Vac (CDropPool::TryPickUpDrop())
 void MainForm::cbItemVac_CheckedChanged(Object^  sender, EventArgs^  e) {
-	if (this->cbItemVac->Checked)
+	if (this->cbItemVac->Checked) {
+		cbLoot->Checked = true; //Enable Auto Loot (Required for call to PtInRect)
+		*(ULONG*)PtInRectAddr = (ULONG)Assembly::ItemHook;
 		Jump(itemVacAddr, Assembly::ItemVacHook, 2);
-	else
+	}
+	else {
+		cbLoot->Checked = false; //Disable Auto Loot
+		*(ULONG*)PtInRectAddr = (ULONG)PtInRect;
 		WriteMemory(itemVacAddr, 7, 0x50, 0xFF, 0x75, 0xDC, 0x8D, 0x45, 0xCC);
+	}
 }
 
 //No Mob Reaction (CMob::AddDamageInfo())
@@ -1395,6 +1409,66 @@ void MainForm::cbNoWalkingFriction_CheckedChanged(System::Object^  sender, Syste
 		WriteMemory(walkingFrictionAddr, 2, 0x75, 0x05); //jne 009B436C
 	else
 		WriteMemory(walkingFrictionAddr, 2, 0x74, 0x05); //je 009B436C	
+}
+
+void MainForm::cbItsRainingMobs_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->cbItsRainingMobs->Checked)
+		WriteMemory(itsRainingMobsAddr, 1, 0xF2); // F1 -> F2
+	else
+		WriteMemory(itsRainingMobsAddr, 1, 0xF1); // 恢复原始
+}
+
+void MainForm::cbAttackUnrandomizer_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->cbAttackUnrandomizer->Checked)
+		Jump(attackUnrandommizerAddr, Assembly::AttackUnrandomizerHook, 0);
+	else
+		WriteMemory(attackUnrandommizerAddr, 5, 0xE8, 0x0F, 0x00, 0x00, 0x00); // 恢复原始 call 指令
+}
+
+void MainForm::cbMSCRCBypass_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->cbMSCRCBypass->Checked) {
+		Jump(MSCRCBypassAddr1, Assembly::MSCRCBypassHook, 0);
+	}
+	else {
+		WriteMemory(MSCRCBypassAddr1, 5, 0x8B, 0x55, 0x0C, 0x8B, 0x02); // 恢复原始
+		WriteMemory(MSCRCBypassAddr2, 1, 0x8B); // 恢复原始
+	}
+}
+
+void MainForm::cbBYOR_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->cbBYOR->Checked)
+		Jump(bringYourOwnRopeAddr, Assembly::BYORHook, 0);
+	else
+		WriteMemory(bringYourOwnRopeAddr, 5, 0x8B, 0x45, 0x08, 0x83, 0xF8); // 恢复原始
+}
+
+void MainForm::cbMpRegen_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->cbMpRegen->Checked) {
+		int interval = Convert::ToInt32(this->tbMpRegenInterval->Text);
+		WriteMemory(mpRegenTickTimeAddr, 4, (UCHAR)(interval & 0xFF), (UCHAR)((interval >> 8) & 0xFF), (UCHAR)((interval >> 16) & 0xFF), (UCHAR)((interval >> 24) & 0xFF));
+	}
+	else {
+		// 恢复原始值 0x00002710 (10000ms)
+		WriteMemory(mpRegenTickTimeAddr, 4, 0x10, 0x27, 0x00, 0x00);
+	}
+}
+
+void MainForm::cbSpeedEdit_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (this->cbSpeedEdit->Checked) {
+		// NOP 掉速度限制跳转 (je -> 6x nop)
+		WriteMemory(speedWalkAddr, 6, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90);
+		// 设置自定义重力值
+		double gravityVal = Convert::ToDouble(this->tbGravity->Text);
+		MakePageWritable(gravity, 8);
+		*(double*)gravity = gravityVal;
+	}
+	else {
+		// 恢复速度限制跳转 (je 原始字节)
+		WriteMemory(speedWalkAddr, 6, 0x0F, 0x84, 0x3A, 0x01, 0x00, 0x00);
+		// 恢复默认重力值
+		MakePageWritable(gravity, 8);
+		*(double*)gravity = 1.0;
+	}
 }
 #pragma endregion
 

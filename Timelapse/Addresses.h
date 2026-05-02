@@ -136,6 +136,9 @@ ULONG dupeXAddr = 0x009B495D;
 ULONG dupeXAddrRet = dupeXAddr + 6;
 ULONG missGodmodeHookAddr = missGodmodeAddr; //0x009582E9 Inside CUserLocal::SetDamaged()
 ULONG missGodmodeHookAddrRet = missGodmodeHookAddr + 8; //skip 8 bytes: mov [esi],eax; add esi,04; dec [ebp-3C]
+ULONG attackUnrandommizerAddrRet = attackUnrandommizerAddr + 5; //Inside attack damage calculation
+ULONG MSCRCBypassAddr1Ret = MSCRCBypassAddr1 + 5; //CRC check bypass
+ULONG bringYourOwnRopeAddrRet = bringYourOwnRopeAddr + 5; //Bring Your Own Rope
 #pragma endregion
 
 #pragma region MapleStory Function Hook Addresses

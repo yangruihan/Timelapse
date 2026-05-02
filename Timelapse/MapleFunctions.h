@@ -185,12 +185,12 @@ namespace PointerFuncs {
 
 	//Set Char HP
 	static bool setCharHP(UINT value) {
-		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)CharacterStatBase + OFS_HP), value);
+		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)UIInfoBase + OFS_HP), value);
 	}
 
 	//Set Char MP
 	static bool setCharMP(UINT value) {
-		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)CharacterStatBase + OFS_MP), value);
+		return writeLongValueZtlSecureFuse((ULONG*)(*(ULONG*)UIInfoBase + OFS_MP), value);
 	}
 
 	//Retrieve Char Morph

@@ -37,6 +37,8 @@ static std::vector<SpawnControlData*> *spawnControl = new std::vector<SpawnContr
 static std::vector<COutPacket> *sendPacketLogQueue = new std::vector<COutPacket>();
 SendPacketData *sendPacketData;
 ULONG dupeXFoothold = 0;
+ULONG missCounter = 0, missThreshold = 0; //Miss Godmode: configurable miss count
+ULONG crcCopyAddr = 0; //MSCRC Bypass: address of the allocated copy of the code section
 
 //Find item name using item ID in the ItemsList resource
 static String^ findItemNameFromID(int itemID) {

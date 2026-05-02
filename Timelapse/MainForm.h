@@ -453,6 +453,18 @@ private:
 	private: System::Windows::Forms::Label^  lbWalls;
 	private: System::Windows::Forms::Label^  label92;
 	private: System::Windows::Forms::CheckBox^  cbNoWalkingFriction;
+	private: System::Windows::Forms::CheckBox^  cbItsRainingMobs;
+	private: System::Windows::Forms::CheckBox^  cbAttackUnrandomizer;
+	private: System::Windows::Forms::CheckBox^  cbMSCRCBypass;
+	private: System::Windows::Forms::CheckBox^  cbBYOR;
+	private: System::Windows::Forms::CheckBox^  cbMpRegen;
+	private: System::Windows::Forms::CheckBox^  cbSpeedEdit;
+	private: System::Windows::Forms::TextBox^  tbMpRegenInterval;
+	private: System::Windows::Forms::Label^  lblMpRegenMs;
+	private: System::Windows::Forms::TextBox^  tbSpeedWalk;
+	private: System::Windows::Forms::TextBox^  tbGravity;
+	private: System::Windows::Forms::Label^  lblSpeedWalk;
+	private: System::Windows::Forms::Label^  lblGravity;
 	private: System::Windows::Forms::CheckBox^  cbVacJumpLeft;
 	private: System::Windows::Forms::CheckBox^  cbVacJumpRight;
 	private: System::Windows::Forms::CheckBox^  cbVacLeft;
@@ -3326,10 +3338,22 @@ public:
 			// groupBox6
 			// 
 			this->groupBox6->Controls->Add(this->cbNoWalkingFriction);
+			this->groupBox6->Controls->Add(this->cbItsRainingMobs);
+			this->groupBox6->Controls->Add(this->cbAttackUnrandomizer);
+			this->groupBox6->Controls->Add(this->cbMSCRCBypass);
+			this->groupBox6->Controls->Add(this->cbBYOR);
+			this->groupBox6->Controls->Add(this->cbMpRegen);
+			this->groupBox6->Controls->Add(this->tbMpRegenInterval);
+			this->groupBox6->Controls->Add(this->lblMpRegenMs);
+			this->groupBox6->Controls->Add(this->cbSpeedEdit);
+			this->groupBox6->Controls->Add(this->tbSpeedWalk);
+			this->groupBox6->Controls->Add(this->tbGravity);
+			this->groupBox6->Controls->Add(this->lblSpeedWalk);
+			this->groupBox6->Controls->Add(this->lblGravity);
 			this->groupBox6->ForeColor = System::Drawing::Color::WhiteSmoke;
 			this->groupBox6->Location = System::Drawing::Point(249, 175);
 			this->groupBox6->Name = L"groupBox6";
-			this->groupBox6->Size = System::Drawing::Size(135, 133);
+this->groupBox6->Size = System::Drawing::Size(165, 168);
 			this->groupBox6->TabIndex = 28;
 			this->groupBox6->TabStop = false;
 			this->groupBox6->Text = L"物理作弊";
@@ -3347,6 +3371,138 @@ public:
 			this->cbNoWalkingFriction->Text = L"无行走摩擦";
 			this->cbNoWalkingFriction->UseVisualStyleBackColor = false;
 			this->cbNoWalkingFriction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoWalkingFriction_CheckedChanged);
+			// 
+			// cbItsRainingMobs
+			// 
+			this->cbItsRainingMobs->AutoSize = true;
+			this->cbItsRainingMobs->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
+			this->cbItsRainingMobs->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cbItsRainingMobs->ForeColor = System::Drawing::Color::White;
+			this->cbItsRainingMobs->Location = System::Drawing::Point(10, 36);
+			this->cbItsRainingMobs->Name = L"cbItsRainingMobs";
+			this->cbItsRainingMobs->Size = System::Drawing::Size(114, 17);
+			this->cbItsRainingMobs->TabIndex = 12;
+			this->cbItsRainingMobs->Text = L"怪物从天降";
+			this->cbItsRainingMobs->UseVisualStyleBackColor = false;
+			this->cbItsRainingMobs->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbItsRainingMobs_CheckedChanged);
+			// 
+			// cbAttackUnrandomizer
+			// 
+			this->cbAttackUnrandomizer->AutoSize = true;
+			this->cbAttackUnrandomizer->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
+			this->cbAttackUnrandomizer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cbAttackUnrandomizer->ForeColor = System::Drawing::Color::White;
+			this->cbAttackUnrandomizer->Location = System::Drawing::Point(10, 53);
+			this->cbAttackUnrandomizer->Name = L"cbAttackUnrandomizer";
+			this->cbAttackUnrandomizer->Size = System::Drawing::Size(114, 17);
+			this->cbAttackUnrandomizer->TabIndex = 13;
+			this->cbAttackUnrandomizer->Text = L"非随机攻击";
+			this->cbAttackUnrandomizer->UseVisualStyleBackColor = false;
+			this->cbAttackUnrandomizer->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAttackUnrandomizer_CheckedChanged);
+			// 
+			// cbMSCRCBypass
+			// 
+			this->cbMSCRCBypass->AutoSize = true;
+			this->cbMSCRCBypass->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
+			this->cbMSCRCBypass->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cbMSCRCBypass->ForeColor = System::Drawing::Color::White;
+			this->cbMSCRCBypass->Location = System::Drawing::Point(10, 70);
+			this->cbMSCRCBypass->Name = L"cbMSCRCBypass";
+			this->cbMSCRCBypass->Size = System::Drawing::Size(114, 17);
+			this->cbMSCRCBypass->TabIndex = 14;
+			this->cbMSCRCBypass->Text = L"MSCRC 绕过";
+			this->cbMSCRCBypass->UseVisualStyleBackColor = false;
+			this->cbMSCRCBypass->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMSCRCBypass_CheckedChanged);
+			// 
+			// cbBYOR
+			// 
+			this->cbBYOR->AutoSize = true;
+			this->cbBYOR->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
+			this->cbBYOR->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cbBYOR->ForeColor = System::Drawing::Color::White;
+			this->cbBYOR->Location = System::Drawing::Point(10, 87);
+			this->cbBYOR->Name = L"cbBYOR";
+			this->cbBYOR->Size = System::Drawing::Size(114, 17);
+			this->cbBYOR->TabIndex = 15;
+			this->cbBYOR->Text = L"自带绳索";
+			this->cbBYOR->UseVisualStyleBackColor = false;
+			this->cbBYOR->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbBYOR_CheckedChanged);
+			// 
+			// cbMpRegen
+			// 
+			this->cbMpRegen->AutoSize = true;
+			this->cbMpRegen->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
+			this->cbMpRegen->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cbMpRegen->ForeColor = System::Drawing::Color::White;
+			this->cbMpRegen->Location = System::Drawing::Point(10, 104);
+			this->cbMpRegen->Name = L"cbMpRegen";
+			this->cbMpRegen->Size = System::Drawing::Size(84, 17);
+			this->cbMpRegen->TabIndex = 16;
+			this->cbMpRegen->Text = L"MP 自动回复";
+			this->cbMpRegen->UseVisualStyleBackColor = false;
+			this->cbMpRegen->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMpRegen_CheckedChanged);
+			// 
+			// tbMpRegenInterval
+			// 
+			this->tbMpRegenInterval->Location = System::Drawing::Point(97, 104);
+			this->tbMpRegenInterval->Name = L"tbMpRegenInterval";
+			this->tbMpRegenInterval->Size = System::Drawing::Size(30, 20);
+			this->tbMpRegenInterval->TabIndex = 17;
+			this->tbMpRegenInterval->Text = L"100";
+			// 
+			// lblMpRegenMs
+			// 
+			this->lblMpRegenMs->AutoSize = true;
+			this->lblMpRegenMs->Location = System::Drawing::Point(130, 107);
+			this->lblMpRegenMs->Name = L"lblMpRegenMs";
+			this->lblMpRegenMs->Size = System::Drawing::Size(0, 13);
+			this->lblMpRegenMs->Text = L"ms";
+			// 
+			// cbSpeedEdit
+			// 
+			this->cbSpeedEdit->AutoSize = true;
+			this->cbSpeedEdit->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
+			this->cbSpeedEdit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cbSpeedEdit->ForeColor = System::Drawing::Color::White;
+			this->cbSpeedEdit->Location = System::Drawing::Point(10, 121);
+			this->cbSpeedEdit->Name = L"cbSpeedEdit";
+			this->cbSpeedEdit->Size = System::Drawing::Size(84, 17);
+			this->cbSpeedEdit->TabIndex = 18;
+			this->cbSpeedEdit->Text = L"速度编辑";
+			this->cbSpeedEdit->UseVisualStyleBackColor = false;
+			this->cbSpeedEdit->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbSpeedEdit_CheckedChanged);
+			// 
+			// tbSpeedWalk
+			// 
+			this->tbSpeedWalk->Location = System::Drawing::Point(97, 121);
+			this->tbSpeedWalk->Name = L"tbSpeedWalk";
+			this->tbSpeedWalk->Size = System::Drawing::Size(30, 20);
+			this->tbSpeedWalk->TabIndex = 19;
+			this->tbSpeedWalk->Text = L"1.0";
+			// 
+			// tbGravity
+			// 
+			this->tbGravity->Location = System::Drawing::Point(97, 138);
+			this->tbGravity->Name = L"tbGravity";
+			this->tbGravity->Size = System::Drawing::Size(30, 20);
+			this->tbGravity->TabIndex = 20;
+			this->tbGravity->Text = L"1.0";
+			// 
+			// lblSpeedWalk
+			// 
+			this->lblSpeedWalk->AutoSize = true;
+			this->lblSpeedWalk->Location = System::Drawing::Point(130, 124);
+			this->lblSpeedWalk->Name = L"lblSpeedWalk";
+			this->lblSpeedWalk->Size = System::Drawing::Size(0, 13);
+			this->lblSpeedWalk->Text = L"速度";
+			// 
+			// lblGravity
+			// 
+			this->lblGravity->AutoSize = true;
+			this->lblGravity->Location = System::Drawing::Point(130, 141);
+			this->lblGravity->Name = L"lblGravity";
+			this->lblGravity->Size = System::Drawing::Size(0, 13);
+			this->lblGravity->Text = L"重力";
 			// 
 			// groupBox5
 			// 
@@ -4048,6 +4204,7 @@ public:
 			// 
 			// tabPage20
 			// 
+			this->tabPage20->AutoScroll = true;
 			this->tabPage20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(25)), static_cast<System::Int32>(static_cast<System::Byte>(25)),
 				static_cast<System::Int32>(static_cast<System::Byte>(25)));
 			this->tabPage20->Controls->Add(this->panel31);
@@ -4266,7 +4423,7 @@ public:
 			this->tbStatHP->ForeColor = System::Drawing::Color::White;
 			this->tbStatHP->Location = System::Drawing::Point(36, 28);
 			this->tbStatHP->Name = L"tbStatHP";
-			this->tbStatHP->Size = System::Drawing::Size(42, 21);
+			this->tbStatHP->Size = System::Drawing::Size(60, 21);
 			this->tbStatHP->TabIndex = 9;
 			this->tbStatHP->Text = L"0";
 			this->tbStatHP->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -4275,7 +4432,7 @@ public:
 			// 
 			this->labelMP->AutoSize = true;
 			this->labelMP->BackColor = System::Drawing::Color::Transparent;
-			this->labelMP->Location = System::Drawing::Point(84, 30);
+			this->labelMP->Location = System::Drawing::Point(102, 30);
 			this->labelMP->Name = L"labelMP";
 			this->labelMP->Size = System::Drawing::Size(26, 13);
 			this->labelMP->TabIndex = 10;
@@ -4287,9 +4444,9 @@ public:
 				static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			this->tbStatMP->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->tbStatMP->ForeColor = System::Drawing::Color::White;
-			this->tbStatMP->Location = System::Drawing::Point(116, 28);
+			this->tbStatMP->Location = System::Drawing::Point(134, 28);
 			this->tbStatMP->Name = L"tbStatMP";
-			this->tbStatMP->Size = System::Drawing::Size(42, 21);
+			this->tbStatMP->Size = System::Drawing::Size(60, 21);
 			this->tbStatMP->TabIndex = 11;
 			this->tbStatMP->Text = L"0";
 			this->tbStatMP->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -4298,7 +4455,7 @@ public:
 			// 
 			this->labelLevel->AutoSize = true;
 			this->labelLevel->BackColor = System::Drawing::Color::Transparent;
-			this->labelLevel->Location = System::Drawing::Point(164, 30);
+			this->labelLevel->Location = System::Drawing::Point(200, 30);
 			this->labelLevel->Name = L"labelLevel";
 			this->labelLevel->Size = System::Drawing::Size(22, 13);
 			this->labelLevel->TabIndex = 12;
@@ -4310,7 +4467,7 @@ public:
 				static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			this->tbLevel->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->tbLevel->ForeColor = System::Drawing::Color::White;
-			this->tbLevel->Location = System::Drawing::Point(196, 28);
+			this->tbLevel->Location = System::Drawing::Point(232, 28);
 			this->tbLevel->Name = L"tbLevel";
 			this->tbLevel->Size = System::Drawing::Size(42, 21);
 			this->tbLevel->TabIndex = 13;
@@ -4321,7 +4478,7 @@ public:
 			// 
 			this->labelMesos->AutoSize = true;
 			this->labelMesos->BackColor = System::Drawing::Color::Transparent;
-			this->labelMesos->Location = System::Drawing::Point(244, 30);
+			this->labelMesos->Location = System::Drawing::Point(4, 57);
 			this->labelMesos->Name = L"labelMesos";
 			this->labelMesos->Size = System::Drawing::Size(22, 13);
 			this->labelMesos->TabIndex = 14;
@@ -4333,9 +4490,9 @@ public:
 				static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			this->tbMesos->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->tbMesos->ForeColor = System::Drawing::Color::White;
-			this->tbMesos->Location = System::Drawing::Point(276, 28);
+			this->tbMesos->Location = System::Drawing::Point(50, 55);
 			this->tbMesos->Name = L"tbMesos";
-			this->tbMesos->Size = System::Drawing::Size(42, 21);
+			this->tbMesos->Size = System::Drawing::Size(120, 21);
 			this->tbMesos->TabIndex = 15;
 			this->tbMesos->Text = L"0";
 			this->tbMesos->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -4344,7 +4501,7 @@ public:
 			// 
 			this->bApplyStats->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
 			this->bApplyStats->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->bApplyStats->Location = System::Drawing::Point(150, 55);
+			this->bApplyStats->Location = System::Drawing::Point(250, 55);
 			this->bApplyStats->Name = L"bApplyStats";
 			this->bApplyStats->Size = System::Drawing::Size(80, 25);
 			this->bApplyStats->TabIndex = 16;
@@ -4362,7 +4519,7 @@ public:
 			this->panel27->Controls->Add(this->bSpawnControlDelete);
 			this->panel27->Location = System::Drawing::Point(4, 296);
 			this->panel27->Name = L"panel27";
-			this->panel27->Size = System::Drawing::Size(383, 85);
+			this->panel27->Size = System::Drawing::Size(383, 185);
 			this->panel27->TabIndex = 23;
 			// 
 			// bSpawnControl
@@ -7103,6 +7260,12 @@ public:
 	private: System::Void bMapRush_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void lbMapRusherStatus_TextChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbNoWalkingFriction_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbItsRainingMobs_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbAttackUnrandomizer_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbMSCRCBypass_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbBYOR_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbMpRegen_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void cbSpeedEdit_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbVacForceRight_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbVacJumpRight_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void cbVacLeft_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
