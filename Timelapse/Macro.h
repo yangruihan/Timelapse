@@ -1,5 +1,4 @@
 #pragma once
-#include <cliext/queue>
 #include "MainForm.h"
 #include <Windows.h>
 #include <winuser.h>
@@ -99,9 +98,81 @@ ref struct KeyMacro {
 	}
 };
 
+// Managed min-heap priority queue replacing cliext::priority_queue
+generic<typename T>
+ref class ManagedPriorityQueue {
+private:
+	Collections::Generic::List<T>^ heap;
+	Func<T, T, bool>^ compareFunc;
+
+	void SiftUp(int i) {
+		while (i > 0) {
+			int parent = (i - 1) / 2;
+			if (compareFunc(heap[parent], heap[i])) {
+				T tmp = heap[parent];
+				heap[parent] = heap[i];
+				heap[i] = tmp;
+				i = parent;
+			} else break;
+		}
+	}
+
+	void SiftDown(int i) {
+		int n = heap->Count;
+		while (true) {
+			int left = 2 * i + 1, right = 2 * i + 2, smallest = i;
+			if (left < n && compareFunc(heap[smallest], heap[left])) smallest = left;
+			if (right < n && compareFunc(heap[smallest], heap[right])) smallest = right;
+			if (smallest != i) {
+				T tmp = heap[smallest];
+				heap[smallest] = heap[i];
+				heap[i] = tmp;
+				i = smallest;
+			} else break;
+		}
+	}
+
+public:
+	ManagedPriorityQueue(Func<T, T, bool>^ cmp) {
+		heap = gcnew Collections::Generic::List<T>();
+		compareFunc = cmp;
+	}
+
+	void push(T item) {
+		heap->Add(item);
+		SiftUp(heap->Count - 1);
+	}
+
+	T top() {
+		return heap[0];
+	}
+
+	void pop() {
+		if (heap->Count == 0) return;
+		heap[0] = heap[heap->Count - 1];
+		heap->RemoveAt(heap->Count - 1);
+		if (heap->Count > 0) SiftDown(0);
+	}
+
+	bool empty() {
+		return heap->Count == 0;
+	}
+
+	int size() {
+		return heap->Count;
+	}
+};
+
 ref class PriorityQueue {
 public:
-	static cliext::priority_queue<KeyMacro^>^ macroQueue = gcnew cliext::priority_queue<KeyMacro^>();
+	static bool CompareMacroPriority(KeyMacro^ a, KeyMacro^ b) {
+		return a->macroType < b->macroType; // a<b means b has higher priority
+	}
+
+	// Max-heap by MacroType: higher enum value = higher priority (popped first)
+	static ManagedPriorityQueue<KeyMacro^>^ macroQueue = gcnew ManagedPriorityQueue<KeyMacro^>(
+		gcnew Func<KeyMacro^, KeyMacro^, bool>(&CompareMacroPriority)
+	);
 	static bool closeMacroQueue = false;
 
 	static void MacroQueueWorker() {

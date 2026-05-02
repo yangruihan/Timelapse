@@ -1,5 +1,4 @@
-﻿#include <Windows.h>
-#include <cliext/vector>
+#include <Windows.h>
 #include <sstream>
 #include "MainForm.h"
 #include "Addresses.h"
@@ -1698,7 +1697,7 @@ void MainForm::cbDupeX_CheckedChanged(System::Object^  sender, System::EventArgs
 }
 
 void MainForm::bDupeXGetFoothold_Click(System::Object^  sender, System::EventArgs^  e) {
-	tbDupeXFoothold->Text = Convert::ToString(ReadMultiPointerSigned(UserLocalBase, 2, OFS_pID, OFS_Foothold)); 
+	tbDupeXFoothold->Text = Convert::ToString((long long)ReadMultiPointerSigned(UserLocalBase, 2, OFS_pID, OFS_Foothold)); 
 }
 
 void MainForm::tbDupeXFoothold_TextChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -2480,10 +2479,10 @@ static MapData^ getMap(int mapID) {
 }
 
 //Recursive Depth First Search (DFS) to find path
-void existsInNextMapDFS(int currMapID, int startMapID, int destMapID, int numRecursions, cliext::vector<MapPath^>^ searchList, cliext::vector<MapPath^>^ finalPath) {
+void existsInNextMapDFS(int currMapID, int startMapID, int destMapID, int numRecursions, Collections::Generic::List<MapPath^>^ searchList, Collections::Generic::List<MapPath^>^ finalPath) {
 	if (currMapID == destMapID) {
-		if ((int)(finalPath->size()) == 0 || finalPath->size() > searchList->size()) 
-			*finalPath = searchList; //Current path is the shortest path to destination map
+		if (finalPath->Count == 0 || finalPath->Count > searchList->Count) 
+			finalPath->Clear(); finalPath->AddRange(searchList); //Current path is the shortest path to destination map
 		
 		return; //Returning so that no further maps from this one are searched
 	}
@@ -2500,15 +2499,15 @@ void existsInNextMapDFS(int currMapID, int startMapID, int destMapID, int numRec
 		if (existsInSearchList) continue; //Skip portals where it goes to maps already in search path to prevent loop backs
 
 		MapPath^ mapPath = gcnew MapPath(currMapID, portalData);
-		searchList->push_back(mapPath);
+		searchList->Add(mapPath);
 		existsInNextMapDFS(portalData->toMapID, startMapID, destMapID, numRecursions + 1, searchList, finalPath); //Recursive call
-		searchList->pop_back();
+		searchList->RemoveAt(searchList->Count - 1);
 	}
 }
 
 //Uses recursive existsInNextMapDFS() to generate a path
-cliext::vector<MapPath^>^ generatePath(int startMapID, int destMapID) {
-	cliext::vector<MapPath^> ^searchList = gcnew cliext::vector<MapPath^>(), ^finalPath = gcnew cliext::vector<MapPath^>();
+Collections::Generic::List<MapPath^>^ generatePath(int startMapID, int destMapID) {
+	Collections::Generic::List<MapPath^> ^searchList = gcnew Collections::Generic::List<MapPath^>(), ^finalPath = gcnew Collections::Generic::List<MapPath^>();
 	existsInNextMapDFS(startMapID, startMapID, destMapID, 0, searchList, finalPath); //Gets shortest path and puts it into finalPath (if there exists a path)
 	return finalPath;
 }
@@ -2702,14 +2701,14 @@ static void mapRush(int destMapID) {
 		}
 	}
 
-	cliext::vector<MapPath^>^ mapPath = generatePath(startMapID, destMapID);
-	if (mapPath->size() == 0) {
+	Collections::Generic::List<MapPath^>^ mapPath = generatePath(startMapID, destMapID);
+	if (mapPath->Count == 0) {
 		MainForm::TheInstance->lbMapRusherStatus->Text = "Status: Cannot find a path to Destination Map ID";
 		GlobalRefs::isMapRushing = false;
 		return;
 	}
 
-	int remainingMapCount = mapPath->size(), delay = Convert::ToInt32(MainForm::TheInstance->tbMapRusherDelay->Text);
+	int remainingMapCount = mapPath->Count, delay = Convert::ToInt32(MainForm::TheInstance->tbMapRusherDelay->Text);
 	if (delay <= 0 || delay > 999999) delay = 500;
 	toggleFastMapRushHacks(true); //Enables No Map Background, Fade, Tiles, & Objects for quicker map rush
 	int oldChannel = ReadPointer(ServerBase, OFS_Channel);
@@ -2718,20 +2717,20 @@ static void mapRush(int destMapID) {
 	Assembly::spawnControl = new std::vector<SpawnControlData*>(); //Create a new spawn control list for map rushing
 	Jump(spawnPointAddr, Assembly::SpawnPointHook, 0); //Enable spawn control 
 
-	for (auto i = mapPath->begin(); i != mapPath->end(); ++i) {
-		MapPath^ mapData = *i;
+	for (int idx = 0; idx < mapPath->Count; idx++) {
+		MapPath^ mapData = mapPath[idx];
 		PortalData^ foundPortal = findPortal(mapData->portal->toMapID); //Find portal in mem in case wz files are different in private server
 		if (foundPortal != nullptr) mapData->portal = foundPortal;
 
 		//If first map, add spawn point to spawnControl & CC to new channel to enable hacks
-		if (i == mapPath->begin()) {
-			Assembly::spawnControl->push_back(new SpawnControlData((*i)->mapID, (*i)->portal->xPos, (*i)->portal->yPos - 10));
+		if (idx == 0) {
+			Assembly::spawnControl->push_back(new SpawnControlData(mapPath[idx]->mapID, mapPath[idx]->portal->xPos, mapPath[idx]->portal->yPos - 10));
 			if (oldChannel == 1) AutoCC(2); else AutoCC(1);
 			Sleep(delay);
 		}
 
 		//Add next map's spawn point to spawnControl
-		if((i+1) != mapPath->end()) Assembly::spawnControl->push_back(new SpawnControlData((*(i+1))->mapID, (*(i+1))->portal->xPos, (*(i+1))->portal->yPos - 10));
+		if((idx+1) < mapPath->Count) Assembly::spawnControl->push_back(new SpawnControlData(mapPath[idx+1]->mapID, mapPath[idx+1]->portal->xPos, mapPath[idx+1]->portal->yPos - 10));
 
 		//Construct Packet
 		String^ packet = "";
